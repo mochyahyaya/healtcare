@@ -6,6 +6,7 @@ use App\Http\Livewire\Users;
 use App\Http\Livewire\Monitorings;
 use App\Http\Livewire\Pets;
 use App\Http\Livewire\Cages;
+use App\Http\Livewire\Dashboard;
 use App\Http\Livewire\ShowMonitorings;
 use App\Http\Livewire\MedicalRecords;
 use Illuminate\Support\Facades\Route;
@@ -33,15 +34,13 @@ Route::get('redirects', 'App\Http\Livewire\Home');
 
 Route::group(['middleware' => ['auth:sanctum', 'verified']], function() {
 
-    Route::get('admin/dashboard', function () {
-        return view('livewire.admin.dashboard');
-    })->name('dashboard');
     Route::resource('hotels', \App\Http\Controllers\HotelController::class)
     ->only(['create', 'store']);
-
+    
     Route::get('pets', [\App\Http\Controllers\PetController::class, 'index'])
     ->name('pets.index');
-
+    
+    Route::get('/dashboard', Dashboard::class)->name('dashboard');
     Route::get('/groom', Grooms::class)->name('grooms');
     Route::get('/hotel', Hotels::class)->name('hotels');
     Route::get('/monitoring', Monitorings::class)->name('monitorings');
