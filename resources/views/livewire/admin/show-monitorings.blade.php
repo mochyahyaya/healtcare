@@ -9,7 +9,7 @@
 
         @foreach ($data as $items)
         <!-- Column -->
-        <div class="my-1 px-1 w-full md:w-1/2 lg:my-4 lg:px-4 lg:w-1/3">                  
+        <div class="my-1 px-1 w-full md:w-1/2 lg:my-4 lg:px-4 lg:w-1/3">
                 <!-- Article -->
                 <article class="overflow-hidden rounded-lg shadow-lg">
                    @if ($items->cages->typecages->alias == 'CT')
@@ -42,7 +42,7 @@
                                {{$items->pets->name}}
                             </p>
                         </a>
-                        <a class="no-underline text-grey-darker hover:text-red-dark" href="{{ route('monitorings') }}">
+                        <a class="no-underline text-grey-darker hover:text-red-dark" href="{{ route('monitorings', ['id'=>$items->id]) }}">
                             <span class="hidden">Lihat</span>
                             <i class="fa fa-book-medical"></i>
                         </a>
@@ -50,8 +50,8 @@
 
                 </article>
                 <!-- END Article -->
-                
+
             </div>
             <!-- END Column -->
             @endforeach
-    </div> 
+    </div>
