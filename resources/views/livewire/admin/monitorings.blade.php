@@ -65,7 +65,7 @@
                                      <span class="text-gray-700">Obat</span>
                                      <div class="mt-2">
                                          <div wire:model="medicine">
-                                             @foreach ($enumtemperature as $item)
+                                             @foreach ($enummedicine as $item)
                                                  <div>
                                                      <label class="inline-flex items-center">
                                                          <input
