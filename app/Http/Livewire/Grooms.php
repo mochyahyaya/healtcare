@@ -21,6 +21,10 @@ class Grooms extends Component
     public $sortDirection = 'asc';
     public $sortBy = 'pet_id';    
     public $perPage = 10;
+    public $selectedUser = null;
+    public $selectedPet = null;
+    public $users;
+    public $pets;
     /**
      * function for validation
      *
@@ -38,9 +42,21 @@ class Grooms extends Component
         ];
     }
 
-    public function mount()
+    public function mount($selectedPet=null)
     {
         $this->resetPage();
+
+        $this->users = User::all();
+        $this->pets = collect();
+        $this->selectedPet = $selectedPet;
+
+        if (!is_null($selectedPet)) {
+            $pet = Pet::with('users')->find($selectedPet);
+            if ($pet) {
+                $this->pets = Pet::where('user_id', $pet->user_id)->get();
+                $this->selectedUser = $pet->user_id;
+            }
+        }
     }
 
     /**
@@ -186,12 +202,18 @@ class Grooms extends Component
 
     public function pets()
     {
-        return Pet::all();
+        return Pet::with('users')->get();
     }
 
     public function users()
     {
         return User::all();
+    }
+
+    public function updatedSelectedUser($user)
+    {
+        $this->pets = Pet::where('user_id', $user)->get();
+        $this->selectedPet = NULL;
     }
     
     public function read()
