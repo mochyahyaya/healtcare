@@ -139,19 +139,19 @@
                        
                    
                        <x-slot name="content">
-                           <div class="mt-4">
+                        <div x-data="{type: 0}">
+                           <div class="mt-4" x-data="{user_id: 0}">
                              <x-jet-label for="user" value="{{ __('Nama Pemilik') }}" />
-                             <select class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm mt-1 block w-full">
-                                  <option selected> -- Nama Pemilik -- </option>
-                              @foreach ($users as $item)
-                                   <option value="{{$item->id}}"> {{$item->name}}</option>
-                               @endforeach
-                             </select>
-                             @error('user') <span class="error">{{ $message }}</span> @enderror
-                           </div>    
-                           <div class="mt-4">
+                             <select x-model= "user_id" class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm mt-1 block w-full" wire:model="selectedUser">
+                              <option value="" selected> -- Nama pemilik --</option>
+                            @foreach ($users as $item)
+                              <option value="{{$item->id}}">{{$item->name}}</option>
+                            @endforeach
+                          </select>
+                             @error('user') <span class="error">{{ $message }}</span> @enderror 
+                           <div class="mt-4" x-show="user_id > 0">
                                <x-jet-label for="name" value="{{ __('Nama Hewan Peliharaan') }}" />
-                               <select wire:model.debounce.800ms="pet_id" class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm mt-1 block w-full" >
+                               <select wire:model="selectedPet" class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm mt-1 block w-full" >
                                      <option selected> -- Nama Hewan -- </option>
                                 @foreach ($pets as $item)
                                      <option value="{{$item->id}}">{{$item->name}}</option>
@@ -159,15 +159,16 @@
                                </select>
                                @error('pet_id') <span class="error">{{ $message }}</span> @enderror
                            </div>
-                           <div class="mt-4">
-                             <x-jet-label for="service" value="{{ __('Jenis Hewan') }}" />
-                             <select class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm mt-1 block w-full" wire:model.debounce.800ms="type" >
-                                  <option selected> -- Jenis Hewan -- </option>   
-                                  <option value="kucing">Kucing</option>
-                                  <option value="anjing">Anjing</option>
-                               </select>
-                             @error('type') <span class="error">{{ $message }}</span> @enderror
-                         </div>
+                          </div>   
+                          <div class="mt-4">
+                            <x-jet-label for="type" value="{{ __('Jenis Hewan') }}" />
+                            <select name="type" x-model="type" class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm mt-1 block w-full">
+                                <option selected>-- Jenis Hewan --</option>
+                                <option value =1>Kucing</option>
+                                <option value =2>Anjing</option>
+                              </select>
+                            @error('type') <span class="error">{{ $message }}</span> @enderror
+                        </div>
                            <div class="mt-4">
                                <x-jet-label for="size" value="{{ __('Ukuran') }}" />
                                <x-jet-input id="size" class="block mt-1 w-full" type="text" wire:model.debounce.800ms="size" />
@@ -187,6 +188,7 @@
                                <x-jet-input id="address" class="block mt-1 w-full" type="text" wire:model.debounce.800ms="address" />
                                @error('address') <span class="error">{{ $message }}</span> @enderror
                            </div>
+                          </div>
                        </x-slot>
                    
                        <x-slot name="footer">

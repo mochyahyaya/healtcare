@@ -118,7 +118,7 @@
                    @endif
 
                    <x-slot name="content" >
-                    <div x-data="{type: 1}">
+                    <div x-data="{type: 0}">
                       <div class="mt-4"  x-data="{user_id: 0}">
                         <x-jet-label for="user_id" value="{{ __('Nama Pemilik') }}" />
                         <select x-model= "user_id" class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm mt-1 block w-full" wire:model="selectedUser">
