@@ -1,4 +1,4 @@
-<x-app-layout>
+
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Dashboard') }} 
@@ -64,11 +64,11 @@
                             <!--Graph Card-->
                             <div class="bg-white border-transparent rounded-lg shadow-xl">
                                 <div class="bg-gradient-to-b from-gray-300 to-gray-100 uppercase text-gray-800 border-b-2 border-gray-300 rounded-tl-lg rounded-tr-lg p-2">
-                                    <h5 class="font-bold uppercase text-gray-600">Graph</h5>
+                                    <h5 class="font-bold uppercase text-gray-600">Grooming</h5>
                                 </div>
                                 <div class="p-5" style="height: 280px !important">
                                     <livewire:livewire-column-chart
-                                    :column-chart-model="$columnChartModel"
+                                    :column-chart-model="$columnChartModelgroom "
                                 />  
                                 </div>
                             </div>
@@ -79,26 +79,14 @@
                             <!--Graph Card-->
                             <div class="bg-white border-transparent rounded-lg shadow-xl">
                                 <div class="bg-gradient-to-b from-gray-300 to-gray-100 uppercase text-gray-800 border-b-2 border-gray-300 rounded-tl-lg rounded-tr-lg p-2">
-                                    <h5 class="font-bold uppercase text-gray-600">Graph</h5>
+                                    <h5 class="font-bold uppercase text-gray-600">Boarding</h5>
                                 </div>
-                                <div class="p-5"><div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
-                                    <canvas id="chartjs-0" class="chartjs chartjs-render-monitor" width="482" height="241" style="display: block; width: 482px; height: 241px;"></canvas>
-                                    <script>
-                                        new Chart(document.getElementById("chartjs-0"), {
-                                            "type": "line",
-                                            "data": {
-                                                "labels": ["January", "February", "March", "April", "May", "June", "July"],
-                                                "datasets": [{
-                                                    "label": "Views",
-                                                    "data": [65, 59, 80, 81, 56, 55, 40],
-                                                    "fill": false,
-                                                    "borderColor": "rgb(75, 192, 192)",
-                                                    "lineTension": 0.1
-                                                }]
-                                            },
-                                            "options": {}
-                                        });
-                                    </script>
+                                <div class="p-5">
+                                    <div class="p-5" style="height: 240px !important">
+                                        <livewire:livewire-column-chart
+                                        :column-chart-model="$columnChartModelboard"
+                                    />  
+                                    </div>
                                 </div>
                             </div>
                             <!--/Graph Card-->
@@ -108,35 +96,13 @@
                             <!--Graph Card-->
                             <div class="bg-white border-transparent rounded-lg shadow-xl">
                                 <div class="bg-gradient-to-b from-gray-300 to-gray-100 uppercase text-gray-800 border-b-2 border-gray-300 rounded-tl-lg rounded-tr-lg p-2">
-                                    <h5 class="font-bold uppercase text-gray-600">Graph</h5>
+                                    <h5 class="font-bold uppercase text-gray-600">Breeding</h5>
                                 </div>
-                                <div class="p-5"><div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
-                                    <canvas id="chartjs-1" class="chartjs chartjs-render-monitor" width="482" height="241" style="display: block; width: 482px; height: 241px;"></canvas>
-                                    <script>
-                                        new Chart(document.getElementById("chartjs-1"), {
-                                            "type": "bar",
-                                            "data": {
-                                                "labels": ["January", "February", "March", "April", "May", "June", "July"],
-                                                "datasets": [{
-                                                    "label": "Likes",
-                                                    "data": [65, 59, 80, 81, 56, 55, 40],
-                                                    "fill": false,
-                                                    "backgroundColor": ["rgba(255, 99, 132, 0.2)", "rgba(255, 159, 64, 0.2)", "rgba(255, 205, 86, 0.2)", "rgba(75, 192, 192, 0.2)", "rgba(54, 162, 235, 0.2)", "rgba(153, 102, 255, 0.2)", "rgba(201, 203, 207, 0.2)"],
-                                                    "borderColor": ["rgb(255, 99, 132)", "rgb(255, 159, 64)", "rgb(255, 205, 86)", "rgb(75, 192, 192)", "rgb(54, 162, 235)", "rgb(153, 102, 255)", "rgb(201, 203, 207)"],
-                                                    "borderWidth": 1
-                                                }]
-                                            },
-                                            "options": {
-                                                "scales": {
-                                                    "yAxes": [{
-                                                        "ticks": {
-                                                            "beginAtZero": true
-                                                        }
-                                                    }]
-                                                }
-                                            }
-                                        });
-                                    </script>
+                                    <div class="p-5" style="height: 280px !important">
+                                        <livewire:livewire-column-chart
+                                        :column-chart-model="$columnChartModelbreed"
+                                    />  
+                                    </div>
                                 </div>
                             </div>
                             <!--/Graph Card-->
@@ -172,5 +138,3 @@
     </div>
     <livewire:scripts />
     @livewireChartsScripts
-
-</x-app-layout>

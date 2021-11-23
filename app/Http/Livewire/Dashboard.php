@@ -11,15 +11,29 @@ class Dashboard extends Component
 
     public function render()
     {
-        $columnChartModel = 
+        $columnChartModelgroom = 
     (new ColumnChartModel())
-        ->setTitle('Expenses by Type')
-        ->addColumn('Food', 100, '#f6ad55')
-        ->addColumn('Shopping', 200, '#fc8181')
-        ->addColumn('Travel', 300, '#90cdf4')
-    ;
+        ->setTitle('Grooming')
+        ->addColumn('Anjing', 100, '#fc8181')
+        ->addColumn('Kucing', 200, '#349eeb');
+
+        $columnChartModelboard = 
+    (new ColumnChartModel())
+        ->setTitle('Boarding')
+        ->addColumn('Anjing', 100, '#fc8181')
+        ->addColumn('Kucing', 200, '#349eeb');
+
+        $columnChartModelbreed = 
+    (new ColumnChartModel())
+        ->setTitle('Breeding')
+        ->addColumn('Anjing', 100, '#fc8181')
+        ->addColumn('Kucing', 200, '#349eeb');
 
         return view('livewire.admin.dashboard')
-        ->with(['columnChartModel' => $columnChartModel]);
+        ->with([
+            'columnChartModelgroom' => $columnChartModelgroom,
+            'columnChartModelboard' => $columnChartModelboard,
+            'columnChartModelbreed' => $columnChartModelbreed,
+        ]);
     }
 }
