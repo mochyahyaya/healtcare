@@ -8,11 +8,16 @@ use Livewire\Component;
 use Livewire\WithPagination;
 
 class Monitorings extends Component
-{   
-    public $enumfood          = ['Normal', 'Tidak Normal']; 
-    public $enumtemperature   = ['Normal', 'Tidak Normal']; 
-    public $enummedicine      = ['Sudah', 'Tidak Perlu']; 
-    public $food, $temperature, $medicine, $notes;
+{
+    public $enumfood          = ['Normal', 'Tidak Normal'];
+    public $enumtemperature   = ['Normal', 'Tidak Normal'];
+    public $enummedicine      = ['Sudah', 'Tidak Perlu'];
+    public $food, $temperature, $medicine, $notes, $hotel_id;
+
+    public function mount($id)
+    {
+        $this->hotel_id = $id;
+    }
 
     public function store()
     {
@@ -20,14 +25,15 @@ class Monitorings extends Component
             'food'              => 'required',
             'temperature'       => 'required',
             'medicine'          => 'required',
-            'notes'             => 'required',
+//            'notes'             => 'required',
         ]);
 
         Monitoring::create([
             'food'          => $this->food,
+            'hotel_id'      => $this->hotel_id,
             'temperature'   => $this->temperature,
             'medicine'      => $this->medicine,
-            'notes'         => $this->notes,
+//            'notes'         => $this->notes,
         ]);
     }
 

@@ -36,14 +36,14 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function() {
 
     Route::resource('hotels', \App\Http\Controllers\HotelController::class)
     ->only(['create', 'store']);
-    
+
     Route::get('pets', [\App\Http\Controllers\PetController::class, 'index'])
     ->name('pets.index');
-    
+
     Route::get('/dashboard', Dashboard::class)->name('dashboard');
     Route::get('/groom', Grooms::class)->name('grooms');
     Route::get('/hotel', Hotels::class)->name('hotels');
-    Route::get('/monitoring', Monitorings::class)->name('monitorings');
+    Route::get('/monitoring/{id}', Monitorings::class)->name('monitorings');
     Route::get('/showmonitoring', ShowMonitorings::class)->name('showmonitorings');
     Route::get('/breed', Grooms::class)->name('breeds');
     Route::get('/user', Users::class)->name('users');
@@ -52,5 +52,5 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function() {
     Route::get('/medical-records', MedicalRecords::class)->name('medicalRecords');
 
 
-    
+
 });
