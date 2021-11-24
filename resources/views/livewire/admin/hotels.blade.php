@@ -242,7 +242,7 @@
                              </div>
                              <div class="flex-grow">
                                <h5 class="leading-tight text-sm text-gray-700 font-semibold">Nama Pemilik</h5>
-                               <span class="text-xs text-gray-500">{{$pet_id}}</span>
+                               <span class="text-xs text-gray-500">{{$users}}</span>
                              </div>
                            </span>
                            <span class="flex items-center gap-4 px-6 py-3 w-full">
@@ -251,7 +251,7 @@
                              </div>
                              <div class="flex-grow">
                                <h5 class="leading-tight text-sm text-gray-700 font-semibold">Nama Hewan Peliharaan</h5>
-                               <span class="text-xs text-gray-500">{{$pet_id}}</span>
+                               <span class="text-xs text-gray-500">{{$pets}}</span>
                              </div>
                            </span >
                            <span  class="flex items-center gap-4 px-6 py-3 w-full">
