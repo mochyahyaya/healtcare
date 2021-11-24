@@ -16,6 +16,8 @@ class Groom extends Model
         return $this->belongsTo(Pet::class, 'pet_id');
     }
 
+
+
     public function scopeSearch($query, $val){
         return $query
         ->where('type', 'like', '%' .$val. '%')
