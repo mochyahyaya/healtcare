@@ -100,7 +100,8 @@ class Hotels extends Component
         $this->modalDetailVisible = true;
 
         $data = Hotel::find($this->modelId);
-        $this->selectedPet = $data->pet_id;
+        $this->users = $data->pets->name;
+        $this->pets = $data->pets->name;
         $this->size = $data->size;
         $this->start_date = $data->start_date;
         $this->end_date = $data->end_date;
