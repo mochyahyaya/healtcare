@@ -139,36 +139,37 @@
                        
                    
                        <x-slot name="content">
-                        <div x-data="{type: 0}">
-                           <div class="mt-4" x-data="{user_id: 0}">
-                             <x-jet-label for="user" value="{{ __('Nama Pemilik') }}" />
-                             <select x-model= "user_id" class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm mt-1 block w-full" wire:model="selectedUser">
-                              <option value="" selected> -- Nama pemilik --</option>
-                            @foreach ($users as $item)
-                              <option value="{{$item->id}}">{{$item->name}}</option>
-                            @endforeach
-                          </select>
-                             @error('user') <span class="error">{{ $message }}</span> @enderror 
-                           <div class="mt-4" x-show="user_id > 0">
-                               <x-jet-label for="name" value="{{ __('Nama Hewan Peliharaan') }}" />
-                               <select wire:model="selectedPet" class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm mt-1 block w-full" >
-                                     <option selected> -- Nama Hewan -- </option>
-                                @foreach ($pets as $item)
-                                     <option value="{{$item->id}}">{{$item->name}}</option>
-                                 @endforeach
+                           <div class="mt-4">
+                             <div x-data="{type: 0}">
+                              <div class="mt-4"  x-data="{user_id: 0}">
+                                <x-jet-label for="user_id" value="{{ __('Nama Pemilik') }}" />
+                                <select x-model= "user_id" class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm mt-1 block w-full" wire:model="selectedUser">
+                                      <option value="" selected> -- Nama pemilik --</option>
+                                    @foreach ($users as $item)
+                                      <option value="{{$item->id}}">{{$item->name}}</option>
+                                    @endforeach
+                                  </select>
+                                @error('type') <span class="error">{{ $message }}</span> @enderror
+                                <div class="mt-4" x-show="user_id > 0">
+                                  <x-jet-label for="pet_id" value="{{ __('Nama Pet') }}" />
+                                  <select class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm mt-1 block w-full" wire:model="selectedPet"> 
+                                        <option selected> -- Nama hewan --</option>
+                                      @foreach ($pets as $item)
+                                        <option value= "{{$item->id}}">{{$item->name}}</option>
+                                      @endforeach
+                                    </select>
+                                  @error('pet_id') <span class="error">{{ $message }}</span> @enderror
+                                </div>  
+                              </div>  
+                           <div class="mt-4">
+                             <x-jet-label for="service" value="{{ __('Jenis Hewan') }}" />
+                             <select class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm mt-1 block w-full" wire:model.debounce.800ms="type" >
+                                  <option selected> -- Jenis Hewan -- </option>   
+                                  <option value="kucing">Kucing</option>
+                                  <option value="anjing">Anjing</option>
                                </select>
-                               @error('pet_id') <span class="error">{{ $message }}</span> @enderror
-                           </div>
-                          </div>   
-                          <div class="mt-4">
-                            <x-jet-label for="type" value="{{ __('Jenis Hewan') }}" />
-                            <select name="type" x-model="type" class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm mt-1 block w-full">
-                                <option selected>-- Jenis Hewan --</option>
-                                <option value =1>Kucing</option>
-                                <option value =2>Anjing</option>
-                              </select>
-                            @error('type') <span class="error">{{ $message }}</span> @enderror
-                        </div>
+                             @error('type') <span class="error">{{ $message }}</span> @enderror
+                         </div>
                            <div class="mt-4">
                                <x-jet-label for="size" value="{{ __('Ukuran') }}" />
                                <x-jet-input id="size" class="block mt-1 w-full" type="text" wire:model.debounce.800ms="size" />
@@ -177,9 +178,10 @@
                            <div class="mt-4">
                                <x-jet-label for="service" value="{{ __('Jenis Grooming') }}" />
                                <select class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm mt-1 block w-full" wire:model.debounce.800ms="service" >
-                                   <option>Standar</option>
-                                   <option>Kutu</option>
-                                   <option>Jamur</option>
+                                   <option selected>-- Jenis Grooming --</option>
+                                   <option value="Standar">Standar</option>
+                                   <option value="Kutu">Kutu</option>
+                                   <option value="Jamur">Jamur</option>
                                  </select>
                                @error('service') <span class="error">{{ $message }}</span> @enderror
                            </div>
@@ -189,6 +191,7 @@
                                @error('address') <span class="error">{{ $message }}</span> @enderror
                            </div>
                           </div>
+                           </div>
                        </x-slot>
                    
                        <x-slot name="footer">
@@ -230,7 +233,7 @@
                    </x-jet-dialog-modal>
                
                    {{-- Detail Modal --}}
-                   {{-- <x-jet-dialog-modal wire:model="modalDetailVisible">
+                   <x-jet-dialog-modal wire:model="modalDetailVisible">
                        <x-slot name="title">
                            {{ __('Detail Grooming') }}
                        </x-slot>
@@ -244,7 +247,7 @@
                                  </div>
                                  <div class="flex-grow">
                                    <h5 class="leading-tight text-sm text-gray-700 font-semibold">Nama Pemilik</h5>
-                                   <span class="text-xs text-gray-500">{}}</span>
+                                   <span class="text-xs text-gray-500">{{$pet_id}}</span>
                                  </div>
                                </span>
                                <span class="flex items-center gap-4 px-6 py-3 w-full">
@@ -253,7 +256,7 @@
                                  </div>
                                  <div class="flex-grow">
                                    <h5 class="leading-tight text-sm text-gray-700 font-semibold">Nama Hewan Peliharaan</h5>
-                                   <span class="text-xs text-gray-500">{{$petname}}</span>
+                                   <span class="text-xs text-gray-500">{{$pet_id}}</span>
                                  </div>
                                </span >
                                <span  class="flex items-center gap-4 px-6 py-3 w-full">
@@ -315,6 +318,6 @@
                                {{ __('Tutup') }}
                            </x-jet-secondary-button>
                        </x-slot>
-                   </x-jet-dialog-modal> --}}
+                   </x-jet-dialog-modal>
                </div>
 <div>

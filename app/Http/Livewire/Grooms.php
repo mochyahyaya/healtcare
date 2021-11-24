@@ -33,11 +33,10 @@ class Grooms extends Component
     public function rules()
     {
         return [
-            'pet_id' => 'required',
+            'selectedPet' => 'required',
             'size' => 'required',
             'service' => 'required',
             'address' => 'required',
-            'type'  => 'required'
             
         ];
     }
@@ -89,7 +88,7 @@ class Grooms extends Component
     public function detailShowModal($id)
     {
         $this->modelId = $id;
-        $this->modalDetailVisible = true;
+        $this->modalDetailVisibl = true;
 
         $data = Groom::find($this->modelId);
         $this->type = $data->type;
@@ -167,8 +166,7 @@ class Grooms extends Component
     public function modelData()
     {
         return [
-            'pet_id'   => $this->pet_id,
-            'type'      => $this->type,
+            'pet_id'    => $this->selectedPet,
             'size'      => $this->size,
             'service'   => $this->service,
             'status'    => $this->status,
