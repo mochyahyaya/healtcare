@@ -14,7 +14,7 @@ class AddPetIdToBreedingsTable extends Migration
     public function up()
     {
         Schema::table('breedings', function (Blueprint $table) {
-            $table->string('pet_id_1');
+            $table->$table->foreignId('pet_id_1')->constrained('pets');
             $table->string('pet_id_2');
         });
     }

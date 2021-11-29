@@ -16,7 +16,7 @@ class Hotels extends Component
     public $modalFormVisible = false;
     public $modalDeleteVisible = false;
     public $modalDetailVisible = false;
-    public $pet_id, $size, $total_day, $cage_id, $query, $user_id;
+    public $pet_id, $size, $total_day, $cage_id, $query, $user_id, $type_id, $cage_number;
     public $hotel_status = 'hotel';
     public $status = 'belum diproses';
     public $modelId;
@@ -26,10 +26,7 @@ class Hotels extends Component
     public $start_date = null;
     public $end_date = null;
     public $searchTerm;
-    public $type= 1;
-
-    public $users;
-    public $pets;
+    public $type= 1; 
 
     public $selectedUser = null;
     public $selectedPet = null;
@@ -100,13 +97,16 @@ class Hotels extends Component
         $this->modalDetailVisible = true;
 
         $data = Hotel::find($this->modelId);
-        $this->users = $data->pets->name;
-        $this->pets = $data->pets->name;
+        $this->user_id = $data->pets->users->name;
+        $this->pet_id = $data->pets->name;
+        $this->type_id = $data->pets->typepet->name;
         $this->size = $data->size;
         $this->start_date = $data->start_date;
         $this->end_date = $data->end_date;
         $this->total_day = $data->total_day;
-        $this->cage_id = $data->cage_id;
+        $this->cage_id = $data->cages->typecages->alias;
+        $this->cage_number = $data->cages->number;
+
     }
 
     public function loadModel()

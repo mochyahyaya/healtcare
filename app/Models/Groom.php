@@ -16,7 +16,15 @@ class Groom extends Model
         return $this->belongsTo(Pet::class, 'pet_id');
     }
 
+    public function users()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
 
+    public function cages()
+    {
+        return $this->belongsTo(Cage::class, 'cage_id');
+    }
 
     public function scopeSearch($query, $val){
         return $query

@@ -18,7 +18,7 @@ class Hotel extends Model
 
     public function monitoring()
     {
-        return $this->belongTo(Monitoring::class);
+        return $this->belongsTo(Monitoring::class);
     }
 
     public function users()

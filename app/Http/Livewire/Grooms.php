@@ -5,6 +5,7 @@ namespace App\Http\Livewire;
 use App\Models\Groom;
 use App\Models\Pet;
 use App\Models\User;
+use App\Models\Hotel;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -14,7 +15,7 @@ class Grooms extends Component
     public $modalFormVisible = false;
     public $modalDeleteVisible = false;
     public $modalDetailVisible = false;
-    public $pet_id, $type, $size, $service, $address;
+    public $pet_id, $user_id, $type_id, $size, $service, $address;
     public $status = 'belum diproses';
     public $modelId;
     public $search='';
@@ -23,8 +24,6 @@ class Grooms extends Component
     public $perPage = 10;
     public $selectedUser = null;
     public $selectedPet = null;
-    public $users;
-    public $pets;
     /**
      * function for validation
      *
@@ -88,14 +87,17 @@ class Grooms extends Component
     public function detailShowModal($id)
     {
         $this->modelId = $id;
-        $this->modalDetailVisibl = true;
+        $this->modalDetailVisible = true;
 
         $data = Groom::find($this->modelId);
-        $this->type = $data->type;
+        $this->user_id = $data->pets->users->name;
+        $this->pet_id = $data->pets->name;
+        $this->type_id = $data->pets->typepet->name;
         $this->size = $data->size;
-        $this->service = $data->service;
-        $this->status = $data->status;
         $this->address = $data->address;
+        $this->status = $data->status;
+        $this->service = $data->service;
+
     }
 
     public function loadModel()

@@ -242,7 +242,7 @@
                              </div>
                              <div class="flex-grow">
                                <h5 class="leading-tight text-sm text-gray-700 font-semibold">Nama Pemilik</h5>
-                               <span class="text-xs text-gray-500">{{$users}}</span>
+                               <span class="text-xs text-gray-500">{{$user_id}}</span>
                              </div>
                            </span>
                            <span class="flex items-center gap-4 px-6 py-3 w-full">
@@ -251,7 +251,7 @@
                              </div>
                              <div class="flex-grow">
                                <h5 class="leading-tight text-sm text-gray-700 font-semibold">Nama Hewan Peliharaan</h5>
-                               <span class="text-xs text-gray-500">{{$pets}}</span>
+                               <span class="text-xs text-gray-500">{{$pet_id}}</span>
                              </div>
                            </span >
                            <span  class="flex items-center gap-4 px-6 py-3 w-full">
@@ -260,7 +260,7 @@
                              </div>
                              <div class="flex-grow">
                                <h5 class="leading-tight text-sm text-gray-700 font-semibold">Jenis Hewan Peliharaan</h5>
-                               <span class="text-xs text-gray-500">{{$pet_id}}</span>
+                               <span class="text-xs text-gray-500">{{$type_id}}</span>
                              </div>
                            </span>
                            <span class="flex items-center gap-4 px-6 py-3 w-full">
@@ -297,6 +297,15 @@
                              <div class="flex-grow">
                                <h5 class="leading-tight text-sm text-gray-700 font-semibold">Total Hari</h5>
                                <span class="text-xs text-gray-500">{{$total_day}}</span>
+                             </div>
+                           </span>
+                           <span class="flex items-center gap-4 px-6 py-3 w-full">
+                             <div class="flex items-center justify-center h-8 w-8 p-4 bg-yellow-500 rounded-full">
+                               <i class="fas fa-address-book text-white"></i>
+                             </div>
+                             <div class="flex-grow">
+                               <h5 class="leading-tight text-sm text-gray-700 font-semibold">Kandang</h5>
+                               <span class="text-xs text-gray-500">{{$cage_id}} - {{$cage_number}}</span>
                              </div>
                            </span>
                          </div>
