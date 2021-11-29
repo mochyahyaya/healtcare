@@ -234,90 +234,90 @@
                
                    {{-- Detail Modal --}}
                    <x-jet-dialog-modal wire:model="modalDetailVisible">
-                       <x-slot name="title">
-                           {{ __('Detail Grooming') }}
-                       </x-slot>
-               
-                       <x-slot name="content">
-                       
-                           <div class="flex flex-col py-8 overflow-hidden bg-white">
-                               <span class="flex items-center gap-4 px-6 py-3 w-full">
-                                 <div class="flex items-center justify-center h-8 w-8 p-4 bg-red-500 rounded-full">
-                                   <i class="fas fa-clipboard-list text-white"></i>
-                                 </div>
-                                 <div class="flex-grow">
-                                   <h5 class="leading-tight text-sm text-gray-700 font-semibold">Nama Pemilik</h5>
-                                   <span class="text-xs text-gray-500">{{$pet_id}}</span>
-                                 </div>
-                               </span>
-                               <span class="flex items-center gap-4 px-6 py-3 w-full">
-                                 <div class="flex items-center justify-center h-8 w-8 p-4 bg-green-500 rounded-full">
-                                   <i class="fas fa-stream text-white"></i>
-                                 </div>
-                                 <div class="flex-grow">
-                                   <h5 class="leading-tight text-sm text-gray-700 font-semibold">Nama Hewan Peliharaan</h5>
-                                   <span class="text-xs text-gray-500">{{$pet_id}}</span>
-                                 </div>
-                               </span >
-                               <span  class="flex items-center gap-4 px-6 py-3 w-full">
-                                 <div class="flex items-center justify-center h-8 w-8 p-4 bg-yellow-500 rounded-full">
-                                   <i class="fas fa-address-book text-white"></i>
-                                 </div>
-                                 <div class="flex-grow">
-                                   <h5 class="leading-tight text-sm text-gray-700 font-semibold">Jenis Hewan Peliharaan</h5>
-                                   <span class="text-xs text-gray-500">{{$type}}</span>
-                                 </div>
-                               </span>
-                               <span class="flex items-center gap-4 px-6 py-3 w-full">
-                                 <div class="flex items-center justify-center h-8 w-8 p-4 bg-green-500 rounded-full">
-                                   <i class="fas fa-stream text-white"></i>
-                                 </div>
-                                 <div class="flex-grow">
-                                   <h5 class="leading-tight text-sm text-gray-700 font-semibold">Ukuran</h5>
-                                   <span class="text-sm text-gray-500">{{$size}}<span class="text-xs text-gray-500">(60-70 cm)</span></span>
-                                 </div>
-                               </span >
-                               <span class="flex items-center gap-4 px-6 py-3 w-full">
-                                 <div class="flex items-center justify-center h-8 w-8 p-4 bg-yellow-500 rounded-full">
-                                   <i class="fas fa-address-book text-white"></i>
-                                 </div>
-                                 <div class="flex-grow">
-                                   <h5 class="leading-tight text-sm text-gray-700 font-semibold">Jenis Grooming</h5>
-                                   <span class="text-xs text-gray-500">{{$service}}</span>
-                                 </div>
-                               </span>
-                               <span class="flex items-center gap-4 px-6 py-3 w-full">
-                                 <div class="flex items-center justify-center h-8 w-8 p-4 bg-green-500 rounded-full">
-                                   <i class="fas fa-stream text-white"></i>
-                                 </div>
-                                 <div class="flex-grow">
-                                   <h5 class="leading-tight text-sm text-gray-700 font-semibold">Status</h5>
-                                   <span class="text-xs text-gray-500">{{$status}}</span>
-                                 </div>
-                               </span >
-                               <span class="flex items-center gap-4 px-6 py-3 w-full">
-                                 <div class="flex items-center justify-center h-8 w-8 p-4 bg-yellow-500 rounded-full">
-                                   <i class="fas fa-address-book text-white"></i>
-                                 </div>
-                                 <div class="flex-grow">
-                                   <h5 class="leading-tight text-sm text-gray-700 font-semibold">Alamat</h5>
-                                   <span class="text-xs text-gray-500">{{$address}}</span>
-                                 </div>
-                               </span>
-                             </div>
-                               <button wire:click="process({{$modelId}})" class="inline-flex items-center px-4 py-2 bg-blue-400 border border-white-300 rounded-md font-semibold text-xs text-gray-700 uppercase tracking-widest shadow-sm hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:ring focus:ring-blue-200 active:text-gray-800 active:bg-gray-50 disabled:opacity-25 transition">
-                                 Proses
-                               </button>
-                               <button wire:click="finish({{$modelId}})" class="inline-flex items-center px-4 py-2 bg-green-400 border border-white-300 rounded-md font-semibold text-xs text-gray-700 uppercase tracking-widest shadow-sm hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:ring focus:ring-blue-200 active:text-gray-800 active:bg-gray-50 disabled:opacity-25 transition">
-                                 Selesai
-                               </button>
-                       </x-slot>
-               
-                       <x-slot name="footer">
-                           <x-jet-secondary-button wire:click="finish" wire:loading.attr="disabled">
-                               {{ __('Tutup') }}
-                           </x-jet-secondary-button>
-                       </x-slot>
-                   </x-jet-dialog-modal>
+                    <x-slot name="title">
+                        {{ __('Detail Grooming') }}
+                    </x-slot>
+            
+                    <x-slot name="content">
+                    
+                        <div class="flex flex-col py-8 overflow-hidden bg-white">
+                            <span class="flex items-center gap-4 px-6 py-3 w-full">
+                              <div class="flex items-center justify-center h-8 w-8 p-4 bg-red-500 rounded-full">
+                                <i class="fas fa-clipboard-list text-white"></i>
+                              </div>
+                              <div class="flex-grow">
+                                <h5 class="leading-tight text-sm text-gray-700 font-semibold">Nama Pemilik</h5>
+                                <span class="text-xs text-gray-500">{{$user_id}}</span>
+                              </div>
+                            </span>
+                            <span class="flex items-center gap-4 px-6 py-3 w-full">
+                              <div class="flex items-center justify-center h-8 w-8 p-4 bg-green-500 rounded-full">
+                                <i class="fas fa-stream text-white"></i>
+                              </div>
+                              <div class="flex-grow">
+                                <h5 class="leading-tight text-sm text-gray-700 font-semibold">Nama Hewan Peliharaan</h5>
+                                <span class="text-xs text-gray-500">{{$pet_id}}</span>
+                              </div>
+                            </span >
+                            <span  class="flex items-center gap-4 px-6 py-3 w-full">
+                              <div class="flex items-center justify-center h-8 w-8 p-4 bg-yellow-500 rounded-full">
+                                <i class="fas fa-address-book text-white"></i>
+                              </div>
+                              <div class="flex-grow">
+                                <h5 class="leading-tight text-sm text-gray-700 font-semibold">Jenis Hewan Peliharaan</h5>
+                                <span class="text-xs text-gray-500">{{$type_id}}</span>
+                              </div>
+                            </span>
+                            <span class="flex items-center gap-4 px-6 py-3 w-full">
+                              <div class="flex items-center justify-center h-8 w-8 p-4 bg-green-500 rounded-full">
+                                <i class="fas fa-stream text-white"></i>
+                              </div>
+                              <div class="flex-grow">
+                                <h5 class="leading-tight text-sm text-gray-700 font-semibold">Ukuran</h5>
+                                <span class="text-sm text-gray-500">{{$size}}<span class="text-xs text-gray-500">(60-70 cm)</span></span>
+                              </div>
+                            </span >
+                            <span class="flex items-center gap-4 px-6 py-3 w-full">
+                              <div class="flex items-center justify-center h-8 w-8 p-4 bg-green-500 rounded-full">
+                                <i class="fas fa-stream text-white"></i>
+                              </div>
+                              <div class="flex-grow">
+                                <h5 class="leading-tight text-sm text-gray-700 font-semibold">Alamat</h5>
+                                <span class="text-sm text-gray-500">{{$address}}</span>
+                              </div>
+                            </span >
+                            <span class="flex items-center gap-4 px-6 py-3 w-full">
+                              <div class="flex items-center justify-center h-8 w-8 p-4 bg-green-500 rounded-full">
+                                <i class="fas fa-stream text-white"></i>
+                              </div>
+                              <div class="flex-grow">
+                                <h5 class="leading-tight text-sm text-gray-700 font-semibold">Jenis Grooming</h5>
+                                <span class="text-sm text-gray-500">{{$service}}</span>
+                              </div>
+                            </span >
+                            <span class="flex items-center gap-4 px-6 py-3 w-full">
+                              <div class="flex items-center justify-center h-8 w-8 p-4 bg-green-500 rounded-full">
+                                <i class="fas fa-stream text-white"></i>
+                              </div>
+                              <div class="flex-grow">
+                                <h5 class="leading-tight text-sm text-gray-700 font-semibold">Status</h5>
+                                <span class="text-sm text-gray-500">{{$status}}</span>
+                              </div>
+                            </span >
+                          </div>
+                            <button wire:click="process(id)" class="inline-flex items-center px-4 py-2 bg-blue-400 border border-white-300 rounded-md font-semibold text-xs text-gray-700 uppercase tracking-widest shadow-sm hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:ring focus:ring-blue-200 active:text-gray-800 active:bg-gray-50 disabled:opacity-25 transition">
+                              Proses
+                            </button>
+                            <button wire:click="finish(id)" class="inline-flex items-center px-4 py-2 bg-green-400 border border-white-300 rounded-md font-semibold text-xs text-gray-700 uppercase tracking-widest shadow-sm hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:ring focus:ring-blue-200 active:text-gray-800 active:bg-gray-50 disabled:opacity-25 transition">
+                              Selesai
+                            </button>
+                    </x-slot>
+            
+                    <x-slot name="footer">
+                        <x-jet-secondary-button wire:click="$toggle('modalDetailVisible')" wire:loading.attr="disabled">
+                            {{ __('Tutup') }}
+                        </x-jet-secondary-button>
+                    </x-slot>
+                </x-jet-dialog-modal>   
                </div>
 <div>
