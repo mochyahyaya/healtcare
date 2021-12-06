@@ -104,7 +104,7 @@ class Grooms extends Component
     {
         $data = Groom::find($this->modelId);
         $this->pet_id = $data->pet_id;
-        $this->type = $data->type;
+        $this->type_id = $data->type_id;
         $this->size = $data->size;
         $this->service = $data->service;
         $this->status = $data->status;

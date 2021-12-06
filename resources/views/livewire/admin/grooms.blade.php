@@ -42,9 +42,9 @@
                                  Nama Hewan
                                  @include('partials._sort-icon', ['field' => 'name'])
                                </th>
-                               <th wire:click="sortBy('type')" scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider" style="cursor: pointer">
+                               <th wire:click="sortBy('type_id')" scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider" style="cursor: pointer">
                                  Jenis
-                                 @include('partials._sort-icon', ['field' => 'type'])
+                                 @include('partials._sort-icon', ['field' => 'type_id'])
                                </th>
                                <th wire:click="sortBy('size')" scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider" style="cursor: pointer">
                                  Ukuran
@@ -163,7 +163,7 @@
                               </div>  
                            <div class="mt-4">
                              <x-jet-label for="service" value="{{ __('Jenis Hewan') }}" />
-                             <select class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm mt-1 block w-full" wire:model.debounce.800ms="type" >
+                             <select class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm mt-1 block w-full" wire:model.debounce.800ms="type_id" >
                                   <option selected> -- Jenis Hewan -- </option>   
                                   <option value="kucing">Kucing</option>
                                   <option value="anjing">Anjing</option>
