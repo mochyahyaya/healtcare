@@ -86,10 +86,12 @@ class Grooms extends Component
 
     public function detailShowModal($id)
     {
+        // dd($id);
         $this->modelId = $id;
         $this->modalDetailVisible = true;
 
         $data = Groom::find($this->modelId);
+        // dd($data);
         $this->user_id = $data->pets->users->name;
         $this->pet_id = $data->pets->name;
         $this->type_id = $data->pets->typepet->name;
@@ -143,18 +145,17 @@ class Grooms extends Component
         $this->modalDetailVisible = false;
     }
 
-    public function process($id)
+    public function process()
     {
-
-        $groom  = Groom::findorFail($id);
+        $groom  = Groom::findorFail($this->modelId);
         $groom->status = 'diproses';
         $groom->save();
         $this->modalDetailVisible = false;
     }
 
-    public function finish($id)
+    public function finish()
     {
-        $groom = Groom::findorFail($id);
+        $groom = Groom::findorFail($this->modelId);
         $groom->status = 'selesai';
         $groom->save();
         $this->modalDetailVisible = false;

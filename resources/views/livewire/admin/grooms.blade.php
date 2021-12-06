@@ -136,7 +136,6 @@
                            {{ __('Tambah Data Grooming') }}
                        </x-slot>
                        @endif
-                       
                    
                        <x-slot name="content">
                            <div class="mt-4">
@@ -239,7 +238,6 @@
                     </x-slot>
             
                     <x-slot name="content">
-                    
                         <div class="flex flex-col py-8 overflow-hidden bg-white">
                             <span class="flex items-center gap-4 px-6 py-3 w-full">
                               <div class="flex items-center justify-center h-8 w-8 p-4 bg-red-500 rounded-full">
