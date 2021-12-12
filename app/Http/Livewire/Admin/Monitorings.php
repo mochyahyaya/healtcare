@@ -25,7 +25,7 @@ class Monitorings extends Component
             'food'              => 'required',
             'temperature'       => 'required',
             'medicine'          => 'required',
-//            'notes'             => 'required',
+            'notes'             => 'required',
         ]);
 
         Monitoring::create([
@@ -33,7 +33,7 @@ class Monitorings extends Component
             'hotel_id'      => $this->hotel_id,
             'temperature'   => $this->temperature,
             'medicine'      => $this->medicine,
-//            'notes'         => $this->notes,
+            'notes'         => $this->notes,
         ]);
     }
 

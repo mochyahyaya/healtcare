@@ -9,12 +9,12 @@
             <div class="p-6">
              <div class="flex px-4 py-3 sm:px-6">
                 <div class="flex-1 float-left">   
-                    <a href="{{ route('hotels') }}"> 
+                    <a href="{{ route('admin/hotels') }}"> 
                         <button class="inline-flex items-center px-4 py-2 bg-black border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-500 active:bg-white focus:outline-none focus:border-white focus:ring focus:ring-white disabled:opacity-25 transition">
                             {{ __('Boarding') }}
                         </button>
                     </a>
-                    <a href="{{ route('showmonitorings') }}"> 
+                    <a href="{{ route('admin/showmonitorings') }}"> 
                         <button class="inline-flex items-center px-4 py-2 bg-white border border-transparent rounded-md font-semibold text-xs text-black uppercase tracking-widest hover:bg-gray-500 active:bg-white focus:outline-none focus:border-white focus:ring focus:ring-white disabled:opacity-25 transition">
                             {{ __('Monitoring') }}
                         </button>
