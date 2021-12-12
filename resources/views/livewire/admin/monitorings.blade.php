@@ -82,9 +82,9 @@
                                      </div>
                                  </div>
                                 @error('medicine') <span class="error">{{ $message }}</span> @enderror
-                                <div class="mt-4">
+                                <div class="mt-4" wire:ignore>
                                     <label for="notes">Catatan</label>
-                                    <textarea wire:model.debounce.800ms="notes" id="notes-taskarea" class=""></textarea>
+                                    <textarea wire:model.debounce.800ms="notes" id="notes"></textarea>
                                 </div>
                                 <div class="mt-4">
                                     <button type="submit" class="inline-flex items-center px-4 py-2 bg-black border border-gray-300 rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:ring focus:ring-blue-200 active:text-gray-800 active:bg-gray-50 disabled:opacity-25 transition">
@@ -104,14 +104,16 @@
     </div>
   </div>
   @section('scripts')
-    <script>
-        ClassicEditor
-    .create( document.querySelector( '#notes-taskarea' ) )
-    .then( editor => {
-        console.log( editor );
-    } )
-    .catch( error => {
-        console.error( error );
-    } );
-    </script>
+  <script>
+    ClassicEditor
+      .create(document.querySelector('#notes'))
+      .then(editor => {
+          editor.model.document.on('change:data', () => {
+          @this.set('notes', editor.getData());
+         })
+      })
+      .catch(error => {
+         console.error(error);
+      });
+</script>
   @endsection
