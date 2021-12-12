@@ -13,7 +13,7 @@
                    <x-jet-button wire:click="createShowModal">
                        {{ __('Tambah') }}
                    </x-jet-button>
-                  <a href="{{ route('showmonitorings') }}"> 
+                  <a href="{{ route('admin/showmonitorings') }}"> 
                       <button class="inline-flex items-center px-4 py-2 bg-white border border-transparent rounded-md font-semibold text-xs text-black uppercase tracking-widest hover:bg-gray-500 active:bg-white focus:outline-none focus:border-white focus:ring focus:ring-white disabled:opacity-25 transition">
                         {{ __('Monitoring') }}
                     </button>
@@ -50,8 +50,8 @@
                              @include('partials._sort-icon', ['field' => 'end_date'])
                            </th>
                            <th wire:click="sortBy('total_day')" scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                             Total Hari
-                             @include('partials._sort-icon', ['field' => 'todal_day'])
+                             Status
+                             @include('partials._sort-icon', ['field' => 'status'])
                            </th>
                            <th wire:click="sortBy('cage')" scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                              Kandang
@@ -81,7 +81,7 @@
                             {{ \Carbon\Carbon::parse($items->end_date)->locale('id')->format('d M Y')}}
                            </td>
                            <td class="px-6 py-4 whitespace-nowrap">
-                               {{$items->total_day}}
+                               {{$items->status}}
                            </td>
                            <td class="px-6 py-4 whitespace-nowrap">
                                {{$items->cages->typecages->alias}} - {{$items->cages->number}} 
@@ -165,11 +165,11 @@
                         <x-jet-label for="total_day" value="{{ __('Total Hari') }}" />
                         <x-jet-input id="total_day" class="block mt-1 w-full" type="text" wire:model.debounce.800ms="total_day" />
                         @error('total_day') <span class="error">{{ $message }}</span> @enderror
-                    </div>
+                      </div>
                           <div class="mt-4" x-show="type == 1">
                             <x-jet-label for="cage_id" value="{{ __('Kandang') }}" />
                             <select class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm mt-1 block w-full" wire:model="cage_id" >
-                              <option selected>-- Pilih Kandang --</option>
+                              <option selected> -- Pilih Kandang -- </option>
                               @foreach($cats as $cat)
                               <option value="{{ $cat->id }}">{{ $cat->typecages->alias}} - {{$cat->number}}</option>
                               @endforeach
@@ -179,7 +179,7 @@
                           <div class="mt-4" x-show="type == 2">
                             <x-jet-label for="cage" value="{{ __('Kandang') }}" />
                             <select class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm mt-1 block w-full" wire:model="cage_id" >
-                              <option selected>-- Pilih Kandang --</option>
+                              <option selected> -- Pilih Kandang --</option>
                               @foreach($dogs as $dog)
                               <option value="{{ $dog->id }}">{{ $dog->typecages->alias}} - {{$dog->number}}</option>
                               @endforeach
@@ -309,11 +309,11 @@
                              </div>
                            </span>
                          </div>
-                           <button wire:click="accept" class="inline-flex items-center px-4 py-2 bg-blue-400 border border-white-300 rounded-md font-semibold text-xs text-gray-700 uppercase tracking-widest shadow-sm hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:ring focus:ring-blue-200 active:text-gray-800 active:bg-gray-50 disabled:opacity-25 transition">
-                             Terima
+                           <button wire:click="accept(id)" class="inline-flex items-center px-4 py-2 bg-blue-400 border border-white-300 rounded-md font-semibold text-xs text-gray-700 uppercase tracking-widest shadow-sm hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:ring focus:ring-blue-200 active:text-gray-800 active:bg-gray-50 disabled:opacity-25 transition">
+                             Proses
                            </button>
-                           <button wire:click="reject" class="inline-flex items-center px-4 py-2 bg-green-400 border border-white-300 rounded-md font-semibold text-xs text-gray-700 uppercase tracking-widest shadow-sm hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:ring focus:ring-blue-200 active:text-gray-800 active:bg-gray-50 disabled:opacity-25 transition">
-                             Tolak
+                           <button wire:click="reject(id)" class="inline-flex items-center px-4 py-2 bg-green-400 border border-white-300 rounded-md font-semibold text-xs text-gray-700 uppercase tracking-widest shadow-sm hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:ring focus:ring-blue-200 active:text-gray-800 active:bg-gray-50 disabled:opacity-25 transition">
+                             Selesai
                            </button>
                    </x-slot>
            

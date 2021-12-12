@@ -1,14 +1,18 @@
 <?php
 
-use App\Http\Livewire\Grooms;
-use App\Http\Livewire\Hotels;
-use App\Http\Livewire\Users;
-use App\Http\Livewire\Monitorings;
-use App\Http\Livewire\Pets;
-use App\Http\Livewire\Cages;
-use App\Http\Livewire\Dashboard;
-use App\Http\Livewire\ShowMonitorings;
-use App\Http\Livewire\MedicalRecords;
+use App\Http\Livewire\Admin\Breedings;
+use App\Http\Livewire\Admin\Grooms;
+use App\Http\Livewire\Admin\Hotels;
+use App\Http\Livewire\Admin\Users;
+use App\Http\Livewire\Admin\Monitorings;
+use App\Http\Livewire\Admin\Pets;
+use App\Http\Livewire\Admin\Cages;
+use App\Http\Livewire\Admin\Dashboard;
+use App\Http\Livewire\Admin\Inpatients;
+use App\Http\Livewire\Admin\ShowMonitorings;
+use App\Http\Livewire\Admin\MedicalRecords;
+use App\Http\Livewire\User\DashboardU;
+use App\Http\Livewire\Veterinarian\DashboardD;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,35 +26,42 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('auth.login');
-});
+
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
 
-Route::get('redirects', 'App\Http\Livewire\Home');
+Route::get('redirects', 'App\Http\Livewire\Admin\Home');
 
-Route::group(['middleware' => ['auth:sanctum', 'verified']], function() {
+Route::group(['middleware' => 'web'], function () {
 
-    Route::resource('hotels', \App\Http\Controllers\HotelController::class)
-    ->only(['create', 'store']);
+    Route::get('/', function () {
+        return view('auth.login');
+    });
 
-    Route::get('pets', [\App\Http\Controllers\PetController::class, 'index'])
-    ->name('pets.index');
+    Route::group(['middleware' => ['auth:sanctum', 'verified']], function() {
 
-    Route::get('/dashboard', Dashboard::class)->name('dashboard');
-    Route::get('/groom', Grooms::class)->name('grooms');
-    Route::get('/hotel', Hotels::class)->name('hotels');
-    Route::get('/monitoring/{id}', Monitorings::class)->name('monitorings');
-    Route::get('/showmonitoring', ShowMonitorings::class)->name('showmonitorings');
-    Route::get('/breed', Grooms::class)->name('breeds');
-    Route::get('/user', Users::class)->name('users');
-    Route::get('/pet', Pets::class)->name('pets');
-    Route::get('/cage', Cages::class)->name('cages');
-    Route::get('/medical-records', MedicalRecords::class)->name('medicalRecords');
-
-
-
+        Route::resource('hotels', \App\Http\Controllers\HotelController::class)
+        ->only(['create', 'store']);
+    
+        Route::get('pets', [\App\Http\Controllers\PetController::class, 'index'])
+        ->name('pets.index');
+    
+        Route::get('admin/dashboard', Dashboard::class)->name('admin/dashboard');
+        Route::get('veterinarian/dashboard', DashboardD::class)->name('veterinarian/dashboard');
+        Route::get('user/dashboard', DashboardU::class)->name('user/dashboard');
+        Route::get('admin/groom', Grooms::class)->name('admin/grooms');
+        Route::get('admin/hotel', Hotels::class)->name('admin/hotels');
+        Route::get('admin/monitoring/{id}', Monitorings::class)->name('monitorings');
+        Route::get('admin/showmonitoring', ShowMonitorings::class)->name('admin/showmonitorings');
+        Route::get('admin/breed', Breedings::class)->name('admin/breeds');
+        Route::get('admin/user', Users::class)->name('admin/users');
+        Route::get('admin/pet', Pets::class)->name('admin/pets');
+        Route::get('admin/cage', Cages::class)->name('admin/cages');
+        Route::get('admin/medical-records', MedicalRecords::class)->name('admin/medicalRecords');
+        Route::get('admin/inpatients', Inpatients::class)->name('admin/inpatients');
+    
+    });
 });
+

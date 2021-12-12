@@ -12,28 +12,28 @@
 
                 @if (auth()->user()->role_id == 1)
                     <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                        <x-jet-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
+                        <x-jet-nav-link href="{{ route('admin/dashboard') }}" :active="request()->routeIs('admin/dashboard')">
                             {{ __('Dashboard') }}
                         </x-jet-nav-link>
-                        <x-jet-nav-link href="{{ route('grooms') }}" :active="request()->routeIs('grooms')">
+                        <x-jet-nav-link href="{{ route('admin/grooms') }}" :active="request()->routeIs('admin/grooms')">
                             {{ __('Grooming') }}
                         </x-jet-nav-link>
-                        <x-jet-nav-link href="{{ route('hotels') }}" :active="request()->routeIs('hotels')">
+                        <x-jet-nav-link href="{{ route('admin/hotels') }}" :active="request()->routeIs('admin/hotels')">
                             {{ __('Hotel') }}
                         </x-jet-nav-link>
-                        <x-jet-nav-link href="{{ route('breeds') }}" :active="request()->routeIs('breeds')">
+                        <x-jet-nav-link href="{{ route('admin/breeds') }}" :active="request()->routeIs('admin/breeds')">
                             {{ __('Breeding') }}
                         </x-jet-nav-link>
                     </div>
                 @else
                     <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                        <x-jet-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
+                        <x-jet-nav-link href="{{ route('veterinarian/dashboard') }}" :active="request()->routeIs('veterinarian/dashboard')">
                             {{ __('Dashboard') }}
                         </x-jet-nav-link>
-                        <x-jet-nav-link href="{{ route('medicalRecords') }}" :active="request()->routeIs('medicalRecords')">
+                        <x-jet-nav-link href="{{ route('admin/medicalRecords') }}" :active="request()->routeIs('admin/medicalRecords')">
                             {{ __('Rekam Medis') }}
                         </x-jet-nav-link>
-                        <x-jet-nav-link href="{{ route('hotels') }}" :active="request()->routeIs('hotels')">
+                        <x-jet-nav-link href="{{ route('admin/inpatients') }}" :active="request()->routeIs('admin/inpatients')">
                             {{ __('Rawat Inap') }}
                         </x-jet-nav-link>
                     </div>
@@ -121,15 +121,15 @@
                                 {{ __('Manage Item') }}
                             </div>
 
-                            <x-jet-dropdown-link href="{{ route('users') }}">
+                            <x-jet-dropdown-link href="{{ route('admin/users') }}">
                                 {{ __('Pengguna') }}
                             </x-jet-dropdown-link>
 
-                            <x-jet-dropdown-link href="{{ route('cages') }}">
+                            <x-jet-dropdown-link href="{{ route('admin/cages') }}">
                                 {{ __('Kandang') }}
                             </x-jet-dropdown-link>
 
-                            <x-jet-dropdown-link href="{{ route('pets') }}">
+                            <x-jet-dropdown-link href="{{ route('admin/pets') }}">
                                 {{ __('Pet') }}
                             </x-jet-dropdown-link>
                             @endif
