@@ -15,6 +15,11 @@ class Breeding extends Model
 
     public function pets()
     {
-        $this->belongsTo(Pet::class);
+        return $this->belongsTo(Pet::class, 'pet_id_1');
+    }
+
+    public function cages()
+    {
+        return $this->belongsTo(Cage::class, 'cage_id');
     }
 }

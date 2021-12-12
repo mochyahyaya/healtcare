@@ -5,7 +5,10 @@ namespace App\Http\Middleware;
 use App\Providers\RouteServiceProvider;
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Contracts\Auth\Guard;
+use User;
 
 class RedirectIfAuthenticated
 {
@@ -17,6 +20,9 @@ class RedirectIfAuthenticated
      * @param  string|null  ...$guards
      * @return mixed
      */
+    protected $auth;
+
+
     public function handle(Request $request, Closure $next, ...$guards)
     {
         $guards = empty($guards) ? [null] : $guards;

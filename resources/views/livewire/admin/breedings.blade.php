@@ -1,6 +1,6 @@
 <x-slot name="header">
     <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-        List Data Boarding
+        List Data Breeding
     </h2>
   </x-slot>
   <div class="py-12">
@@ -12,7 +12,11 @@
                          <x-jet-button wire:click="createShowModal">
                              {{ __('Tambah') }}
                          </x-jet-button>
-                     </div>
+                         <a href=""> 
+                          <button class="inline-flex items-center px-4 py-2 bg-white border border-transparent rounded-md font-semibold text-xs text-black uppercase tracking-widest hover:bg-gray-500 active:bg-white focus:outline-none focus:border-white focus:ring focus:ring-white disabled:opacity-25 transition">
+                            {{ __('Monitoring') }}
+                          </a>
+                        </div>
                      <div class="flex-2 float-right">
                          <x-jet-input id="name" type="text" wire:model.debounce.500ms="search" placeholder="Search..." />
                      </div>
@@ -38,21 +42,21 @@
                            <table class="min-w-full divide-y divide-gray-200">
                              <thead class="bg-gray-50">
                                <tr>
-                                 <th wire:click="sortBy('pet_id')" scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider" style="cursor: pointer">
+                                 <th wire:click="sortBy('pet_id_1')" scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider" style="cursor: pointer">
                                    Nama Betina
-                                   @include('partials._sort-icon', ['field' => 'name'])
+                                   @include('partials._sort-icon', ['field' => 'pet_id_1'])
                                  </th>
-                                 <th wire:click="sortBy('type')" scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider" style="cursor: pointer">
+                                 <th wire:click="sortBy('pet_id_2')" scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider" style="cursor: pointer">
                                    Nama Jantan
-                                   @include('partials._sort-icon', ['field' => 'type'])
+                                   @include('partials._sort-icon', ['field' => 'pet_id_2'])
                                  </th>
-                                 <th wire:click="sortBy('size')" scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider" style="cursor: pointer">
+                                 <th wire:click="sortBy('start_date')" scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider" style="cursor: pointer">
                                    Tanggal Mulai
-                                   @include('partials._sort-icon', ['field' => 'size'])
+                                   @include('partials._sort-icon', ['field' => 'start_date'])
                                  </th>
-                                 <th wire:click="sortBy('service')"scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider" style="cursor: pointer">
+                                 <th wire:click="sortBy('cage')"scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider" style="cursor: pointer">
                                    Kandang
-                                   @include('partials._sort-icon', ['field' => 'service'])
+                                   @include('partials._sort-icon', ['field' => 'cage'])
                                  </th>
                                  <th wire:click="sortBy('status')" scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider" style="cursor: pointer">
                                    Status
@@ -73,32 +77,17 @@
                                      {{$items->pets->name}}
                                  </td>
                                  <td class="px-6 py-4 whitespace-nowrap">
-                                     {{$items->pets->name}}
+                                     {{$items->pet_id_2}}
                                  </td>
                                  <td class="px-6 py-4 whitespace-nowrap">
-                                     {{$items->service}}
+                                  {{ \Carbon\Carbon::parse($items->start_date)->locale('id')->format('d M Y')}}
                                  </td>
                                  <td class="px-6 py-4 whitespace-nowrap">
-                                     {{$items->address}}
+                                     {{$items->cages->typecages->alias}} - {{$items->cages->number}} 
                                  </td>
-                                 <td class="px-6 py-4 whitespace-nowrap">         
-                                       @if($items->status == 'belum diproses')
-                                       <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-200 text-green-800">
-                                         {{$items->status}}
-                                       </span>
-                 
-                                       @elseif( $items->status == 'diproses' ) 
-                                       <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-200 text-green-800">
-                                         {{$items->status}}
-                                       </span>
-                                       
-                                       @else
-                                       <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-200 text-green-800">
-                                         {{$items->status}}
-                                       </span>
-                                           
-                                       @endif
-                                   </td>
+                                 <td class="px-6 py-4 whitespace-nowrap">
+                                     {{$items->status}}
+                                 </td>
                                  <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                                    <a href= "#" wire:click="detailShowModal({{$items->id}})" class="text-indigo-600 hover:text-indigo-900 mr-3">Lihat</a>
                                    <a href= "#" wire:click="updateShowModal({{$items->id}})" class="text-indigo-600 hover:text-indigo-900 mr-3">Edit</a>
@@ -133,22 +122,33 @@
                          </x-slot>
                          @endif
                          
-                     
                          <x-slot name="content">
                              <div class="mt-4">
-                               <x-jet-label for="user" value="{{ __('Nama Pemilik') }}" />
-                               <select class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm mt-1 block w-full">
-                                    <option selected> -- Nama Pemilik -- </option>
-                                @foreach ($users as $item)
-                                     <option value="{{$item->id}}"> {{$item->name}}</option>
-                                 @endforeach
-                               </select>
-                               @error('user') <span class="error">{{ $message }}</span> @enderror
-                             </div>    
+                              <x-jet-label for="pet1" value="{{ __('Nama Jantan') }}" />
+                              <select wire:model.debounce.800ms="pet_id_1" class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm mt-1 block w-full">
+                                   <option selected> -- Nama Jantan -- </option>
+                               @foreach ($pet1 as $item)
+                                    <option value="{{$item->name}}"> {{$item->name}}</option>
+                                @endforeach
+                              </select>
+                              @error('user') <span class="error">{{ $message }}</span> @enderror
+                             </div>
+                             @if (!$modelId)
+                             <div class="mt-4">
+                              <x-jet-label for="user" value="{{ __('Nama Pemilik') }}" />
+                              <select class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm mt-1 block w-full">
+                                   <option selected> -- Nama Pemilik -- </option>
+                               @foreach ($users as $item)
+                                    <option value="{{$item->id}}"> {{$item->name}}</option>
+                                @endforeach
+                              </select>
+                              @error('user') <span class="error">{{ $message }}</span> @enderror
+                            </div> 
+                             @endif
                              <div class="mt-4">
                                  <x-jet-label for="name" value="{{ __('Nama Hewan Peliharaan') }}" />
-                                 <select wire:model.debounce.800ms="pet_id" class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm mt-1 block w-full" >
-                                       <option selected> -- Nama Hewan -- </option>
+                                 <select wire:model.debounce.800ms="selectedPet" class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm mt-1 block w-full" >
+                                       <option selected> -- Nama Betina -- </option>
                                   @foreach ($pets as $item)
                                        <option value="{{$item->id}}">{{$item->name}}</option>
                                    @endforeach
@@ -163,26 +163,21 @@
                                     <option value="anjing">Anjing</option>
                                  </select>
                                @error('type') <span class="error">{{ $message }}</span> @enderror
-                           </div>
-                             <div class="mt-4">
-                                 <x-jet-label for="size" value="{{ __('Ukuran') }}" />
-                                 <x-jet-input id="size" class="block mt-1 w-full" type="text" wire:model.debounce.800ms="size" />
-                                 @error('size') <span class="error">{{ $message }}</span> @enderror
                              </div>
                              <div class="mt-4">
-                                 <x-jet-label for="service" value="{{ __('Jenis Grooming') }}" />
-                                 <select class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm mt-1 block w-full" wire:model.debounce.800ms="service" >
-                                     <option>Standar</option>
-                                     <option>Kutu</option>
-                                     <option>Jamur</option>
-                                   </select>
-                                 @error('service') <span class="error">{{ $message }}</span> @enderror
+                              <x-jet-label for="start_date" value="{{ __('Tanggal Mulai') }}" />
+                              <x-datetime-picker wire:model="start_date" class="w-full rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" />
                              </div>
                              <div class="mt-4">
-                                 <x-jet-label for="address" value="{{ __('Alamat') }}" />
-                                 <x-jet-input id="address" class="block mt-1 w-full" type="text" wire:model.debounce.800ms="address" />
-                                 @error('address') <span class="error">{{ $message }}</span> @enderror
-                             </div>
+                              <x-jet-label for="cages" value="{{ __('Kandang') }}" />
+                              <select class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm mt-1 block w-full" wire:model="cage_id" >
+                                <option selected> -- Pilih Kandang --</option>
+                                @foreach($cages as $cages)
+                                <option value="{{ $cages->id }}">{{ $cages->typecages->alias}} - {{$cages->number}}</option>
+                                @endforeach
+                                </select>
+                              @error('cage_id') <span class="error">{{ $message }}</span> @enderror
+                            </div>
                          </x-slot>
                      
                          <x-slot name="footer">

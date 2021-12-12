@@ -16,7 +16,7 @@ class CreateBreedingsTable extends Migration
         Schema::create('breedings', function (Blueprint $table) {
             $table->id();
             $table->date('start_date');
-            $table->enum('status', ['proses', 'selesai']);
+            $table->enum('status', ['belum diporses', 'proses', 'selesai']);
             $table->foreignId('cage_id')->constrained('cages');
             $table->timestamps();
         });

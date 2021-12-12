@@ -19,7 +19,7 @@ class CreateHotelsTable extends Migration
             $table->date('start_date');
             $table->date('end_date');
             $table->integer('total_day');
-            $table->enum('status', ['belum diproses', 'dalam kandang', 'ditolak']);
+            $table->enum('status', ['belum diproses', 'dalam kandang', 'selesai']);
             $table->enum('hotel_status', ['hotel', 'rawat inap']);
             $table->timestamps();
         });

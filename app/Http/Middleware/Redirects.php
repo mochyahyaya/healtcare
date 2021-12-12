@@ -18,8 +18,13 @@ class Redirects
     {
         if(auth()->user()->role_id == 1)
         {
-            return $next($request);
-          }
-        redirect('livewire.admin.dashboard');
+             redirect('admin/dashboard');
+        } elseif (auth()->user()->role_id == 2)
+        {
+           redirect('veterinarian/dashboard');
+        } else {
+             redirect('veterinarian/dashboard');
+        }
+          return $next($request);
     }
 }
