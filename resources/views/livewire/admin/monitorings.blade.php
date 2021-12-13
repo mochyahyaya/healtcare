@@ -85,7 +85,13 @@
                                 <div class="mt-4" wire:ignore>
                                     <label for="notes">Catatan</label>
                                     <textarea wire:model.debounce.800ms="notes" id="notes"></textarea>
+                                    @error('notes') <span class="error">{{ $message }}</span> @enderror
                                 </div>
+                                <div class="mt-4">
+                                    <x-jet-label for="gallery" value="{{ __('Foto') }}" />
+                                    <x-jet-input id="photo" class="block mt-1 w-full" type="file" multiple wire:model.debounce.800ms="photo" enctype="multipart/form-data" />
+                                    @error('photo.*') <span class="error">{{ $message }}</span> @enderror
+                                  </div>
                                 <div class="mt-4">
                                     <button type="submit" class="inline-flex items-center px-4 py-2 bg-black border border-gray-300 rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:ring focus:ring-blue-200 active:text-gray-800 active:bg-gray-50 disabled:opacity-25 transition">
                                         Simpan
