@@ -177,7 +177,7 @@
                       <x-jet-label for="gallery" value="{{ __('Galeri') }}" />
                       <x-jet-input id="galery" class="block mt-1 w-full" type="file" multiple wire:model.debounce.800ms="galery" enctype="multipart/form-data" />
                       @error('galery.*') <span class="error">{{ $message }}</span> @enderror
-                  </div>
+                    </div>
                      </x-slot>
                      <x-slot name="footer">
                          <x-jet-secondary-button wire:click="$toggle('modalFormVisible')" wire:loading.attr="disabled">
