@@ -12,7 +12,7 @@
                          <x-jet-button wire:click="createShowModal">
                              {{ __('Tambah') }}
                          </x-jet-button>
-                         <a href=""> 
+                         <a href="{{ route('admin/showmonitoringbreedings') }}"> 
                           <button class="inline-flex items-center px-4 py-2 bg-white border border-transparent rounded-md font-semibold text-xs text-black uppercase tracking-widest hover:bg-gray-500 active:bg-white focus:outline-none focus:border-white focus:ring focus:ring-white disabled:opacity-25 transition">
                             {{ __('Monitoring') }}
                           </a>

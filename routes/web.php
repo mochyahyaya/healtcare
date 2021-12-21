@@ -11,6 +11,8 @@ use App\Http\Livewire\Admin\Dashboard;
 use App\Http\Livewire\Admin\Inpatients;
 use App\Http\Livewire\Admin\ShowMonitorings;
 use App\Http\Livewire\Admin\MedicalRecords;
+use App\Http\Livewire\Admin\ShowMonitoringBreedings;
+use App\Http\Livewire\Admin\BreedingMonitorings;
 use App\Http\Livewire\User\DashboardU;
 use App\Http\Livewire\Veterinarian\DashboardD;
 use Illuminate\Support\Facades\Route;
@@ -56,6 +58,8 @@ Route::group(['middleware' => 'web'], function () {
         Route::get('admin/monitoring/{id}', Monitorings::class)->name('monitorings');
         Route::get('admin/showmonitoring', ShowMonitorings::class)->name('admin/showmonitorings');
         Route::get('admin/breed', Breedings::class)->name('admin/breeds');
+        Route::get('admin/breedingmonitoring/{id}', BreedingMonitorings::class)->name('admin/breedingmonitorings');
+        Route::get('admin/showmonitoringbreeding', ShowMonitoringBreedings::class)->name('admin/showmonitoringbreedings');
         Route::get('admin/user', Users::class)->name('admin/users');
         Route::get('admin/pet', Pets::class)->name('admin/pets');
         Route::get('admin/cage', Cages::class)->name('admin/cages');

@@ -25,7 +25,7 @@
                             {{ __('Breeding') }}
                         </x-jet-nav-link>
                     </div>
-                @else
+                @elseif (auth()->user()->role_id == 1)
                     <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                         <x-jet-nav-link href="{{ route('veterinarian/dashboard') }}" :active="request()->routeIs('veterinarian/dashboard')">
                             {{ __('Dashboard') }}
@@ -37,6 +37,8 @@
                             {{ __('Rawat Inap') }}
                         </x-jet-nav-link>
                     </div>
+                @else
+                    <div></div>
                 @endif
 
                 <!-- Navigation Links -->
