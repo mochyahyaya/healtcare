@@ -35,7 +35,7 @@
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" data-toggle="" href="#service">Service</a>
             <div class="dropdown-menu">
-              <a class="dropdown-item" href="#grooming">Grooming</a>
+              <a class="dropdown-item" href="{{ route('user/groomings') }}">Grooming</a>
               <a class="dropdown-item" href="#breeding">Breeding</a>
               <a class="dropdown-item" href="#hotel">Hotel</a>
           </li>

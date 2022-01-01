@@ -4,6 +4,8 @@ namespace App\Http\Livewire\Admin;
 
 use App\Models\Hotel;
 use App\Models\Monitoring;
+use App\Models\Pet;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use Livewire\WithPagination;
 use Livewire\WithFileUploads;
