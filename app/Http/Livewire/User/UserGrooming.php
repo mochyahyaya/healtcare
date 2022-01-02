@@ -30,6 +30,9 @@ class UserGrooming extends Component
             'address'         => $this->address,
            
         ]); 
+
+        session()->flash('success', 'Berhasil mendaftarkan grooming.');
+        return redirect()->to('/user/dashboard');
     }
 
     public function pet()
