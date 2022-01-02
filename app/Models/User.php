@@ -29,7 +29,7 @@ class User extends Authenticatable
         'email',
         'password',
         'role_id',
-        'phone_number', 
+        'phone_number',
         'address'
     ];
 
@@ -62,7 +62,7 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
-    
+
     public function roles()
     {
         return $this->belongsTo(Role::class, 'role_id');
@@ -85,5 +85,10 @@ class User extends Authenticatable
         ->Orwhere('phone_number', 'like', '%' .$val. '%')
         ->Orwhere('role_id', 'like', '%' .$val. '%')
         ->Orwhere('address', 'like', '%' .$val. '%');
+    }
+
+    public function hasRole($role)
+    {
+        return $this->roles()->where('name', $role)->count() == 1;
     }
 }
