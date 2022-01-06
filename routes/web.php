@@ -15,6 +15,7 @@ use App\Http\Livewire\Admin\ShowMonitoringBreedings;
 use App\Http\Livewire\Admin\BreedingMonitorings;
 use App\Http\Livewire\User\DashboardU;
 use App\Http\Livewire\User\UserBoarding;
+use App\Http\Livewire\User\UserBreeding;
 use App\Http\Livewire\User\UserGrooming;
 use App\Http\Livewire\Veterinarian\DashboardD;
 use Illuminate\Support\Facades\Route;
@@ -70,6 +71,7 @@ Route::group(['middleware' => 'web'], function () {
 
         Route::get('user/grooming', UserGrooming::class)->name('user/groomings');
         Route::get('user/hotel', UserBoarding::class)->name('user/hotels');
+        Route::get('user/breed', UserBreeding::class)->name('user/breedings');
                 
     
     });

@@ -14,15 +14,18 @@ class UserGrooming extends Component
     public $pet_id, $size, $service, $address;
     public $services = "hahaha";
 
-    public function store()
+    public function rules()
     {
-        $this->validate([
+        return
+          [  
             'pet_id'            => 'required',
             'size'              => 'required',
             'service'           => 'required',
             'address'           => 'required',
-        ]);
-
+          ];
+    }
+    public function store()
+    {
         Groom::create([
             'pet_id'          => $this->pet_id,
             'size'            => $this->size,

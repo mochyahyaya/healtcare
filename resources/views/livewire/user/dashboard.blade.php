@@ -198,7 +198,7 @@
                 <li class="text-gray-500 leading-9">Anti Tick Shampoo</li>
                 <li class="text-gray-500 leading-9">Tick Treatment</li>
               </ul>
-              <a href="#" class="btn">Get It</a>
+              <a href="{{ route('user/groomings')}}" class="btn">Get It</a>
             </div>
           </div>
           <!-- single pricing table ends -->
@@ -221,7 +221,7 @@
                 <li class="text-gray-500 leading-9">Anti Mold Powder</li>
                 <li class="text-gray-500 leading-9">Mold Treatment</li>
               </ul>
-              <a href="#" class="btn">Get It</a>
+              <a href="{{ route('user/groomings')}}" class="btn">Get It</a>
             </div>
           </div>
           <!-- single pricing table ends -->
@@ -245,7 +245,7 @@
                 <li class="text-gray-500 leading-9">Tick Treatment</li>
                 <li class="text-gray-500 leading-9">Mold Treatment</li>
               </ul>
-              <a href="#" class="btn">Get It</a>
+              <a href="{{ route('user/groomings')}}" class="btn">Get It</a>
             </div>
           </div>
           <!-- single pricing table ends -->
@@ -285,7 +285,7 @@
           </div>
         </div>
       </div>
-      <a href="{{ route('user/groomings')}}">
+      <a href="{{ route('user/breedings')}}">
         <button class="flex mx-auto mt-16 text-white bg-blue-300 border-0 py-2 px-8 focus:outline-none hover:bg-blue-600 rounded text-lg">Breeding Menu</button>
       </a>
     </section>
