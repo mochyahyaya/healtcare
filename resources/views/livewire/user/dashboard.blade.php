@@ -49,7 +49,7 @@
       <!-- Navbar End -->
     </header>
 
-@section('content')
+@section('main')
 
     <!-- Hero Area Start -->
     <section id="hero-area" class="bg-blue-100 pt-48 pb-10">
@@ -161,12 +161,12 @@
           <div class="w-full sm:w-3/4 md:w-2/3 lg:w-1/2">
             <h4 class="mb-3 section-heading wow fadeInUp" data-wow-delay="0.3s">Pet Hotel</h4>
             <p class="mb-4 text-gray-600 leading-loose text-sm wow fadeInUp" data-wow-delay="0.6s">Tempat penitipan hewan yang aman dan nyaman. <br> Titipkan hewan anda sekarang.</p>
-            <form for="">
               <div class="wow fadeInDown" data-wow-delay="0.3s">
                 {{-- <input type="Email" class="w-full mb-5 bg-white border border-blue-300 rounded-full px-5 py-3 duration-300 focus:border-blue-600 outline-none" name="email" placeholder="Nama Hewan peliharaan"> --}}
-                <button class="border-0 bg-blue-600 text-white rounded-full w-12 h-12 duration-300 hover:opacity-75" type="submit"><i class="lni lni-arrow-right"></i></button>
+                <a href="{{ route('user/hotels')}}">
+                  <button class="border-0 bg-blue-600 text-white rounded-full w-12 h-12 duration-300 hover:opacity-75"><i class="lni lni-arrow-right"></i></button>
+                </a>
               </div>
-            </form>
           </div>
         </div>
       </div>

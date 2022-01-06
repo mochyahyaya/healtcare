@@ -12,7 +12,7 @@ use Livewire\WithPagination;
 class UserGrooming extends Component
 {
     public $pet_id, $size, $service, $address;
-    public $services = 'standar';
+    public $services = "hahaha";
 
     public function store()
     {

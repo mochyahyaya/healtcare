@@ -154,13 +154,14 @@
                            @error('size') <span class="error">{{ $message }}</span> @enderror
                        </div>
                        <div class="mt-4">
-                          <x-jet-label for="start_date" value="{{ __('Tanggal Mulai') }}" />
-                          <x-datetime-picker wire:model="start_date" class="w-full rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" />
+                        <x-jet-label for="start_date" value="{{ __('Tanggal Mulai') }}" />
+                        <x-datetime-picker wire:model="start_date" class="w-full rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" />
                        </div>
                        <div class="mt-4">
-                          <x-jet-label for="end_date" value="{{ __('Tanggal Berakhir') }}" />
-                          <x-datetime-picker wire:model="end_date" class="w-full rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" />
-                      </div>
+                        <x-jet-label for="end_date" value="{{ __('Tanggal Berakhir') }}" />
+                        <x-datetime-picker wire:model="end_date" class="w-full rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" />
+                        {{$end_date}}
+                       </div>
                       <div class="mt-4">
                         <x-jet-label for="total_day" value="{{ __('Total Hari') }}" />
                         <x-jet-input id="total_day" class="block mt-1 w-full" type="text" wire:model.debounce.800ms="total_day" />
