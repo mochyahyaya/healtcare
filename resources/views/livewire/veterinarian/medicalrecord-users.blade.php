@@ -10,9 +10,11 @@
             <div class="p-6">
                 <div class="flex px-4 py-3 sm:px-6">
                  <div class="flex-1 float-left">   
-                     <x-jet-button wire:click="">
-                         {{ __('Tambah') }}
-                     </x-jet-button>
+                    <a href="{{route('veterinarian/medicalRecords')}}">
+                        <button class="inline-flex items-center px-4 py-2 bg-gray-400 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring focus:ring-gray-300 disabled:opacity-25 transition">
+                            <i class="fas fa-arrow-left">Kembali</i>
+                        </button>
+                    </a>
                  </div>
                  <div class="flex-2 float-right">
                      <x-jet-input id="name" type="text" wire:model.debounce.500ms="" placeholder="Search..." />
@@ -20,34 +22,34 @@
                 </div>  
              
                  {{-- Data Tables --}}
+                 <div class="col form-inline">
+                   Per Page: &nbsp;
+                   <select wire:model="perPage" class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm">
+                     <option>5</option>
+                     <option>10</option>
+                     <option>25</option>
+                     <option>50</option>
+                   </select>
+                 </div>
                  <!-- This example requires Tailwind CSS v2.0+ -->
              <div class="flex flex-col">
                  <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                    <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
                      <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
                        <div class="row mb-4">
-                         <div class="col form-inline">
-                           Per Page: &nbsp;
-                           <select wire:model="perPage" class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm">
-                             <option>5</option>
-                             <option>10</option>
-                             <option>25</option>
-                             <option>50</option>
-                           </select>
-                         </div>
                        </div>
                        <section class="text-gray-600 body-font">
-                         <div class="container px-5 py-24 mx-auto">
-                           <div class="flex flex-col text-center w-full mb-20">
+                         <div class="container px-5 py-19 mx-auto">
+                           <div class="flex flex-col text-center w-full mb-10">
                              <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900">Medical Record</h1>
-                             <p class="lg:w-2/3 mx-auto leading-relaxed text-base">Whatever cardigan tote bag tumblr hexagon brooklyn asymmetrical gentrify, subway tile poke farm-to-table. Franzen you probably haven't heard of them.</p>
+                             <h3 class="sm:text-2xl text-1xl font-medium title-font mb-4 text-gray-900">Milik pengguna {{$user_id}}</h3>
                             </div>
-                            <div class="flex flex-wrap -m-2">
+                            <div class="flex flex-wrap -m-2 mb-4">
                               @foreach ($pet as $item)
                               <div class="p-2 lg:w-1/4 md:w-1/2 w-full">
                                 <a href="{{ route('veterinarian/medicaldetails', ['id'=>$item->id]) }}">
                                   <div class="h-full flex items-center border-gray-200 border p-4 rounded-lg">
-                                    <img alt="team" class="w-16 h-16 bg-gray-100 object-cover object-center flex-shrink-0 rounded-full mr-4" src="https://dummyimage.com/80x80" alt="" >
+                                    <img alt="team" class="w-16 h-16 bg-gray-100 object-cover object-center flex-shrink-0 rounded-full mr-4" src="{{ url('storage/photos/'.$item->featured_image )}}" alt="" >
                                     <div class="flex-grow">
                                       <h2 class="text-gray-900 title-font font-medium">{{$item->name}}</h2>
                                       <p class="text-gray-500">{{$item->race}}</p>

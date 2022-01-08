@@ -22,9 +22,11 @@
 
 <div class="bg-gray-100">
 <x-slot name="header">
-  <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-      Rekam Medis
-  </h2>
+    <a href="">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            <i class="fa fa-arrow-left mr-2"></i>Back
+        </h2>
+    </a>
 </x-slot>
     <!-- End of Navbar -->
 
@@ -152,7 +154,7 @@
                 <!-- Experience and education -->
                 <div class="bg-white p-3 shadow-sm rounded-sm">
 
-                    <div class="grid grid-cols-2">
+                    <div class="">
                         <div>
                             <div class="flex items-center space-x-2 font-semibold text-gray-900 leading-8 mb-3">
                                 <span clas="text-green-500">
@@ -164,50 +166,80 @@
                                 </span>
                                 <span class="tracking-wide">Medical Records</span>
                             </div>
-                            <ul class="list-inside space-y-2">
-                                <li>
-                                    <div class="text-teal-600">Owner at Her Company Inc.</div>
-                                    <div class="text-gray-500 text-xs">March 2020 - Now</div>
-                                </li>
-                                <li>
-                                    <div class="text-teal-600">Owner at Her Company Inc.</div>
-                                    <div class="text-gray-500 text-xs">March 2020 - Now</div>
-                                </li>
-                                <li>
-                                    <div class="text-teal-600">Owner at Her Company Inc.</div>
-                                    <div class="text-gray-500 text-xs">March 2020 - Now</div>
-                                </li>
-                                <li>
-                                    <div class="text-teal-600">Owner at Her Company Inc.</div>
-                                    <div class="text-gray-500 text-xs">March 2020 - Now</div>
-                                </li>
-                            </ul>
-                        </div>
-                        <div>
-                            <div class="flex items-center space-x-2 font-semibold text-gray-900 leading-8 mb-3">
-                                <span clas="text-green-500">
-                                    <svg class="h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                        stroke="currentColor">
-                                        <path fill="#fff" d="M12 14l9-5-9-5-9 5 9 5z" />
-                                        <path fill="#fff"
-                                            d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" />
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222" />
-                                    </svg>
-                                </span>
-                                <span class="tracking-wide">Vaksin</span>
+                            <div class="overflow-x-auto">
+                            <table class="table-auto w-full">
+                                <thead class="text-xs font-semibold uppercase text-black bg-gray-200">
+                                    <tr>
+                                        <th class="p-2 whitespace-nowrap">
+                                            <div class="font-semibold text-left">Gejala</div>
+                                        </th>
+                                        <th class="p-2 whitespace-nowrap">
+                                            <div class="font-semibold text-left">Pengobatan</div>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody class="text-sm divide-y divide-gray-100">
+                                    <tr>
+                                        <td class="p-2 whitespace-nowrap">
+                                            <div class="flex items-center">
+                                                <div class="w-10 h-10 flex-shrink-0 mr-2 sm:mr-3"><img class="rounded-full" src="https://raw.githubusercontent.com/cruip/vuejs-admin-dashboard-template/main/src/images/user-36-05.jpg" width="40" height="40" alt="Alex Shatov"></div>
+                                                <div class="font-medium text-gray-800">Alex Shatov</div>
+                                            </div>
+                                        </td>
+                                        <td class="p-2 whitespace-nowrap">
+                                            <div class="text-left">alexshatov@gmail.com</div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="p-2 whitespace-nowrap">
+                                            <div class="flex items-center">
+                                                <div class="w-10 h-10 flex-shrink-0 mr-2 sm:mr-3"><img class="rounded-full" src="https://raw.githubusercontent.com/cruip/vuejs-admin-dashboard-template/main/src/images/user-36-06.jpg" width="40" height="40" alt="Philip Harbach"></div>
+                                                <div class="font-medium text-gray-800">Philip Harbach</div>
+                                            </div>
+                                        </td>
+                                        <td class="p-2 whitespace-nowrap">
+                                            <div class="text-left">philip.h@gmail.com</div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="p-2 whitespace-nowrap">
+                                            <div class="flex items-center">
+                                                <div class="w-10 h-10 flex-shrink-0 mr-2 sm:mr-3"><img class="rounded-full" src="https://raw.githubusercontent.com/cruip/vuejs-admin-dashboard-template/main/src/images/user-36-07.jpg" width="40" height="40" alt="Mirko Fisuk"></div>
+                                                <div class="font-medium text-gray-800">Mirko Fisuk</div>
+                                            </div>
+                                        </td>
+                                        <td class="p-2 whitespace-nowrap">
+                                            <div class="text-left">mirkofisuk@gmail.com</div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="p-2 whitespace-nowrap">
+                                            <div class="flex items-center">
+                                                <div class="w-10 h-10 flex-shrink-0 mr-2 sm:mr-3"><img class="rounded-full" src="https://raw.githubusercontent.com/cruip/vuejs-admin-dashboard-template/main/src/images/user-36-08.jpg" width="40" height="40" alt="Olga Semklo"></div>
+                                                <div class="font-medium text-gray-800">Olga Semklo</div>
+                                            </div>
+                                        </td>
+                                        <td class="p-2 whitespace-nowrap">
+                                            <div class="text-left">olga.s@cool.design</div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="p-2 whitespace-nowrap">
+                                            <div class="flex items-center">
+                                                <div class="w-10 h-10 flex-shrink-0 mr-2 sm:mr-3"><img class="rounded-full" src="https://raw.githubusercontent.com/cruip/vuejs-admin-dashboard-template/main/src/images/user-36-09.jpg" width="40" height="40" alt="Burak Long"></div>
+                                                <div class="font-medium text-gray-800">Burak Long</div>
+                                            </div>
+                                        </td>
+                                        <td class="p-2 whitespace-nowrap">
+                                            <div class="text-left">longburak@gmail.com</div>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
                             </div>
-                            <ul class="list-inside space-y-2">
-                                <li>
-                                    <div class="text-teal-600">Masters Degree in Oxford</div>
-                                    <div class="text-gray-500 text-xs">March 2020 - Now</div>
-                                </li>
-                                <li>
-                                    <div class="text-teal-600">Bachelors Degreen in LPU</div>
-                                    <div class="text-gray-500 text-xs">March 2020 - Now</div>
-                                </li>
-                            </ul>
                         </div>
+                    <div>
+                </div>
                     </div>
                     <!-- End of Experience and education grid -->
                 </div>
@@ -215,9 +247,25 @@
 
                 <div class="my-4"></div>
 
-                <div class="bg-white p-3 shadow-sm rounded-sm">
-                    Buat isi Medical Records
-                </div>
+                <form wire:submit.prevent="store">
+                   <div class="bg-white p-3 shadow-sm rounded-sm">
+                        <div class="mt-4">
+                            <x-jet-label for="indication" value="{{ __('Gejala / Keluhan') }}" />
+                            <x-jet-input id="indication" class="block mt-1 w-full" type="text" wire:model.debounce.800ms="indication" />
+                            @error('indication') <span class="error">{{ $message }}</span> @enderror
+                            {{$indication}}
+                        </div>
+                        <div class="mt-4">
+                            <x-jet-label for="medication" value="{{ __('Pengobatan') }}" />
+                            <x-jet-input id="medication" class="block mt-1 w-full" type="text" wire:model.debounce.800ms="indication" />
+                            @error('medication') <span class="error">{{ $message }}</span> @enderror
+                            {{$medication}}
+                        </div>
+                        <button type="submit" class="mt-2 inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring focus:ring-gray-300 disabled:opacity-25 transition">
+                            Tambah
+                        </button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>

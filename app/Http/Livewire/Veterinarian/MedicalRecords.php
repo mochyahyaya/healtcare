@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\Admin;
+namespace App\Http\Livewire\Veterinarian;
 
 use App\Models\Pet;
 use App\Models\User;
