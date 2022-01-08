@@ -20,6 +20,8 @@ use App\Http\Livewire\User\UserBoarding;
 use App\Http\Livewire\User\UserBreeding;
 use App\Http\Livewire\User\UserGrooming;
 use App\Http\Livewire\Veterinarian\DashboardD;
+use App\Http\Livewire\Veterinarian\MedicalrecordUsers;
+use App\Http\Livewire\Veterinarian\MedicalrecordDetails;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -56,7 +58,6 @@ Route::group(['middleware' => 'web'], function () {
         ->name('pets.index');
     
         Route::get('admin/dashboard', Dashboard::class)->name('admin/dashboard');
-        Route::get('veterinarian/dashboard', DashboardD::class)->name('veterinarian/dashboard');
         Route::get('user/dashboard', DashboardU::class)->name('user/dashboard');
         Route::get('admin/groom', Grooms::class)->name('admin/grooms');
         Route::get('admin/hotel', Hotels::class)->name('admin/hotels');
@@ -71,6 +72,10 @@ Route::group(['middleware' => 'web'], function () {
         Route::get('admin/medical-records', MedicalRecords::class)->name('admin/medicalRecords');
         Route::get('admin/inpatients', Inpatients::class)->name('admin/inpatients');
 
+        Route::get('veterinarian/dashboard', DashboardD::class)->name('veterinarian/dashboard');
+        Route::get('veterinarian/medicalrecordUser/{id}', MedicalrecordUsers::class)->name('veterinarian/medicalusers');
+        Route::get('veterinarian/medicalrecordDetail/{id}', MedicalRecordDetails::class)->name('veterinarian/medicaldetails');
+        
         Route::get('user/grooming', UserGrooming::class)->name('user/groomings');
         Route::get('user/hotel', UserBoarding::class)->name('user/hotels');
         Route::get('user/breed', UserBreeding::class)->name('user/breedings');
