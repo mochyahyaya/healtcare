@@ -41,7 +41,7 @@
                       </ul>
                   </div>
                   <div class="header-btn hidden sm:block sm:absolute sm:right-0 sm:mr-16 lg:static lg:mr-0">
-                    <a class="text-blue-600 border border-blue-600 px-10 py-3 rounded-full duration-300 hover:bg-blue-600 hover:text-white" href="#feature">Masuk</a>
+                    <a class="text-blue-600 border border-blue-600 px-10 py-3 rounded-full duration-300 hover:bg-blue-600 hover:text-white" href="{{route('user/logins')}}">Masuk</a>
                   </div>
               </nav>
           </div>
@@ -264,23 +264,10 @@
           <div class="w-full relative">
             <div class="portfolio-carousel">
               <div>
-                <img class="w-full" src="../shine/assets/img/slide/img1.jpg" alt="">
-              </div>
-              <div>
-                <img class="w-full" src="../shine/assets/img/slide/img2.jpg" alt="">
-              </div>
-              <div>
-                <img class="w-full" src="../shine/assets/img/slide/img3.jpg" alt="">
-              </div>
-              <div>
-                <img class="w-full" src="../shine/assets/img/slide/img4.jpg" alt="">
-              </div>
-              <div>
-                <img class="w-full" src="../shine/assets/img/slide/img5.jpg" alt="">
-              </div>
-              <div>
-                <img  class="w-full" src="../shine/assets/img/slide/img6.jpg" alt="">
-              </div>
+                @foreach ($image as $items)
+                  <img src="{{ url('storage/photos/'.$items->featured_image )}}" alt="{{ $items->name }}" class="h-10 w-10 rounded-full" alt="Image"> 
+                @endforeach
+              </div>>
             </div>
           </div>
         </div>
@@ -390,8 +377,8 @@
                 </div>
               </div>
               <div class="text-center px-5 py-3">
-                <h3 class="team-name">John Doe</h3>
-                <p>UX UI Designer</p>
+                <h3 class="team-name">dr. Muhammad Dzaky</h3>
+                <p>Veterinarian</p>
               </div>
             </div>
           </div>
@@ -423,8 +410,8 @@
                 </div>
               </div>
               <div class="text-center px-5 py-3">
-                <h3 class="team-name">Sarah Doe</h3>
-                <p>Front-End Developer</p>
+                <h3 class="team-name">dr. Vera Zura</h3>
+                <p>Veterinarian</p>
               </div>
             </div>
           </div>
@@ -455,8 +442,8 @@
                 </div>
               </div>
               <div class="text-center px-5 py-3">
-                <h3 class="team-name">Rob Hope</h3>
-                <p>Front-end Developer</p>
+                <h3 class="team-name">Muhammad Ghifa</h3>
+                <p>Caretaker</p>
               </div>
             </div>
           </div>

@@ -3,6 +3,8 @@
 namespace App\Http\Livewire\User;
 
 use App\Models\Breeding;
+use App\Models\Pet;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
 class UserBreeding extends Component
@@ -27,8 +29,19 @@ class UserBreeding extends Component
             'start_date'        => $this->start_date,
         ]);
     }
+    public function pet()
+    {
+        return Pet::where('user_id', Auth::user()->id)->get();
+    }
+    public function pets2()
+    {
+        return Pet::where('user_id', '1')->get();
+    }
     public function render()
     {
-        return view('livewire.user.user-breeding');
+        return view('livewire.user.user-breeding', [
+            'pet'   => $this->pet(),
+            'pet2'  => $this->pets2()
+        ]);
     }
 }
