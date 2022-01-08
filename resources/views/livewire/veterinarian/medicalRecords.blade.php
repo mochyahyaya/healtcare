@@ -36,16 +36,29 @@
                          </select>
                        </div>
                      </div>
-                     @foreach ($users as $item)
-                     <div class="inline-flex items-center bg-white border border-gray-200 rounded-lg shadow shadow-lg p-3 w-full md:w-1/4 m-4">
-                        <div class="text-gray-700">
-                          <h2 class="text-gray-800 font-bold text-2xl">{{$item->name}}</h2>
-                          <p class="text-sm">Director of Marketing</p>
-                          <p class="text-sm">hola@rocketfy.es</p>
-                          <p class="text-sm">+34 951043774</p>
-                        </div>     
+                     <section class="text-gray-600 body-font">
+                       <div class="container px-5 py-24 mx-auto">
+                         <div class="flex flex-col text-center w-full mb-20">
+                           <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900">Medical Record</h1>
+                           <p class="lg:w-2/3 mx-auto leading-relaxed text-base">Whatever cardigan tote bag tumblr hexagon brooklyn asymmetrical gentrify, subway tile poke farm-to-table. Franzen you probably haven't heard of them.</p>
+                          </div>
+                          <div class="flex flex-wrap -m-2">
+                            @foreach ($users as $item)
+                            <div class="p-2 lg:w-1/4 md:w-1/2 w-full">
+                              <a href="{{ route('veterinarian/medicalusers', ['id'=>$item->id]) }}">
+                                <div class="h-full flex items-center border-gray-200 border p-4 rounded-lg">
+                                  <img alt="team" class="w-16 h-16 bg-gray-100 object-cover object-center flex-shrink-0 rounded-full mr-4" src="https://dummyimage.com/80x80" alt="" >
+                                  <div class="flex-grow">
+                                    <h2 class="text-gray-900 title-font font-medium">{{$item->name}}</h2>
+                                    <p class="text-gray-500">{{$item->email}}</p>
+                                  </div>
+                                </div>
+                              </div>
+                              @endforeach
+                            </div>
+                          </a>
                       </div>
-                        @endforeach
+                    </section>
                  </div>
                </div>
              </div>
