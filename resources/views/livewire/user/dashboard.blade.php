@@ -40,9 +40,20 @@
                           </li>
                       </ul>
                   </div>
-                  <div class="header-btn hidden sm:block sm:absolute sm:right-0 sm:mr-16 lg:static lg:mr-0">
-                    <a class="text-blue-600 border border-blue-600 px-10 py-3 rounded-full duration-300 hover:bg-blue-600 hover:text-white" href="{{route('user/logins')}}">Masuk</a>
-                  </div>
+                  @if (auth()->user()->role_id == 3)
+                  <form method="POST" action="{{ route('logout') }}">
+                    @csrf
+                    <div class="header-btn hidden sm:block sm:absolute sm:right-0 sm:mr-16 lg:static lg:mr-0">
+                      <a class="text-blue-600 border border-blue-600 px-10 py-3 rounded-full duration-300 hover:bg-blue-600 hover:text-white" href="{{ route('logout') }}" onclick="event.preventDefault();
+                      this.closest('form').submit();"> Logout</a>
+                    </div>
+                </form>
+                  @else
+                    <div class="header-btn hidden sm:block sm:absolute sm:right-0 sm:mr-16 lg:static lg:mr-0">
+                      <a class="text-blue-600 border border-blue-600 px-10 py-3 rounded-full duration-300 hover:bg-blue-600 hover:text-white" href="{{route('user/logins')}}">Masuk</a>
+                    </div>
+                  @endif
+
               </nav>
           </div>
       </div>
@@ -264,9 +275,9 @@
           <div class="w-full relative">
             <div class="portfolio-carousel">
               <div>
-                @foreach ($image as $items)
-                  <img src="{{ url('storage/photos/'.$items->featured_image )}}" alt="{{ $items->name }}" class="h-10 w-10 rounded-full" alt="Image"> 
-                @endforeach
+                {{-- @foreach ($image as $items)
+                  <img src="{{ url('storage/photos/'.$items->featured_image )}}" alt="{{ $items->name }}" class="w-full" alt="Image"> 
+                @endforeach --}}
               </div>>
             </div>
           </div>
