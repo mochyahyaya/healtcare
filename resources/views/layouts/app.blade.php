@@ -27,8 +27,8 @@
         <script src="https://cdn.ckeditor.com/ckeditor5/30.0.0/classic/ckeditor.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 
-        
-        
+
+
     </head>
     <body class="font-sans antialiased">
         <x-jet-banner />
@@ -43,7 +43,7 @@
                         {{ $header }}
                     </div>
                 </header>
-            @endif 
+            @endif
 
              {{-- Page Content --}}
             <main>
