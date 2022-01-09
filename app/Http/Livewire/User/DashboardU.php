@@ -10,7 +10,7 @@ class DashboardU extends Component
 {
     public function imagecoursel()
     {
-        return (Pet::where('user_id', '1'));
+        return Pet::where('user_id', '1')->get();
     }
     public function render()
     {
