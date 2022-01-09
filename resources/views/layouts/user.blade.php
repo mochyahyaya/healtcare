@@ -8,6 +8,8 @@
     <!--====== Favicon Icon ======-->
     <link rel="shortcut icon" href="../shine/assets/img/favicon.png" type="image/png">
 
+    <link rel="stylesheet" href="{!! asset('css/app.css') !!}">
+
     <title>Garden Petshop</title>
 
     <!-- Icon -->
@@ -23,6 +25,20 @@
     @livewireStyles
   </head>
   <body>
+
+{{--  <header id="header-wrap" class="relative">--}}
+{{--      <!-- Navbar Start -->--}}
+{{--      <div class="navigation fixed top-0 left-0 w-full z-30 duration-300">--}}
+{{--          <div class="container">--}}
+{{--              <nav class="navbar py-2 navbar-expand-lg flex justify-between items-center relative duration-300">--}}
+{{--                  <a class="navbar-brand" href="{{ route('user/dashboard')}}">--}}
+{{--                      <img src="../shine/assets/img/logo.svg" alt="Logo">--}}
+{{--                  </a>--}}
+{{--              </nav>--}}
+{{--          </div>--}}
+{{--      </div>--}}
+{{--      <!-- Navbar End -->--}}
+{{--  </header>--}}
 
     <div>
         @yield('main')
@@ -64,7 +80,7 @@
                 <div class="w-full sm:w-1/2 md:w-1/2 lg:w-1/4 wow fadeInUp" data-wow-delay="0.8s">
                   <div class="mx-3 mb-8">
                     <h3 class="font-bold text-xl text-white mb-5">Find us on</h3>
-              
+
                     <ul class="social-icons flex justify-start">
                       <li class="mx-2">
                         <a href="#"
@@ -82,10 +98,10 @@
                   </div>
                 </div>
               </div>
-            </div>     
-          </footer> 
+            </div>
+          </footer>
           <!-- Footer Section End -->
-      
+
           <section class="bg-gray-800 py-6 border-t-2 border-gray-700 border-dotted">
             <div class="container">
               <div class="flex flex-wrap">
@@ -94,29 +110,29 @@
                 </div>
               </div>
             </div>
-          </section>   
-      
+          </section>
+
           <!-- Go to Top Link -->
           <a href="#" class="back-to-top w-10 h-10 fixed bottom-0 right-0 mb-5 mr-5 flex items-center justify-center rounded-full bg-blue-600 text-white text-lg z-20 duration-300 hover:bg-blue-400">
             <i class="lni lni-arrow-up"></i>
           </a>
-          
+
           <!-- Preloader -->
       <!--     <div id="preloader">
             <div class="loader" id="loader-1"></div>
           </div> -->
           <!-- End Preloader -->
-          
+
           <!-- All js Here -->
           <script src="{{ mix('js/app.js') }}" defer></script>
           <script src="../shine/assets/js/wow.js"></script>
           <script src="../shine/assets/js/tiny-slider.js"></script>
-          <script src="../shine/assets/js/contact-form.js"></script>      
-          <script src="../shine/assets/js/main.js"></script>     
+          <script src="../shine/assets/js/contact-form.js"></script>
+          <script src="../shine/assets/js/main.js"></script>
           <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
           <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
           <script src="https://npmcdn.com/flatpickr/dist/flatpickr.min.js"></script>
-          <script src="https://npmcdn.com/flatpickr/dist/l10n/id.js"></script> 
+          <script src="https://npmcdn.com/flatpickr/dist/l10n/id.js"></script>
         </body>
         @livewireScripts
         @yield('scripts')
@@ -135,22 +151,22 @@
         <link rel="stylesheet" href="{!! asset('css/app.css') !!}">
 
         <title>E-Health Care</title>
-        
-        
+
+
         <link href="https://fonts.googleapis.com/css?family=Montserrat:200,300,400,500,600,700,800&display=swap" rel="stylesheet">
-    
+
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-     
+
         <link rel="stylesheet" href="{!! asset('temp/css/animate.css') !!}">
-        
+
         <link rel="stylesheet" href="{!! asset('temp/css/owl.carousel.min.css') !!}">
         <link rel="stylesheet" href="{!! asset('temp/css/owl.theme.default.min.css') !!}">
         <link rel="stylesheet" href="{!! asset('temp/css/magnific-popup.css') !!}">
-    
-    
+
+
         <link rel="stylesheet" href="{!! asset('temp/css/bootstrap-datepicker.css') !!}">
         <link rel="stylesheet" href="{!! asset('temp/css/jquery.timepicker.css') !!}">
-    
+
         <link rel="stylesheet" href="{!! asset('temp/css/flaticon.css') !!}">
         <link rel="stylesheet" href="{!! asset('temp/css/style.css') !!}">
 
@@ -165,7 +181,7 @@
                 @yield('content')
             </main>
         </div>
-    
+
         @yield('scripts')
         <script src="{!! asset('temp/js/jquery.min.js') !!}"></script>
         <script src="{!! asset('temp/js/jquery-migrate-3.0.1.min.js') !!}"></script>
@@ -185,7 +201,7 @@
         <script src="{!! asset('temp/js/main.js') !!}"></script>
         {{-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script> --}}
         {{-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
-        
+
         @livewireScripts
-    </body>   
-</html> --}} 
+    </body>
+</html> --}}
