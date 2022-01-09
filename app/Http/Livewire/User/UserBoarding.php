@@ -10,7 +10,7 @@ use Livewire\WithPagination;
 
 class UserBoarding extends Component
 {
-    public $pet_id, $size;
+    public $pet_id, $size, $total_day;
     public $start_date = null;
     public $end_date = null;
 
@@ -21,6 +21,7 @@ class UserBoarding extends Component
             'size'              => 'required',
             'start_date'        => 'required',
             'end_date'          => 'required',
+            'total_day'         => 'required',
         ]);
 
         Hotel::create([
@@ -28,7 +29,7 @@ class UserBoarding extends Component
             'size'            => $this->size,
             'start_date'      => $this->start_date,
             'end_date'        => $this->end_date,
-           
+            'total_day'       => $this->total_day
         ]); 
 
         session()->flash('success', 'Berhasil mendaftarkan boarding.');
@@ -44,6 +45,6 @@ class UserBoarding extends Component
     {
         return view('livewire.user.user-boarding', [
             'pet'  => $this->pet(),
-        ]);
+        ])->extends('layouts.user')->section('main');;
     }
 }

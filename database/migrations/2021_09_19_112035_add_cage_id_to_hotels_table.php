@@ -14,7 +14,7 @@ class AddCageIdToHotelsTable extends Migration
     public function up()
     {
         Schema::table('hotels', function (Blueprint $table) {
-            $table->foreignId('cage_id')->constrained('cages');
+            $table->foreignId('cage_id')->constrained('cages')->nullable();
         });
     }
 
