@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateBreedingsTable extends Migration
+class CreateContactUsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,12 @@ class CreateBreedingsTable extends Migration
      */
     public function up()
     {
-        Schema::create('breedings', function (Blueprint $table) {
+        Schema::create('contact_us', function (Blueprint $table) {
             $table->id();
-            $table->date('start_date');
-            $table->enum('status', ['belum diporses', 'proses', 'selesai']);
-            $table->foreignId('cage_id')->constrained('cages')->nullable();
+            $table->string('eamil');
+            $table->string('name');
+            $table->enum('subject', ['testimoni', 'saran/kritik']);
+            $table->string('message');
             $table->timestamps();
         });
     }
@@ -29,6 +30,6 @@ class CreateBreedingsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('breedings');
+        Schema::dropIfExists('contact_us');
     }
 }
