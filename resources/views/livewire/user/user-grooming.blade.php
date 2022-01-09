@@ -1,20 +1,3 @@
-@extends('layouts.user')
-
-<header id="header-wrap" class="relative">
-  <!-- Navbar Start -->      
-  <div class="navigation fixed top-0 left-0 w-full z-30 duration-300">
-      <div class="container">
-          <nav class="navbar py-2 navbar-expand-lg flex justify-between items-center relative duration-300">
-              <a class="navbar-brand" href="{{ route('user/dashboard')}}">
-                <img src="../shine/assets/img/logo.svg" alt="Logo">
-              </a>
-          </nav>
-      </div>
-  </div>
-  <!-- Navbar End -->
-</header>
-
-@section('content')
 <div class="h-screen bg-blue-100 flex justify-center items-center">
 	<div class="lg:w-2/5 md:w-1/2 w-2/3">
     <div>
