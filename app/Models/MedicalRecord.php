@@ -9,7 +9,7 @@ class MedicalRecord extends Model
 {
     use HasFactory;
 
-    protected $table = 'medical-records';
+    protected $table = 'medical_records';
 
     protected $guarded = ['']; 
 

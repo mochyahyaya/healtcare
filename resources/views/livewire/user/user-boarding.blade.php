@@ -1,23 +1,3 @@
-<<<<<<< HEAD
-@extends('layouts.user')
-
-<header id="header-wrap" class="relative">
-  <!-- Navbar Start -->      
-  <div class="navigation fixed top-0 left-0 w-full z-30 duration-300">
-      <div class="container">
-          <nav class="navbar py-2 navbar-expand-lg flex justify-between items-center relative duration-300">
-              <a class="navbar-brand" href="{{ route('user/dashboard')}}">
-                <img src="../shine/assets/img/logo.svg" alt="Logo">
-              </a>
-          </nav>
-      </div>
-  </div>
-  <!-- Navbar End -->
-</header>
-
-@section('content')
-=======
->>>>>>> 4f6ea80115f246f41089d170d29baab21d181c17
 <div class="h-screen bg-blue-100 flex justify-center items-center">
 	<div class="lg:w-2/5 md:w-1/2 w-2/3">
     <div>
@@ -47,18 +27,11 @@
             <div class="mt-4">
                 <x-jet-label for="start_date" value="{{ __('Tanggal Mulai') }}" />
                 <x-datetime-picker wire:model="start_date" class="w-full rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" />
-<<<<<<< HEAD
-=======
                 @error('start_date') <span class="error">{{ $message }}</span> @enderror
->>>>>>> 4f6ea80115f246f41089d170d29baab21d181c17
             </div>
             <div class="mt-4">
                 <x-jet-label for="end_date" value="{{ __('Tanggal Berakhir') }}" />
                 <x-datetime-picker wire:model="end_date" class="w-full rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" />
-<<<<<<< HEAD
-            </div>
-                <button type="submit" class="mt-6 bg-blue-600 rounded-lg px-4 py-2 text-lg text-white tracking-wide font-semibold font-sans">Book</button>
-=======
                 @error('end_date') <span class="error">{{ $message }}</span> @enderror
             </div>
             <div class="mt-4">
@@ -69,7 +42,6 @@
             <div>
                 <button type="submit" class="mt-6 bg-blue-600 rounded-lg px-4 py-2 text-lg text-white tracking-wide font-semibold font-sans">Book</button>
             </div>
->>>>>>> 4f6ea80115f246f41089d170d29baab21d181c17
 		</form>
 	</div>
 </div>
