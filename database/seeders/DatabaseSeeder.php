@@ -15,10 +15,11 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call([
-            RoleSeeder::class,
-            UserSeeder::class,
-            TypeCageSeeder::class,
-            TypePetSeeder::class,
+            // RoleSeeder::class,
+            // UserSeeder::class,
+            // TypeCageSeeder::class,
+            // TypePetSeeder::class,
+            VaccineeSeeder::class,
         ]);
     }
 }
