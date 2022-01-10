@@ -9,6 +9,10 @@ use App\Http\Livewire\Admin\Pets;
 use App\Http\Livewire\Admin\Cages;
 use App\Http\Livewire\Admin\Dashboard;
 use App\Http\Livewire\Admin\ShowMonitorings;
+<<<<<<< HEAD
+=======
+use App\Http\Livewire\Admin\MedicalRecords;
+>>>>>>> 4f6ea80115f246f41089d170d29baab21d181c17
 use App\Http\Livewire\Admin\ShowMonitoringBreedings;
 use App\Http\Livewire\Admin\BreedingMonitorings;
 use App\Http\Livewire\User\Auths;
@@ -17,8 +21,11 @@ use App\Http\Livewire\User\Registers;
 use App\Http\Livewire\User\UserBoarding;
 use App\Http\Livewire\User\UserBreeding;
 use App\Http\Livewire\User\UserGrooming;
+<<<<<<< HEAD
 use App\Http\Livewire\Veterinarian\Inpatients;
 use App\Http\Livewire\Veterinarian\MedicalRecords;
+=======
+>>>>>>> 4f6ea80115f246f41089d170d29baab21d181c17
 use App\Http\Livewire\Veterinarian\DashboardD;
 use App\Http\Livewire\Veterinarian\MedicalrecordUsers;
 use App\Http\Livewire\Veterinarian\MedicalrecordDetails;
@@ -69,9 +76,15 @@ Route::group(['middleware' => 'web'], function () {
         Route::get('admin/user', Users::class)->name('admin/users');
         Route::get('admin/pet', Pets::class)->name('admin/pets');
         Route::get('admin/cage', Cages::class)->name('admin/cages');
+<<<<<<< HEAD
         
         Route::get('veterinarian/medical-records', MedicalRecords::class)->name('veterinarian/medicalRecords');
         Route::get('veterinarian/inpatients', Inpatients::class)->name('veterinarian/inpatients');
+=======
+        Route::get('admin/medical-records', MedicalRecords::class)->name('admin/medicalRecords');
+        Route::get('admin/inpatients', Inpatients::class)->name('admin/inpatients');
+
+>>>>>>> 4f6ea80115f246f41089d170d29baab21d181c17
         Route::get('veterinarian/dashboard', DashboardD::class)->name('veterinarian/dashboard');
         Route::get('veterinarian/medicalrecordUser/{id}', MedicalrecordUsers::class)->name('veterinarian/medicalusers');
         Route::get('veterinarian/medicalrecordDetail/{id}', MedicalRecordDetails::class)->name('veterinarian/medicaldetails');

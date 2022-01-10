@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddCageIdToHotelsTable extends Migration
+class AddTypeVaccineeIdToMedicalRecordTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class AddCageIdToHotelsTable extends Migration
      */
     public function up()
     {
-        Schema::table('hotels', function (Blueprint $table) {
-            $table->foreignId('cage_id')->constrained('cages')->nullable();
+        Schema::table('medical_record', function (Blueprint $table) {
+            $table->foreignId("vaccinee_id")->constrained('type_vaccinee')->nullable();
         });
     }
 
@@ -25,7 +25,7 @@ class AddCageIdToHotelsTable extends Migration
      */
     public function down()
     {
-        Schema::table('hotels', function (Blueprint $table) {
+        Schema::table('medical_record', function (Blueprint $table) {
             //
         });
     }

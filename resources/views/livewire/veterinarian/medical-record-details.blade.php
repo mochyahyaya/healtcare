@@ -22,11 +22,17 @@
 
 <div class="bg-gray-100">
 <x-slot name="header">
+<<<<<<< HEAD
     <a href="">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             <i class="fa fa-arrow-left mr-2"></i>Back
         </h2>
     </a>
+=======
+  <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+      Rekam Medis
+  </h2>
+>>>>>>> 4f6ea80115f246f41089d170d29baab21d181c17
 </x-slot>
     <!-- End of Navbar -->
 
@@ -154,7 +160,11 @@
                 <!-- Experience and education -->
                 <div class="bg-white p-3 shadow-sm rounded-sm">
 
+<<<<<<< HEAD
                     <div class="">
+=======
+                    <div class="grid grid-cols-2">
+>>>>>>> 4f6ea80115f246f41089d170d29baab21d181c17
                         <div>
                             <div class="flex items-center space-x-2 font-semibold text-gray-900 leading-8 mb-3">
                                 <span clas="text-green-500">
@@ -166,6 +176,7 @@
                                 </span>
                                 <span class="tracking-wide">Medical Records</span>
                             </div>
+<<<<<<< HEAD
                             <div class="overflow-x-auto">
                             <table class="table-auto w-full">
                                 <thead class="text-xs font-semibold uppercase text-black bg-gray-200">
@@ -240,6 +251,52 @@
                         </div>
                     <div>
                 </div>
+=======
+                            <ul class="list-inside space-y-2">
+                                <li>
+                                    <div class="text-teal-600">Owner at Her Company Inc.</div>
+                                    <div class="text-gray-500 text-xs">March 2020 - Now</div>
+                                </li>
+                                <li>
+                                    <div class="text-teal-600">Owner at Her Company Inc.</div>
+                                    <div class="text-gray-500 text-xs">March 2020 - Now</div>
+                                </li>
+                                <li>
+                                    <div class="text-teal-600">Owner at Her Company Inc.</div>
+                                    <div class="text-gray-500 text-xs">March 2020 - Now</div>
+                                </li>
+                                <li>
+                                    <div class="text-teal-600">Owner at Her Company Inc.</div>
+                                    <div class="text-gray-500 text-xs">March 2020 - Now</div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div>
+                            <div class="flex items-center space-x-2 font-semibold text-gray-900 leading-8 mb-3">
+                                <span clas="text-green-500">
+                                    <svg class="h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                        stroke="currentColor">
+                                        <path fill="#fff" d="M12 14l9-5-9-5-9 5 9 5z" />
+                                        <path fill="#fff"
+                                            d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" />
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222" />
+                                    </svg>
+                                </span>
+                                <span class="tracking-wide">Vaksin</span>
+                            </div>
+                            <ul class="list-inside space-y-2">
+                                <li>
+                                    <div class="text-teal-600">Masters Degree in Oxford</div>
+                                    <div class="text-gray-500 text-xs">March 2020 - Now</div>
+                                </li>
+                                <li>
+                                    <div class="text-teal-600">Bachelors Degreen in LPU</div>
+                                    <div class="text-gray-500 text-xs">March 2020 - Now</div>
+                                </li>
+                            </ul>
+                        </div>
+>>>>>>> 4f6ea80115f246f41089d170d29baab21d181c17
                     </div>
                     <!-- End of Experience and education grid -->
                 </div>
@@ -247,6 +304,7 @@
 
                 <div class="my-4"></div>
 
+<<<<<<< HEAD
                 <form wire:submit.prevent="store">
                    <div class="bg-white p-3 shadow-sm rounded-sm">
                         <div class="mt-4">
@@ -266,6 +324,11 @@
                         </button>
                     </div>
                 </form>
+=======
+                <div class="bg-white p-3 shadow-sm rounded-sm">
+                    Buat isi Medical Records
+                </div>
+>>>>>>> 4f6ea80115f246f41089d170d29baab21d181c17
             </div>
         </div>
     </div>

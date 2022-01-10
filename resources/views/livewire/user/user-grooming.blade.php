@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 @extends('layouts.user')
 
 <header id="header-wrap" class="relative">
@@ -15,6 +16,8 @@
 </header>
 
 @section('content')
+=======
+>>>>>>> 4f6ea80115f246f41089d170d29baab21d181c17
 <div class="h-screen bg-blue-100 flex justify-center items-center">
 	<div class="lg:w-2/5 md:w-1/2 w-2/3">
     <div>
@@ -63,4 +66,8 @@
         </div>
 		  </form>
 	</div>
+<<<<<<< HEAD
 </div>
+=======
+</div>
+>>>>>>> 4f6ea80115f246f41089d170d29baab21d181c17

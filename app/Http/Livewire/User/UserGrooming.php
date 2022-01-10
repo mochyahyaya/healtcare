@@ -17,7 +17,11 @@ class UserGrooming extends Component
     public function rules()
     {
         return
+<<<<<<< HEAD
           [  
+=======
+          [
+>>>>>>> 4f6ea80115f246f41089d170d29baab21d181c17
             'pet_id'            => 'required',
             'size'              => 'required',
             'service'           => 'required',
@@ -26,13 +30,23 @@ class UserGrooming extends Component
     }
     public function store()
     {
+<<<<<<< HEAD
+=======
+//        dd('test');
+
+>>>>>>> 4f6ea80115f246f41089d170d29baab21d181c17
         Groom::create([
             'pet_id'          => $this->pet_id,
             'size'            => $this->size,
             'service'         => $this->service,
             'address'         => $this->address,
+<<<<<<< HEAD
            
         ]); 
+=======
+
+        ]);
+>>>>>>> 4f6ea80115f246f41089d170d29baab21d181c17
 
         session()->flash('success', 'Berhasil mendaftarkan grooming.');
         return redirect()->to('/user/dashboard');
@@ -47,6 +61,10 @@ class UserGrooming extends Component
     {
         return view('livewire.user.user-grooming', [
             'pet'  => $this->pet(),
+<<<<<<< HEAD
         ]);
+=======
+        ])->extends('layouts.user')->section('main');
+>>>>>>> 4f6ea80115f246f41089d170d29baab21d181c17
     }
 }
