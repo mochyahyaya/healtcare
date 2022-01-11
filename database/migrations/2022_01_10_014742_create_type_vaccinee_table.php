@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddCageIdToHotelsTable extends Migration
+class CreateTypeVaccineeTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,10 @@ class AddCageIdToHotelsTable extends Migration
      */
     public function up()
     {
-        Schema::table('hotels', function (Blueprint $table) {
-            $table->foreignId('cage_id')->constrained('cages')->nullable();
+        Schema::create('type_vaccinee', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+            $table->timestamps();
         });
     }
 
@@ -25,8 +27,6 @@ class AddCageIdToHotelsTable extends Migration
      */
     public function down()
     {
-        Schema::table('hotels', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('type_vaccinee');
     }
 }
