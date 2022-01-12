@@ -143,27 +143,30 @@
                               <div class="mt-4"  x-data="{user_id: 0}">
                                 <x-jet-label for="user_id" value="{{ __('Nama Pemilik') }}" />
                                 <select x-model= "user_id" class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm mt-1 block w-full" wire:model="selectedUser">
-                                      <option value="" selected> -- Nama pemilik --</option>
+                                      <option value="" selected> Nama pemilik </option>
                                     @foreach ($users as $item)
                                       <option value="{{$item->id}}">{{$item->name}}</option>
                                     @endforeach
                                   </select>
                                 @error('type') <span class="error">{{ $message }}</span> @enderror
-                                <div class="mt-4" x-show="user_id > 0">
-                                  <x-jet-label for="pet_id" value="{{ __('Nama Pet') }}" />
-                                  <select class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm mt-1 block w-full" wire:model="selectedPet"> 
-                                        <option selected> -- Nama hewan --</option>
-                                      @foreach ($pets as $item)
-                                        <option value= "{{$item->id}}">{{$item->name}}</option>
-                                      @endforeach
-                                    </select>
-                                  @error('pet_id') <span class="error">{{ $message }}</span> @enderror
-                                </div>  
+
+                                @if(!is_null($pet))
+                                  <div class="mt-4">
+                                    <x-jet-label for="pet_id" value="{{ __('Nama Pet') }}" />
+                                    <select class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm mt-1 block w-full" wire:model="selectedPet"> 
+                                          <option selected>  Nama hewan </option>
+                                        @foreach ($pet as $item)
+                                          <option value= "{{$item->id}}">{{$item->name}}</option>
+                                        @endforeach
+                                      </select>
+                                    @error('pet_id') <span class="error">{{ $message }}</span> @enderror
+                                  </div>  
+                                  @endif
                               </div>  
                            <div class="mt-4">
                              <x-jet-label for="service" value="{{ __('Jenis Hewan') }}" />
                              <select class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm mt-1 block w-full" wire:model.debounce.800ms="type_id" >
-                                  <option selected> -- Jenis Hewan -- </option>   
+                                  <option selected>  Jenis Hewan  </option>   
                                   <option value="kucing">Kucing</option>
                                   <option value="anjing">Anjing</option>
                                </select>
@@ -177,7 +180,7 @@
                            <div class="mt-4">
                                <x-jet-label for="service" value="{{ __('Jenis Grooming') }}" />
                                <select class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm mt-1 block w-full" wire:model.debounce.800ms="service" >
-                                   <option selected>-- Jenis Grooming --</option>
+                                   <option selected>Jenis Grooming</option>
                                    <option value="Standar">Standar</option>
                                    <option value="Kutu">Kutu</option>
                                    <option value="Jamur">Jamur</option>

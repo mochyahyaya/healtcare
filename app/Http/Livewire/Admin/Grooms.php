@@ -24,6 +24,7 @@ class Grooms extends Component
     public $perPage = 10;
     public $selectedUser = null;
     public $selectedPet = null;
+    public $pet = null;
     /**
      * function for validation
      *
@@ -206,12 +207,12 @@ class Grooms extends Component
 
     public function users()
     {
-        return User::all();
+        return User::where('role_id', 3)->get();
     }
 
     public function updatedSelectedUser($user)
     {
-        $this->pets = Pet::where('user_id', $user)->get();
+        $this->pet = Pet::where('user_id', $user)->get();
         $this->selectedPet = NULL;
     }
     

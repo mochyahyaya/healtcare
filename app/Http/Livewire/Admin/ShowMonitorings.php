@@ -59,7 +59,7 @@ class ShowMonitorings extends Component
 
     public function read()
     {
-        return Hotel::all();
+        return Hotel::where('cage_id', '>', 0)->get();
     }
 
     public function render()

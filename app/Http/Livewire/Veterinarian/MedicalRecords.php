@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\Admin;
+namespace App\Http\Livewire\Veterinarian;
 
 use App\Models\Pet;
 use App\Models\User;
@@ -11,7 +11,7 @@ class MedicalRecords extends Component
     public $user_id;
     public function users()
     {
-        return User::all();
+        return User::where('role_id', 3)->get();
     }
 
     public function pets()

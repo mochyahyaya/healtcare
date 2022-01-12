@@ -81,10 +81,22 @@
                             {{ \Carbon\Carbon::parse($items->end_date)->locale('id')->format('d M Y')}}
                            </td>
                            <td class="px-6 py-4 whitespace-nowrap">
-                               {{$items->status}}
+                              @if($items->status == 'belum diproses')
+                                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-200 text-green-800">
+                                  {{$items->status}}
+                                </span>
+                              @elseif ( $items->status == 'dalam kandang' ) 
+                                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-200 text-green-800">
+                                  {{$items->status}}
+                                </span>          
+                              @else
+                                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-200 text-green-800">
+                                  {{$items->status}}
+                                </span>
+                              @endif
                            </td>
                            <td class="px-6 py-4 whitespace-nowrap">
-                               {{$items->cages->typecages->alias}} - {{$items->cages->number}} 
+                               {{$items->cages->typecages->alias ?? '' }} - {{$items->cages->number ?? ''}} 
                            </td>
                            <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                              <a href= "#" wire:click="detailShowModal({{$items->id}})" class="text-indigo-600 hover:text-indigo-900 mr-3">Lihat</a>
@@ -119,40 +131,44 @@
 
                    <x-slot name="content" >
                     <div x-data="{type: 0}">
-                      <div class="mt-4"  x-data="{user_id: 0}">
+                      @if (!$modelId)
+                      <div class="mt-4">
                         <x-jet-label for="user_id" value="{{ __('Nama Pemilik') }}" />
-                        <select x-model= "user_id" class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm mt-1 block w-full" wire:model="selectedUser">
-                              <option value="" selected> -- Nama pemilik --</option>
+                        <select class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm mt-1 block w-full" wire:model="selectedUser">
+                              <option value="" selected>  Pilih Nama Pemilik </option>
                             @foreach ($users as $item)
                               <option value="{{$item->id}}">{{$item->name}}</option>
                             @endforeach
                           </select>
-                        @error('type') <span class="error">{{ $message }}</span> @enderror
-                        <div class="mt-4" x-show="user_id > 0">
-                          <x-jet-label for="pet_id" value="{{ __('Nama Pet') }}" />
-                          <select class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm mt-1 block w-full" wire:model="selectedPet"> 
-                                <option selected> -- Nama hewan --</option>
-                              @foreach ($pets as $item)
-                                <option value= "{{$item->id}}">{{$item->name}}</option>
-                              @endforeach
-                            </select>
-                          @error('pet_id') <span class="error">{{ $message }}</span> @enderror
-                        </div>  
-                      </div>   
-                       <div class="mt-4">
-                         <x-jet-label for="type" value="{{ __('Jenis Hewan') }}" />
-                         <select name="type" x-model="type" class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm mt-1 block w-full">
-                             <option selected>-- Jenis Hewan --</option>
-                             <option value =1>Kucing</option>
-                             <option value =2>Anjing</option>
-                           </select>
-                         @error('type') <span class="error">{{ $message }}</span> @enderror
+                        @error('selectedUser') <span class="error">{{ $message }}</span> @enderror
                      </div>
-                       <div class="mt-4">
-                           <x-jet-label for="size" value="{{ __('Ukuran') }}" />
-                           <x-jet-input id="size" class="block mt-1 w-full" type="text" wire:model.debounce.800ms="size" />
-                           @error('size') <span class="error">{{ $message }}</span> @enderror
-                       </div>
+                     @endif
+                     @if(!is_null($pet))
+                     <div class="mt-4">
+                      <x-jet-label for="user_id" value="{{ __('Nama Pet') }}" />
+                      <select class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm mt-1 block w-full" wire:model="selectedPet">
+                            <option value="" selected>  Pilih Pet </option>
+                          @foreach ($pet as $item)
+                            <option value="{{$item->id}}">{{$item->name}}</option>
+                          @endforeach
+                        </select>
+                      @error('selectedUser') <span class="error">{{ $message }}</span> @enderror
+                   </div>
+                   @endif                   
+                  <div class="mt-4">
+                    <x-jet-label for="type" value="{{ __('Jenis Hewan') }}" />
+                    <select name="type" x-model="type" class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm mt-1 block w-full">
+                        <option selected>Jenis Hewan</option>
+                        <option value =1>Kucing</option>
+                        <option value =2>Anjing</option>
+                      </select>
+                    @error('type') <span class="error">{{ $message }}</span> @enderror
+                  </div>
+                  <div class="mt-4">
+                      <x-jet-label for="size" value="{{ __('Ukuran') }}" />
+                      <x-jet-input id="size" class="block mt-1 w-full" type="text" wire:model.debounce.800ms="size" />
+                      @error('size') <span class="error">{{ $message }}</span> @enderror
+                  </div>
                        <div class="mt-4">
                         <x-jet-label for="start_date" value="{{ __('Tanggal Mulai') }}" />
                         <x-datetime-picker wire:model="start_date" class="w-full rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" />
@@ -171,7 +187,7 @@
                             <select class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm mt-1 block w-full" wire:model="cage_id" >
                               <option selected> -- Pilih Kandang -- </option>
                               @foreach($cats as $cat)
-                              <option value="{{ $cat->id }}">{{ $cat->typecages->alias}} - {{$cat->number}}</option>
+                              <option value="{{ $cat->id }}">{{ $cat->typecages->alias }} - {{$cat->number}}</option>
                               @endforeach
                               </select>
                             @error('cage_id') <span class="error">{{ $message }}</span> @enderror
@@ -305,18 +321,25 @@
                              </div>
                              <div class="flex-grow">
                                <h5 class="leading-tight text-sm text-gray-700 font-semibold">Kandang</h5>
-                               <span class="text-xs text-gray-500">{{$cage_id}} - {{$cage_number}}</span>
+                               <span class="text-xs text-gray-500">{{$cage_id }} - {{$cage_number }}</span>
                              </div>
                            </span>
                          </div>
-                           <button wire:click="accept(id)" class="inline-flex items-center px-4 py-2 bg-blue-400 border border-white-300 rounded-md font-semibold text-xs text-gray-700 uppercase tracking-widest shadow-sm hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:ring focus:ring-blue-200 active:text-gray-800 active:bg-gray-50 disabled:opacity-25 transition">
-                             Proses
-                           </button>
-                           <button wire:click="reject(id)" class="inline-flex items-center px-4 py-2 bg-green-400 border border-white-300 rounded-md font-semibold text-xs text-gray-700 uppercase tracking-widest shadow-sm hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:ring focus:ring-blue-200 active:text-gray-800 active:bg-gray-50 disabled:opacity-25 transition">
-                             Selesai
-                           </button>
+                         @if ($status == 'belum diproses')
+                          <button wire:click="accept(id)" class="inline-flex items-center px-4 py-2 bg-blue-400 border border-white-300 rounded-md font-semibold text-xs text-gray-700 uppercase tracking-widest shadow-sm hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:ring focus:ring-blue-200 active:text-gray-800 active:bg-gray-50 disabled:opacity-25 transition">
+                            Proses
+                          </button>
+                          <button wire:click="reject(id)" class="inline-flex items-center px-4 py-2 bg-green-400 border border-white-300 rounded-md font-semibold text-xs text-gray-700 uppercase tracking-widest shadow-sm hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:ring focus:ring-blue-200 active:text-gray-800 active:bg-gray-50 disabled:opacity-25 transition">
+                            Selesai
+                          </button>
+                          @elseif($status == 'diproses')
+                          <button wire:click="reject(id)" class="inline-flex items-center px-4 py-2 bg-green-400 border border-white-300 rounded-md font-semibold text-xs text-gray-700 uppercase tracking-widest shadow-sm hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:ring focus:ring-blue-200 active:text-gray-800 active:bg-gray-50 disabled:opacity-25 transition">
+                            Selesai
+                          </button>
+                          @else
+                            <div></div>
+                          @endif
                    </x-slot>
-           
                    <x-slot name="footer">
                        <x-jet-secondary-button wire:click="$toggle('modalDetailVisible')" wire:loading.attr="disabled">
                            {{ __('Tutup') }}

@@ -104,8 +104,8 @@ class Breedings extends Component
         $this->type_id = $data->pets->typepet->name;
         $this->start_date = $data->start_date;
         $this->status = $data->pets->typepet->name;
-        $this->cage_id = $data->cages->typecages->alias;
-        $this->cage_number = $data->cages->number;
+        $this->cage_id = $data->cages->typecages->alias ?? '';
+        $this->cage_number = $data->cages->number ?? '';
 
     }
 
