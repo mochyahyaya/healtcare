@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\Admin;
+namespace App\Http\Livewire\Veterinarian;
 
 use Livewire\Component;
 use Livewire\WithPagination;

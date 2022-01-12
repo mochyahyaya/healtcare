@@ -25,16 +25,19 @@
                         <x-jet-nav-link href="{{ route('admin/breeds') }}" :active="request()->routeIs('admin/breeds')">
                             {{ __('Breeding') }}
                         </x-jet-nav-link>
+                        <x-jet-nav-link href="{{ route('admin/breeds') }}" :active="request()->routeIs('admin/breeds')">
+                            {{ __('Saran/Testimoni') }}
+                        </x-jet-nav-link>
                     </div>
                 @elseif (auth()->user()->role_id == 2)
                     <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                         <x-jet-nav-link href="{{ route('veterinarian/dashboard') }}" :active="request()->routeIs('veterinarian/dashboard')">
                             {{ __('Dashboard') }}
                         </x-jet-nav-link>
-                        <x-jet-nav-link href="{{ route('admin/medicalRecords') }}" :active="request()->routeIs('admin/medicalRecords')">
+                        <x-jet-nav-link href="{{ route('veterinarian/medicalRecords') }}" :active="request()->routeIs('veterinarian/medicalRecords')">
                             {{ __('Rekam Medis') }}
                         </x-jet-nav-link>
-                        <x-jet-nav-link href="{{ route('admin/inpatients') }}" :active="request()->routeIs('admin/inpatients')">
+                        <x-jet-nav-link href="{{ route('veterinarian/inpatients') }}" :active="request()->routeIs('veterinarian/inpatients')">
                             {{ __('Rawat Inap') }}
                         </x-jet-nav-link>
                     </div>

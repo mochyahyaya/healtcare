@@ -91,7 +91,7 @@
                                  {{$items->colour}}
                              </td>
                              <td class="px-6 py-4 whitespace-nowrap">
-                                 {{ \Carbon\Carbon::parse($items->birthday)->locale('id')->format('d M Y')}}
+                                 {{$age}}
                              </td>
                              <td class="px-6 py-4 whitespace-nowrap">
                                 <img src="{{ url('storage/photos/'.$items->featured_image )}}" alt="{{ $items->name }}" class="h-10 w-10 rounded-full" alt="Image">
