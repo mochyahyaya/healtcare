@@ -9,48 +9,38 @@ use Asantibanez\LivewireCharts\Models\ColumnChartModel;
 
 class Home extends Component
 {
+    public function mount()
+    {
+        $user = Auth::user();
+        if ($user->role_id == 1)
+        {
+            redirect()->to('/admin/dashboard');
+        } else if ($user->role_id == 2)
+        {
+            redirect()->to('/veterinarian/dashboard');
+        }
+        else if ($user->role_id == 3)
+        {
+            return redirect()->to('/user/dashboard');
+        }
+    }
     public function render()
     {
         $view = $this->getView();
-
-        $columnChartModelgroom =
-        (new ColumnChartModel())
-            ->setTitle('Grooming')
-            ->addColumn('Anjing', 100, '#fc8181')
-            ->addColumn('Kucing', 200, '#349eeb');
-
-            $columnChartModelboard =
-        (new ColumnChartModel())
-            ->setTitle('Boarding')
-            ->addColumn('Anjing', 100, '#fc8181')
-            ->addColumn('Kucing', 200, '#349eeb');
-
-            $columnChartModelbreed =
-        (new ColumnChartModel())
-            ->setTitle('Breeding')
-            ->addColumn('Anjing', 100, '#fc8181')
-            ->addColumn('Kucing', 200, '#349eeb');
-
-            return view($view)
-            ->with([
-                'columnChartModelgroom' => $columnChartModelgroom,
-                'columnChartModelboard' => $columnChartModelboard,
-                'columnChartModelbreed' => $columnChartModelbreed,
-            ]);
 
     }
     private function getView()
     {
         /** @var User $user */
         $user = Auth::user();
-        if ($user->hasRole('Admin'))
+        if ($user->role_id == 1)
         {
             return 'livewire.admin.dashboard';
-        } else if ($user->hasRole('Dokter'))
+        } else if ($user->role_id == 2)
         {
             return 'livewire.veterinarian.dashboard';
         }
-        else if ($user->hasRole('User'))
+        else if ($user->role_id == 3)
         {
             return 'livewire.user.dashboard';
         }

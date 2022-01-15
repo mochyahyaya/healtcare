@@ -28,7 +28,8 @@ class Inpatients extends Component
     public $end_date = null;
     public $searchTerm;
     public $type= 1; 
-
+    
+    public $pet = null;
     public $selectedUser = null;
     public $selectedPet = null;
     /**
@@ -113,6 +114,8 @@ class Inpatients extends Component
     public function loadModel()
     {
         $data = Hotel::find($this->modelId);
+        $this->selectedUser = $data->pets->users->name;
+        $this->pet = $data->pets->users->name;
         $this->selectedPet = $data->pet_id;
         $this->size = $data->size;
         $this->start_date = $data->start_dates;
@@ -217,8 +220,8 @@ class Inpatients extends Component
     }
     public function users()
     {
-        // return User::where('role_id', '>', 2)->get();
-        return User::all();
+        return User::where('role_id', '>', 2)->get();
+        // return User::all();
     }
 
     public function monitorings()
@@ -228,7 +231,8 @@ class Inpatients extends Component
 
     public function sortBy($field)
     {
-        if($this->sortDirection =='asc'){
+        if($this->sortDirection =='asc')
+        {
             $this->sortDirection ='desc';
         } else {
             $this->sortDirection = 'asc';
@@ -264,7 +268,7 @@ class Inpatients extends Component
 
     public function updatedSelectedUser($user)
     {
-        $this->pets = Pet::where('user_id', $user)->get();
+        $this->pet = Pet::where('user_id', $user)->get();
         $this->selectedPet = NULL;
     }
 

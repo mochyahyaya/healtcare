@@ -18,8 +18,8 @@ class RouteServiceProvider extends ServiceProvider
      * @var string
      */
     public const HOME  = 'redirects';
-    // public const HOME2 = 'veterinarian/dashboard';
-    // public const HOME3 = 'user/dashboard';
+    public const HOME2 = 'veterinarian/dashboard';
+    public const HOME3 = 'user/dashboard';
 
     /**
      * The controller namespace for the application.

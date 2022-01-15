@@ -37,10 +37,6 @@
                                Jenis
                                @include('partials._sort-icon', ['field' => 'type_id'])
                              </th>
-                             <th wire:click="sortBy('size')" scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                               Size
-                               @include('partials._sort-icon', ['field' => 'size'])
-                             </th>
                              <th wire:click="sortBy('race')" scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                               Ras
                               @include('partials._sort-icon', ['field' => 'race'])
@@ -79,9 +75,6 @@
                                  {{$items->typepet->name}}
                              </td>
                              <td class="px-6 py-4 whitespace-nowrap">
-                                 {{$items->size}}
-                             </td>
-                             <td class="px-6 py-4 whitespace-nowrap">
                                  {{$items->race}}
                              </td>
                              <td class="px-6 py-4 whitespace-nowrap">
@@ -91,10 +84,10 @@
                                  {{$items->colour}}
                              </td>
                              <td class="px-6 py-4 whitespace-nowrap">
-                                 {{$age}}
+                              {{ \Carbon\Carbon::parse($items->birthday)->locale('id')->format('d M Y')}}
                              </td>
                              <td class="px-6 py-4 whitespace-nowrap">
-                                <img src="{{ url('storage/photos/'.$items->featured_image )}}" alt="{{ $items->name }}" class="h-10 w-10 rounded-full" alt="Image">
+                                <img src="{{ url('$items->featured_image' )}}" alt="{{ $items->name }}" class="h-10 w-10 rounded-full" alt="Image">
                              </td>
                              <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                                <a href= "#" wire:click="detailShowModal({{$items->id}})" class="text-indigo-600 hover:text-indigo-900 mr-3">Lihat</a>
@@ -226,7 +219,7 @@
                      <x-slot name="content">
                          <div class="flex flex-col py-8 overflow-hidden bg-white">
                              <span class="flex items-center gap-4 px-6 py-3 w-full">
-                              [$galery]
+                              {{json_encode([$galery])}}
                              </span>
                            </div>
                      </x-slot>

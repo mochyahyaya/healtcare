@@ -76,7 +76,7 @@
                            </td>
                            <td class="px-6 py-4 whitespace-nowrap">
                             {{ \Carbon\Carbon::parse($items->start_date)->locale('id')->format('d M Y')}}
-                           </td>
+                           </td>  
                            <td class="px-6 py-4 whitespace-nowrap">
                             {{ \Carbon\Carbon::parse($items->end_date)->locale('id')->format('d M Y')}}
                            </td>

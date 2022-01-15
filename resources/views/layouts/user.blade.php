@@ -23,26 +23,24 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 
     @livewireStyles
+
+    <script src="{{ mix('js/app.js') }}" defer></script>
+    <script src="../shine/assets/js/wow.js"></script>
+    <script src="../shine/assets/js/tiny-slider.js"></script>
+    <script src="../shine/assets/js/contact-form.js"></script>
+    <script src="../shine/assets/js/main.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://npmcdn.com/flatpickr/dist/flatpickr.min.js"></script>
+    <script src="https://npmcdn.com/flatpickr/dist/l10n/id.js"></script>
+    
+    @livewireScripts
   </head>
   <body>
-
-{{--  <header id="header-wrap" class="relative">--}}
-{{--      <!-- Navbar Start -->--}}
-{{--      <div class="navigation fixed top-0 left-0 w-full z-30 duration-300">--}}
-{{--          <div class="container">--}}
-{{--              <nav class="navbar py-2 navbar-expand-lg flex justify-between items-center relative duration-300">--}}
-{{--                  <a class="navbar-brand" href="{{ route('user/dashboard')}}">--}}
-{{--                      <img src="../shine/assets/img/logo.svg" alt="Logo">--}}
-{{--                  </a>--}}
-{{--              </nav>--}}
-{{--          </div>--}}
-{{--      </div>--}}
-{{--      <!-- Navbar End -->--}}
-{{--  </header>--}}
-
+    @livewire('navigation-menu')
     <div>
         @yield('main')
-    </div>
+    </div>  
 
     <!-- Header Area wrapper End -->
     	  <!-- Footer Section Start -->
@@ -124,84 +122,8 @@
           <!-- End Preloader -->
 
           <!-- All js Here -->
-          <script src="{{ mix('js/app.js') }}" defer></script>
-          <script src="../shine/assets/js/wow.js"></script>
-          <script src="../shine/assets/js/tiny-slider.js"></script>
-          <script src="../shine/assets/js/contact-form.js"></script>
-          <script src="../shine/assets/js/main.js"></script>
-          <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-          <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-          <script src="https://npmcdn.com/flatpickr/dist/flatpickr.min.js"></script>
-          <script src="https://npmcdn.com/flatpickr/dist/l10n/id.js"></script>
+
         </body>
         @livewireScripts
         @yield('scripts')
 </html>
-{{-- <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <meta name="csrf-token" content="{{ csrf_token() }}">
-
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700" rel="stylesheet">
-
-        <!-- Styles -->
-        <link rel="stylesheet" href="{!! asset('css/app.css') !!}">
-
-        <title>E-Health Care</title>
-
-
-        <link href="https://fonts.googleapis.com/css?family=Montserrat:200,300,400,500,600,700,800&display=swap" rel="stylesheet">
-
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-
-        <link rel="stylesheet" href="{!! asset('temp/css/animate.css') !!}">
-
-        <link rel="stylesheet" href="{!! asset('temp/css/owl.carousel.min.css') !!}">
-        <link rel="stylesheet" href="{!! asset('temp/css/owl.theme.default.min.css') !!}">
-        <link rel="stylesheet" href="{!! asset('temp/css/magnific-popup.css') !!}">
-
-
-        <link rel="stylesheet" href="{!! asset('temp/css/bootstrap-datepicker.css') !!}">
-        <link rel="stylesheet" href="{!! asset('temp/css/jquery.timepicker.css') !!}">
-
-        <link rel="stylesheet" href="{!! asset('temp/css/flaticon.css') !!}">
-        <link rel="stylesheet" href="{!! asset('temp/css/style.css') !!}">
-
-        @livewireStyles
-
-        <!-- Scripts -->
-        {{-- <script src="{{ mix('js/app.js') }}" defer></script> --}}
-    {{-- </head> --}}
-    {{-- <body>
-        <div>
-            <main class="py-4">
-                @yield('content')
-            </main>
-        </div>
-
-        @yield('scripts')
-        <script src="{!! asset('temp/js/jquery.min.js') !!}"></script>
-        <script src="{!! asset('temp/js/jquery-migrate-3.0.1.min.js') !!}"></script>
-        <script src="{!! asset('temp/js/popper.min.js') !!}"></script>
-        <script src="{!! asset('temp/js/bootstrap.min.js') !!}"></script>
-        <script src="{!! asset('temp/js/jquery.easing.1.3.js') !!}"></script>
-        <script src="{!! asset('temp/js/jquery.waypoints.min.js') !!}"></script>
-        <script src="{!! asset('temp/js/jquery.stellar.min.js') !!}"></script>
-        <script src="{!! asset('temp/js/jquery.animateNumber.min.js') !!}"></script>
-        <script src="{!! asset('temp/js/bootstrap-datepicker.js') !!}"></script>
-        <script src="{!! asset('temp/js/jquery.timepicker.min.js') !!}"></script>
-        <script src="{!! asset('temp/js/owl.carousel.min.js') !!}"></script>
-        <script src="{!! asset('temp/js/jquery.magnific-popup.min.js') !!}"></script>
-        <script src="{!! asset('temp/js/scrollax.min.js') !!}"></script>
-        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
-        <script src="{!! asset('temp/js/google-map.js') !!}"></script>
-        <script src="{!! asset('temp/js/main.js') !!}"></script>
-        {{-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script> --}}
-        {{-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
-
-        @livewireScripts
-    </body>
-</html> --}}

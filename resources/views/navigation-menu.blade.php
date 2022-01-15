@@ -25,9 +25,6 @@
                         <x-jet-nav-link href="{{ route('admin/breeds') }}" :active="request()->routeIs('admin/breeds')">
                             {{ __('Breeding') }}
                         </x-jet-nav-link>
-                        <x-jet-nav-link href="{{ route('admin/breeds') }}" :active="request()->routeIs('admin/breeds')">
-                            {{ __('Saran/Testimoni') }}
-                        </x-jet-nav-link>
                     </div>
                 @elseif (auth()->user()->role_id == 2)
                     <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
@@ -166,8 +163,6 @@
                                     {{ __('Log Out') }}
                                 </x-jet-dropdown-link>
                             </form>
-
-                          
                         </x-slot>
                     </x-jet-dropdown>
                 </div>
