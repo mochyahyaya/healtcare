@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Admin;
 use Livewire\Component;
 use Illuminate\Support\Facades\Auth;
 use Asantibanez\LivewireCharts\Models\ColumnChartModel;
+use Illuminate\Support\Facades\Gate;
 
 class Dashboard extends Component
 {
@@ -12,6 +13,9 @@ class Dashboard extends Component
 
     public function render()
     {
+        if(Gate::denies('manage-admins')){
+            abort(403);
+        }
         $columnChartModelgroom = 
     (new ColumnChartModel())
         ->setTitle('Grooming')

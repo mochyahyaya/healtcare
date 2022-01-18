@@ -20,6 +20,6 @@ class DashboardU extends Component
     {
         return view('livewire.user.dashboard',[
             'image' => $this->imagecoursel()
-        ])->extends('layouts.user')->section('main');
+        ])->extends('layouts.user')->section('content');
     }
 }

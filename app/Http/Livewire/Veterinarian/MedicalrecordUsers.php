@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Veterinarian;
 
 use App\Models\Pet;
 use App\Models\User;
+use Illuminate\Support\Facades\Gate;
 use Livewire\Component;
 
 class MedicalrecordUsers extends Component
@@ -23,6 +24,9 @@ class MedicalrecordUsers extends Component
     }
     public function render()
     {
+        if(Gate::denies('manage-veterinarian')){
+            abort(403);
+        }
         return view('livewire.veterinarian.medicalrecord-users', [
             'pet' => $this->petusers()
         ]);

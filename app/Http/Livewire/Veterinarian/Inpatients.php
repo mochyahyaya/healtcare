@@ -9,6 +9,7 @@ use App\Models\Cage;
 use App\Models\Hotel;
 use App\Models\Pet;
 use App\Models\User;
+use Illuminate\Support\Facades\Gate;
 
 class Inpatients extends Component
 {
@@ -275,6 +276,9 @@ class Inpatients extends Component
 
     public function render()
     {
+        if(Gate::denies('manage-veterinarian')){
+            abort(403);
+        }
         return view('livewire.veterinarian.inpatients', [
             'data' => $this->read(),
             'cats' => $this->cats(),

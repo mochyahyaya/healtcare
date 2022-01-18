@@ -5,6 +5,7 @@ namespace App\Http\Livewire\User;
 use App\Models\Hotel;
 use App\Models\Pet;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -43,8 +44,11 @@ class UserBoarding extends Component
 
     public function render()
     {
+        if(Gate::denies('manage-users')){
+            abort(403);
+        }
         return view('livewire.user.user-boarding', [
             'pet'  => $this->pet(),
-        ])->extends('layouts.user')->section('main');;
+        ])->extends('layouts.user')->section('content');;
     }
 }

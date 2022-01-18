@@ -11,7 +11,7 @@
                     </a>
                 </div>
 
-                @if (auth()->user()->role_id == 1)
+                @can('manage-admins')
                     <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                         <x-jet-nav-link href="{{ route('admin/dashboard') }}" :active="request()->routeIs('admin/dashboard')">
                             {{ __('Dashboard') }}
@@ -26,22 +26,21 @@
                             {{ __('Breeding') }}
                         </x-jet-nav-link>
                     </div>
-                @elseif (auth()->user()->role_id == 2)
-                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                        <x-jet-nav-link href="{{ route('veterinarian/dashboard') }}" :active="request()->routeIs('veterinarian/dashboard')">
-                            {{ __('Dashboard') }}
-                        </x-jet-nav-link>
-                        <x-jet-nav-link href="{{ route('veterinarian/medicalRecords') }}" :active="request()->routeIs('veterinarian/medicalRecords')">
-                            {{ __('Rekam Medis') }}
-                        </x-jet-nav-link>
-                        <x-jet-nav-link href="{{ route('veterinarian/inpatients') }}" :active="request()->routeIs('veterinarian/inpatients')">
-                            {{ __('Rawat Inap') }}
-                        </x-jet-nav-link>
-                    </div>
-                @else
-                    <div></div>
-                @endif
-
+                @endcan
+                    
+                @can('manage-veterinarian')
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-jet-nav-link href="{{ route('veterinarian/dashboard') }}" :active="request()->routeIs('veterinarian/dashboard')">
+                        {{ __('Dashboard') }}
+                    </x-jet-nav-link>
+                    <x-jet-nav-link href="{{ route('veterinarian/medicalRecords') }}" :active="request()->routeIs('veterinarian/medicalRecords')">
+                        {{ __('Rekam Medis') }}
+                    </x-jet-nav-link>
+                    <x-jet-nav-link href="{{ route('veterinarian/inpatients') }}" :active="request()->routeIs('veterinarian/inpatients')">
+                        {{ __('Rawat Inap') }}
+                    </x-jet-nav-link>
+                </div>
+                @endcan
                 <!-- Navigation Links -->
                 
             </div>
@@ -119,7 +118,7 @@
                         </x-slot>
 
                         <x-slot name="content">
-                            @if (auth()->user()->role_id == 1)
+                            @can('manage-admins')
                             <div class="block px-4 py-2 text-xs text-gray-400">
                                 {{ __('Manage Item') }}
                             </div>
@@ -127,7 +126,7 @@
                             <x-jet-dropdown-link href="{{ route('admin/users') }}">
                                 {{ __('Pengguna') }}
                             </x-jet-dropdown-link>
-
+                            
                             <x-jet-dropdown-link href="{{ route('admin/cages') }}">
                                 {{ __('Kandang') }}
                             </x-jet-dropdown-link>
@@ -135,7 +134,8 @@
                             <x-jet-dropdown-link href="{{ route('admin/pets') }}">
                                 {{ __('Pet') }}
                             </x-jet-dropdown-link>
-                            @endif
+                            @endcan
+
                             <!-- Account Management -->
                             <div class="block px-4 py-2 text-xs text-gray-400">
                                 {{ __('Manage Account') }}
