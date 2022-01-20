@@ -18,6 +18,8 @@ use App\Http\Livewire\User\Registers;
 use App\Http\Livewire\User\UserBoarding;
 use App\Http\Livewire\User\UserBreeding;
 use App\Http\Livewire\User\UserGrooming;
+use App\Http\Livewire\User\UserPet;
+use App\Http\Livewire\USer\UserProfile;
 
 use App\Http\Livewire\Veterinarian\DashboardD;
 use App\Http\Livewire\Veterinarian\Inpatients;
@@ -87,7 +89,9 @@ Route::get('redirects', 'App\Http\Livewire\Admin\Home');
         Route::get('user/hotel', UserBoarding::class)->name('user/hotels');
         Route::get('user/breed', UserBreeding::class)->name('user/breedings');
         Route::get('user/login', Auths::class)->name('user/logins');
-        Route::get('user/regis', Registers::class)->name('user/regis');   
+        Route::get('user/regis', Registers::class)->name('user/regis');
+        Route::get('user/profil', UserProfile::class)->name('user/profil');     
+        Route::get('user/pet', UserPet::class)->name('user/pet');   
         });
 
 });
