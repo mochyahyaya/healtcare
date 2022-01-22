@@ -17,8 +17,8 @@ class Grooms extends Component
     public $modalDeleteVisible = false;
     public $modalDetailVisible = false;
     public $pet_id, $user_id, $type_id, $size, $service, $address;
-    public $status = 'belum diproses';
     public $modelId;
+    public $status = 'belum diproses';
     public $search='';
     public $sortDirection = 'asc';
     public $sortBy = 'pet_id';    
@@ -38,6 +38,7 @@ class Grooms extends Component
             'size' => 'required',
             'service' => 'required',
             'address' => 'required',
+            'cage_id' => 'required'
             
         ];
     }
@@ -45,18 +46,6 @@ class Grooms extends Component
     public function mount($selectedPet=null)
     {
         $this->resetPage();
-
-        $this->users = User::all();
-        $this->pets = collect();
-        $this->selectedPet = $selectedPet;
-
-        if (!is_null($selectedPet)) {
-            $pet = Pet::with('users')->find($selectedPet);
-            if ($pet) {
-                $this->pets = Pet::where('user_id', $pet->user_id)->get();
-                $this->selectedUser = $pet->user_id;
-            }
-        }
     }
 
     /**
@@ -66,15 +55,14 @@ class Grooms extends Component
      */
     public function createShowModal()
     {
-        $this->resetValidation();
         $this->resetVars();
+        $this->resetValidation();
         $this->modalFormVisible = true;
     }
 
     public function updateShowModal($id)
     {
         $this->resetValidation();
-        $this->resetVars();
         $this->modelId = $id;
         $this->modalFormVisible = true;
         $this->loadModel();
@@ -91,26 +79,27 @@ class Grooms extends Component
         $this->modelId = $id;
         $this->modalDetailVisible = true;
 
-        $data = Groom::find($this->modelId);
-        $this->user_id = $data->pets->users->name;
-        $this->pet_id = $data->pets->name;
-        $this->type_id = $data->pets->typepet->name;
-        $this->size = $data->size;
-        $this->address = $data->address;
-        $this->status = $data->status;
-        $this->service = $data->service;
+        $data               = Groom::find($this->modelId);
+        $this->selectedUser = $data->pets->users->name;
+        $this->selectedPet  = $data->pets->name;
+        $this->type_id      = $data->pets->typepet->name;
+        $this->size         = $data->size;
+        $this->address      = $data->address;
+        $this->status       = $data->status;
+        $this->service      = $data->service;
 
     }
 
     public function loadModel()
     {
-        $data = Groom::find($this->modelId);
-        $this->pet_id = $data->pet_id;
-        $this->type_id = $data->type_id;
-        $this->size = $data->size;
-        $this->service = $data->service;
-        $this->status = $data->status;
-        $this->address = $data->address;
+        $data               = Groom::find($this->modelId);
+        $this->selectedUser = $data->pets->users->name;
+        $this->selectedPet  = $data->pets->name;
+        $this->type_id      = $data->type_id;
+        $this->size         = $data->size;
+        $this->service      = $data->service;
+        $this->status       = $data->status;
+        $this->address      = $data->address;
     }
         
     /**
@@ -145,7 +134,7 @@ class Grooms extends Component
         $this->modalDetailVisible = false;
     }
 
-    public function process()
+    public function proceed()
     {
         $groom  = Groom::findorFail($this->modelId);
         $groom->status = 'diproses';
@@ -185,10 +174,12 @@ class Grooms extends Component
     public function resetVars()
     {        
              $this->modelId = null;   
-             $this->pet_id = null;
+             $this->selectedUser = null;
+             $this->selectedPet = null;
              $this->size = null;
              $this->service = null;
              $this->address = null;
+             $this->status = 'belum diproses';
     }
     public function sortBy($field)
     {

@@ -60,7 +60,7 @@
                         
                                             <footer class="flex items-center justify-between leading-none p-2 md:p-4">
                                                 <a class="flex items-center no-underline hover:underline text-black" href="#">
-                                                    <img alt="Placeholder" class="h-10 w-10 rounded-full" src="{{ url('storage/photos/'.$items->pets->featured_image )}}">
+                                                    <img alt="Placeholder" class="h-10 w-10 rounded-full" src="{{  url('storage/featured_image/'.$items->pets->featured_image )}}">
                                                     <p class="ml-2 text-sm">
                                                        {{$items->pets->name}}
                                                     </p>

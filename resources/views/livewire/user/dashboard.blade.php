@@ -21,7 +21,7 @@
         <div class="container">
             <nav class="navbar py-2 navbar-expand-lg flex justify-between items-center relative duration-300">
                 <a class="navbar-brand" href="{{ route('user/dashboard')}}">
-                  <img src="../shine/assets/img/Logo.png" alt="Logo" class="h-8 w-8 rounded-full object-cover" >
+                  <img src="../shine/assets/img/Logo.png" alt="Logo" class="h-12 w-12 rounded-full object-cover" >
                 </a>
                 <a  href="{{ route('user/dashboard')}}"><span class="inline font-mono font-semibold text-blue-500">Garden Petshop</span></a>
                 <button class="navbar-toggler focus:outline-none block lg:hidden" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">

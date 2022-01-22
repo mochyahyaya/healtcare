@@ -135,7 +135,7 @@
                          @endif
                          
                          <x-slot name="content">
-                             <div class="mt-4">
+                            <div class="mt-4">
                               <x-jet-label for="pet1" value="{{ __('Nama Jantan') }}" />
                               <select wire:model.debounce.800ms="pet_id_1" class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm mt-1 block w-full">
                                    <option selected> -- Nama Jantan -- </option>
@@ -143,31 +143,31 @@
                                     <option value="{{$item->name}}"> {{$item->name}}</option>
                                 @endforeach
                               </select>
-                              @error('user') <span class="error">{{ $message }}</span> @enderror
-                             </div>
-                             @if (!$modelId)
-                             <div class="mt-4">
-                              <x-jet-label for="user" value="{{ __('Nama Pemilik') }}" />
-                              <select class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm mt-1 block w-full">
-                                   <option selected> -- Nama Pemilik -- </option>
-                               @foreach ($users as $item)
-                                    <option value="{{$item->id}}"> {{$item->name}}</option>
-                                @endforeach
-                              </select>
-                              @error('user') <span class="error">{{ $message }}</span> @enderror
-                            </div> 
-                             @endif
-                             <div class="mt-4">
-                                 <x-jet-label for="name" value="{{ __('Nama Hewan Peliharaan') }}" />
-                                 <select wire:model.debounce.800ms="selectedPet" class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm mt-1 block w-full" >
-                                       <option selected> -- Nama Betina -- </option>
-                                  @foreach ($pets as $item)
-                                       <option value="{{$item->id}}">{{$item->name}}</option>
-                                   @endforeach
-                                 </select>
-                                 @error('pet_id') <span class="error">{{ $message }}</span> @enderror
-                             </div>
-                             <div class="mt-4">
+                              @error('pet_id_1') <span class="error">{{ $message }}</span> @enderror
+                            </div>
+                            <div class="mt-4">
+                              <x-jet-label for="user_id" value="{{ __('Nama Pemilik') }}" />
+                              <select class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm mt-1 block w-full" wire:model="selectedUser">
+                                    <option value="" selected>  Pilih Nama Pemilik </option>
+                                  @foreach ($users as $item)
+                                    <option value="{{$item->id}}">{{$item->name}}</option>
+                                  @endforeach
+                                </select>
+                              @error('selectedUser') <span class="error">{{ $message }}</span> @enderror
+                            </div>
+                            @if(!is_null($pet))
+                            <div class="mt-4">
+                              <x-jet-label for="selectedPet" value="{{ __('Nama Pet') }}" />
+                              <select class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm mt-1 block w-full" wire:model="selectedPet"> 
+                                    <option selected>  Nama hewan </option>
+                                  @foreach ($pet as $item)
+                                    <option value= "{{$item->id}}">{{$item->name}}</option>
+                                  @endforeach
+                                </select>
+                              @error('selectedPet') <span class="error">{{ $message }}</span> @enderror
+                            </div>  
+                            @endif
+                            <div class="mt-4">
                                <x-jet-label for="service" value="{{ __('Jenis Hewan') }}" />
                                <select class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm mt-1 block w-full" wire:model.debounce.800ms="type" >
                                     <option selected> -- Jenis Hewan -- </option>   
@@ -175,12 +175,12 @@
                                     <option value="anjing">Anjing</option>
                                  </select>
                                @error('type') <span class="error">{{ $message }}</span> @enderror
-                             </div>
-                             <div class="mt-4">
+                            </div>
+                            <div class="mt-4">
                               <x-jet-label for="start_date" value="{{ __('Tanggal Mulai') }}" />
                               <x-datetime-picker wire:model="start_date" class="w-full rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" />
-                             </div>
-                             <div class="mt-4">
+                            </div>
+                            <div class="mt-4">
                               <x-jet-label for="cages" value="{{ __('Kandang') }}" />
                               <select class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm mt-1 block w-full" wire:model="cage_id" >
                                 <option selected> -- Pilih Kandang --</option>
@@ -231,9 +231,9 @@
                      </x-jet-dialog-modal>
                  
                      {{-- Detail Modal --}}
-                     {{-- <x-jet-dialog-modal wire:model="modalDetailVisible">
+                     <x-jet-dialog-modal wire:model="modalDetailVisible">
                          <x-slot name="title">
-                             {{ __('Detail Grooming') }}
+                             {{ __('Detail Breeding') }}
                          </x-slot>
                  
                          <x-slot name="content">
@@ -245,7 +245,7 @@
                                    </div>
                                    <div class="flex-grow">
                                      <h5 class="leading-tight text-sm text-gray-700 font-semibold">Nama Pemilik</h5>
-                                     <span class="text-xs text-gray-500">{}}</span>
+                                     <span class="text-xs text-gray-500">{{$selectedUser}}</span>
                                    </div>
                                  </span>
                                  <span class="flex items-center gap-4 px-6 py-3 w-full">
@@ -253,35 +253,26 @@
                                      <i class="fas fa-stream text-white"></i>
                                    </div>
                                    <div class="flex-grow">
-                                     <h5 class="leading-tight text-sm text-gray-700 font-semibold">Nama Hewan Peliharaan</h5>
-                                     <span class="text-xs text-gray-500">{{$petname}}</span>
+                                     <h5 class="leading-tight text-sm text-gray-700 font-semibold">Nama Pet Betina</h5>
+                                     <span class="text-xs text-gray-500">{{$selectedPet}}</span>
                                    </div>
                                  </span >
+                                 <span class="flex items-center gap-4 px-6 py-3 w-full">
+                                  <div class="flex items-center justify-center h-8 w-8 p-4 bg-green-500 rounded-full">
+                                    <i class="fas fa-stream text-white"></i>
+                                  </div>
+                                  <div class="flex-grow">
+                                    <h5 class="leading-tight text-sm text-gray-700 font-semibold">Nama Pet Jantan</h5>
+                                    <span class="text-xs text-gray-500">{{$pet_id_1}}</span>
+                                  </div>
+                                </span >
                                  <span  class="flex items-center gap-4 px-6 py-3 w-full">
                                    <div class="flex items-center justify-center h-8 w-8 p-4 bg-yellow-500 rounded-full">
                                      <i class="fas fa-address-book text-white"></i>
                                    </div>
                                    <div class="flex-grow">
-                                     <h5 class="leading-tight text-sm text-gray-700 font-semibold">Jenis Hewan Peliharaan</h5>
-                                     <span class="text-xs text-gray-500">{{$type}}</span>
-                                   </div>
-                                 </span>
-                                 <span class="flex items-center gap-4 px-6 py-3 w-full">
-                                   <div class="flex items-center justify-center h-8 w-8 p-4 bg-green-500 rounded-full">
-                                     <i class="fas fa-stream text-white"></i>
-                                   </div>
-                                   <div class="flex-grow">
-                                     <h5 class="leading-tight text-sm text-gray-700 font-semibold">Ukuran</h5>
-                                     <span class="text-sm text-gray-500">{{$size}}<span class="text-xs text-gray-500">(60-70 cm)</span></span>
-                                   </div>
-                                 </span >
-                                 <span class="flex items-center gap-4 px-6 py-3 w-full">
-                                   <div class="flex items-center justify-center h-8 w-8 p-4 bg-yellow-500 rounded-full">
-                                     <i class="fas fa-address-book text-white"></i>
-                                   </div>
-                                   <div class="flex-grow">
-                                     <h5 class="leading-tight text-sm text-gray-700 font-semibold">Jenis Grooming</h5>
-                                     <span class="text-xs text-gray-500">{{$service}}</span>
+                                     <h5 class="leading-tight text-sm text-gray-700 font-semibold">Jenis Pet</h5>
+                                     <span class="text-xs text-gray-500">{{$type_id}}</span>
                                    </div>
                                  </span>
                                  <span class="flex items-center gap-4 px-6 py-3 w-full">
@@ -292,23 +283,19 @@
                                      <h5 class="leading-tight text-sm text-gray-700 font-semibold">Status</h5>
                                      <span class="text-xs text-gray-500">{{$status}}</span>
                                    </div>
-                                 </span >
-                                 <span class="flex items-center gap-4 px-6 py-3 w-full">
-                                   <div class="flex items-center justify-center h-8 w-8 p-4 bg-yellow-500 rounded-full">
-                                     <i class="fas fa-address-book text-white"></i>
-                                   </div>
-                                   <div class="flex-grow">
-                                     <h5 class="leading-tight text-sm text-gray-700 font-semibold">Alamat</h5>
-                                     <span class="text-xs text-gray-500">{{$address}}</span>
-                                   </div>
                                  </span>
                                </div>
-                                 <button wire:click="process({{$modelId}})" class="inline-flex items-center px-4 py-2 bg-blue-400 border border-white-300 rounded-md font-semibold text-xs text-gray-700 uppercase tracking-widest shadow-sm hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:ring focus:ring-blue-200 active:text-gray-800 active:bg-gray-50 disabled:opacity-25 transition">
-                                   Proses
-                                 </button>
-                                 <button wire:click="finish({{$modelId}})" class="inline-flex items-center px-4 py-2 bg-green-400 border border-white-300 rounded-md font-semibold text-xs text-gray-700 uppercase tracking-widest shadow-sm hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:ring focus:ring-blue-200 active:text-gray-800 active:bg-gray-50 disabled:opacity-25 transition">
-                                   Selesai
-                                 </button>
+                                @if ($status == 'belum diproses')
+                                  <button wire:click="proceed(id)" class="inline-flex items-center px-4 py-2 bg-blue-400 border border-white-300 rounded-md font-semibold text-xs text-gray-700 uppercase tracking-widest shadow-sm hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:ring focus:ring-blue-200 active:text-gray-800 active:bg-gray-50 disabled:opacity-25 transition">
+                                    Proses
+                                  </button>
+                                @elseif($status == 'proses')
+                                  <button wire:click="finish(id)" class="inline-flex items-center px-4 py-2 bg-green-400 border border-white-300 rounded-md font-semibold text-xs text-gray-700 uppercase tracking-widest shadow-sm hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:ring focus:ring-blue-200 active:text-gray-800 active:bg-gray-50 disabled:opacity-25 transition">
+                                    Selesai
+                                  </button>
+                                @elseif ($status == 'selesai')
+                                  <div></div>
+                                @endif
                          </x-slot>
                  
                          <x-slot name="footer">
@@ -316,6 +303,6 @@
                                  {{ __('Tutup') }}
                              </x-jet-secondary-button>
                          </x-slot>
-                     </x-jet-dialog-modal> --}}
+                     </x-jet-dialog-modal>
                  </div>
   <div>

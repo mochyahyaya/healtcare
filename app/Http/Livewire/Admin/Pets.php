@@ -157,8 +157,6 @@ class Pets extends Component
     {
         $this->modalDetailVisible = false;
     }
-
-    
     /**
      * Fill model to create data
      *
@@ -228,14 +226,6 @@ class Pets extends Component
     public function typepets()
     {
         return TypePet::all();
-    }
-
-    public function age()
-    {
-        $today = Carbon::now();
-        $bd = $this->birthday ;
-
-        return $today->diff($bd);
     }
 
     public function render()

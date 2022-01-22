@@ -19,7 +19,7 @@ class Hotels extends Component
     public $modalDetailVisible = false;
     public $pet_id, $size, $total_day, $cage_id, $query, $user_id, $type_id, $cage_number;
     public $hotel_status = 'hotel';
-    public $status = 'dalam kandang';
+    public $status = 'belum diproses';
     public $modelId;
     public $sortColumn = 'created_at';
     public $sortDirection = 'asc';
@@ -53,18 +53,6 @@ class Hotels extends Component
     public function mount($selectedPet=null)
     {
         $this->resetPage();
-
-        $this->users = User::where('role_id', 3)->get();
-        $this->pets = collect();
-        $this->selectedPet = $selectedPet;
-
-        if (!is_null($selectedPet)) {
-            $pet = Pet::with('users')->find($selectedPet);
-            if ($pet) {
-                $this->pets = Pet::where('user_id', $pet->user_id)->get();
-                $this->selectedUser = $pet->user_id;
-            }
-        }
     }
 
     /**
@@ -82,7 +70,6 @@ class Hotels extends Component
     public function updateShowModal($id)
     {
         $this->resetValidation();
-        $this->resetVars();
         $this->modelId = $id;
         $this->modalFormVisible = true;
         $this->loadModel();
@@ -99,29 +86,31 @@ class Hotels extends Component
         $this->modelId = $id;
         $this->modalDetailVisible = true;
 
-        $data = Hotel::find($this->modelId);
-        $this->user_id = $data->pets->users->name;
-        $this->pet_id = $data->pets->name;
-        $this->type_id = $data->pets->typepet->name;
-        $this->size = $data->size;
-        $this->start_date = $data->start_date;
-        $this->end_date = $data->end_date;
-        $this->total_day = $data->total_day;
-        $this->cage_id = $data->cages->typecages->alias ?? '';
-        $this->cage_number = $data->cages->number ?? '';
+        $data               = Hotel::find($this->modelId);
+        $this->selectedUser = $data->pets->users->name;
+        $this->selectedPet  = $data->pets->name;
+        $this->type_id      = $data->pets->typepet->name;
+        $this->size         = $data->size;
+        $this->start_date   = $data->start_date;
+        $this->end_date     = $data->end_date;
+        $this->total_day    = $data->total_day;
+        $this->cage_id      = $data->cages->typecages->alias ?? '';
+        $this->cage_number  = $data->cages->number ?? '';
+        $this->status       = $data->status;
 
     }
 
     public function loadModel()
     {
-        $data = Hotel::find($this->modelId);
-        $this->pet_id = $data->pet_id;
-        $this->size = $data->size;
-        $this->start_date = $data->start_date;
-        $this->end_date = $data->end_date;
-        $this->total_day = $data->total_day;
-        $this->cage_id = $data->cage_id;
-        $this->type_id = $data->pets->typepet->name;
+        $data               = Hotel::find($this->modelId);
+        $this->selectedUser = $data->pets->users->name;
+        $this->selectedPet  = $data->pets->name;
+        $this->size         = $data->size;
+        $this->start_date   = $data->start_date;
+        $this->end_date     = $data->end_date;
+        $this->total_day    = $data->total_day;
+        $this->cage_id      = $data->cage_id;
+        $this->type_id      = $data->pets->typepet->name;
     }
         
     /**
@@ -156,7 +145,7 @@ class Hotels extends Component
         $this->modalDetailVisible = false;
     }
 
-    public function accept()
+    public function proceed()
     {
         $hotel  = Hotel::findorFail($this->modelId);;
         $hotel->status = 'dalam kandang';
@@ -164,7 +153,7 @@ class Hotels extends Component
         $this->modalDetailVisible = false;
     }
 
-    public function reject()
+    public function finish()
     {
         $hotel  = Hotel::findorFail($this->modelId);
         $hotel->status = 'selesai';
@@ -198,27 +187,30 @@ class Hotels extends Component
      */
     public function resetVars()
     {        
-             $this->modelId = null;   
-             $this->pet_id = null;
-             $this->size = null;
-             $this->start_date = null;
-             $this->end_date = null;
-             $this->total_day = null;
-             $this->cage_id = null;
-             $this->selectedUser = null;
-             $this->selectedPet = null;
-             $this->type = null;
+             $this->modelId        = null;   
+             $this->selectedUser   = null;
+             $this->selectedPet    = null;
+             $this->type           = null;
+             $this->start_date     = null;
+             $this->end_date       = null;
+             $this->size           = null;
+             $this->total_day      = null;
+             $this->cage_id        = null;
     }
 
-    public function read()
+    
+    public function sortBy($field)
     {
-        // $petname = $this->petname
-        $searchTerm = '%'.$this->searchTerm.'%';
-        return Hotel::where('pet_id', 'LIKE', $searchTerm)
-        ->orderBy($this->sortColumn, $this->sortDirection)
-        ->paginate(5);
+        if($this->sortDirection =='asc'){
+            $this->sortDirection ='desc';
+        } 
+        else {
+            $this->sortDirection = 'asc';
+        }
+        
+        return $this->sortBy = $field;
     }
-
+    
     public function pets()
     {
         return Pet::with('users')->get(); 
@@ -227,42 +219,39 @@ class Hotels extends Component
     {
         return User::where('role_id', '>', 2)->get();
     }
-
+    
     public function monitorings()
     {
         return view('livewire.admin.monitorings');
     }
-
-    public function sortBy($field)
-    {
-        if($this->sortDirection =='asc'){
-            $this->sortDirection ='desc';
-        } else {
-            $this->sortDirection = 'asc';
-        }
-
-        return $this->sortBy = $field;
-    }
-
+    
     public function cats()
     {
         return Cage::where('type_cage_id', '1')->get();
     }
-
+    
     public function dogs()
     {
         return Cage::where('type_cage_id', '2')->get();
     }
-
+    
     public function cages()
     {
         return Cage::all();
     }
-
+    
     public function updatedSelectedUser($user)
     {
         $this->pet = Pet::where('user_id', $user)->get();
         $this->selectedPet = NULL;
+    }
+    
+    public function read()
+    {
+        $searchTerm = '%'.$this->searchTerm.'%';
+        return Hotel::where('pet_id', 'LIKE', $searchTerm)
+        ->orderBy($this->sortColumn, $this->sortDirection)
+        ->paginate(5);
     }
 
     public function render()
@@ -271,11 +260,11 @@ class Hotels extends Component
             abort(403);
         }
         return view('livewire.admin.hotels', [
-            'data' => $this->read(),
-            'cats' => $this->cats(),
-            'dogs' => $this->dogs(),
+            'data'  => $this->read(),
+            'cats'  => $this->cats(),
+            'dogs'  => $this->dogs(),
             'cages' => $this->cages(),
-            'pets' => $this->pets(),
+            'pets'  => $this->pets(),
             'users' => $this->users(),
         ]);
     }
