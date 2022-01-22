@@ -2,14 +2,13 @@
 
 namespace App\Http\Livewire\Admin;
 
-use App\Models\Breeding;
-use Livewire\Component;
-use App\Models\Cage;
-use App\Models\Hotel;
-use App\Models\Pet;
-use App\Models\User;
 use Illuminate\Support\Facades\Gate;
 use Livewire\WithPagination;
+use Livewire\Component;
+use App\Models\User;
+use App\Models\Breeding;
+use App\Models\Cage;
+use App\Models\Pet;
 
 class Breedings extends Component
 {
@@ -30,7 +29,7 @@ class Breedings extends Component
     public $end_date = null;
     public $searchTerm;
     public $type= 1; 
-
+    public $pet = null;
     public $selectedUser = null;
     public $selectedPet = null;
     /**
@@ -100,19 +99,20 @@ class Breedings extends Component
         $this->modalDetailVisible = true;
 
         $data = Breeding::find($this->modelId);
-        $this->user_id = $data->pets->users->name;
-        $this->pet_id = $data->pets->name;
-        $this->type_id = $data->pets->typepet->name;
-        $this->start_date = $data->start_date;
-        $this->status = $data->pets->typepet->name;
-        $this->cage_id = $data->cages->typecages->alias ?? '';
-        $this->cage_number = $data->cages->number ?? '';
+        $this->selectedUser     = $data->pets->users->name;
+        $this->selectedPet      = $data->pets->name;
+        $this->pet_id_1         = $data->pet_id_2;
+        $this->type_id          = $data->pets->typepet->name;
+        $this->start_date       = $data->start_date;
+        $this->status           = $data->status;
+        $this->cage_id          = $data->cages->typecages->alias ?? '';
+        $this->cage_number      = $data->cages->number ?? '';
 
     }
 
     public function loadModel()
     {
-            $data = Breeding::find($this->modelId);
+            $data                       = Breeding::find($this->modelId);
             $this->pet_id_1             = $data->pet_id_2;
             $this->selectedPet          = $data->pet_id_1;
             $this->start_date           = $data->start_date;
@@ -152,19 +152,19 @@ class Breedings extends Component
         $this->modalDetailVisible = false;
     }
 
-    public function accept($id)
+    public function proceed($id)
     {
-        $hotel  = Breeding::findorFail($id);
-        $hotel->status = 'dalam kandang';
-        $hotel->save();
+        $breed  = Breeding::findorFail($$this->modelIdd);
+        $breed->status = 'proses';
+        $breed->save();
         $this->modalDetailVisible = false;
     }
 
-    public function reject($id)
+    public function finish($id)
     {
-        $hotel  = Breeding::findorFail($id);
-        $hotel->status = 'ditolak';
-        $hotel->save();
+        $breed  = Breeding::findorFail($this->modelId);
+        $breed->status = 'selesai';
+        $breed->save();
         $this->modalDetailVisible = false;
     }
     
@@ -179,7 +179,7 @@ class Breedings extends Component
             'pet_id_1'          => $this->selectedPet,
             'pet_id_2'          => $this->pet_id_1,
             'start_date'        => $this->start_date,
-            'status'            => 'proses',
+            'status'            => $this->status,
             'cage_id'           => $this->cage_id,
         ];
     }
@@ -193,7 +193,7 @@ class Breedings extends Component
     {        
              $this->modelId = null;   
              $this->pet_id_1 = null;
-             $this->pet_id_2 = null;
+             $this->selectedPet = null;
              $this->start_date = null;
              $this->cage_id = null;
     }
@@ -212,8 +212,7 @@ class Breedings extends Component
     }
     public function users()
     {
-        // return User::where('role_id', '>', 2)->get();
-        return User::all();
+        return User::where('role_id', 3)->get();
     }
 
     public function monitorings()
@@ -246,7 +245,7 @@ class Breedings extends Component
 
     public function updatedSelectedUser($user)
     {
-        $this->pets = Pet::where('user_id', $user)->get();
+        $this->pet = Pet::where('user_id', $user)->get();
         $this->selectedPet = NULL;
     }
     public function render()

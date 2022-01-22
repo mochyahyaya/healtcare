@@ -221,7 +221,8 @@
                          <div class="flex flex-col py-8 overflow-hidden bg-white">
                              <span class="flex items-center gap-4 px-6 py-3 w-full">
                                @foreach ($data as $item)
-                                  <img alt="gallery" class="absolute inset-0 w-full h-full object-fill object-center" src="{{ url('storage/galery/'.$item->galery )}}">
+                                {{-- @dd($item->galery) --}}
+                                  <img alt="gallery" class="absolute inset-0 w-10 h-10 object-fill object-center" src="{{ $item->galery}}">
                                @endforeach
                              </span>
                            </div>
