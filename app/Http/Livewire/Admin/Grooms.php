@@ -86,7 +86,7 @@ class Grooms extends Component
         $this->size         = $data->size;
         $this->address      = $data->address;
         $this->status       = $data->status;
-        $this->service      = $data->service;
+        $this->service  = $data->service;
 
     }
 
