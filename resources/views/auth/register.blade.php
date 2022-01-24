@@ -9,7 +9,7 @@
         <form method="POST" action="{{ route('register') }}">
             @csrf
 
-            <div class="py-12 px-12 bg-white rounded-2xl shadow-xl z-20">
+            <div class="py-16 px-16 bg-white rounded-2xl shadow-xl z-25">
                 <div>
                     <h1 class="text-3xl font-bold text-center mb-4 cursor-pointer">Registrasi</h1>
                     <p class="w-80 text-center text-sm mb-8 font-semibold text-gray-700 tracking-wide cursor-pointer">Silahkan

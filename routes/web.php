@@ -13,8 +13,6 @@ use App\Http\Livewire\Admin\ShowMonitoringBreedings;
 use App\Http\Livewire\Admin\BreedingMonitorings;
 
 use App\Http\Livewire\User\DashboardU;
-use App\Http\Livewire\User\Auths;
-use App\Http\Livewire\User\Registers;
 use App\Http\Livewire\User\UserBoarding;
 use App\Http\Livewire\User\UserBreeding;
 use App\Http\Livewire\User\UserGrooming;
@@ -88,8 +86,6 @@ Route::get('redirects', 'App\Http\Livewire\Admin\Home');
         Route::get('user/grooming', UserGrooming::class)->name('user/groomings');
         Route::get('user/hotel', UserBoarding::class)->name('user/hotels');
         Route::get('user/breed', UserBreeding::class)->name('user/breedings');
-        Route::get('user/login', Auths::class)->name('user/logins');
-        Route::get('user/regis', Registers::class)->name('user/regis');
         Route::get('user/profil', UserProfile::class)->name('user/profil');     
         Route::get('user/pet', UserPet::class)->name('user/pet');   
         });
