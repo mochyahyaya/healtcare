@@ -5,6 +5,7 @@ namespace App\Http\Livewire\User;
 use App\Models\Breeding;
 use App\Models\Pet;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 use Livewire\Component;
 
 class UserBreeding extends Component
@@ -50,9 +51,12 @@ class UserBreeding extends Component
     }
     public function render()
     {
+        if(Gate::denies('manage-users')){
+            abort(403);
+        }
         return view('livewire.user.user-breeding', [
             'pet'   => $this->pet(),
             'pets2'  => $this->pets2()
-        ])->extends('layouts.user')->section('main');;
+        ])->extends('layouts.user')->section('content');;
     }
 }

@@ -6,6 +6,7 @@ use App\Models\Groom;
 use App\Models\Pet;
 use App\Models\User;
 use App\Models\Hotel;
+use Illuminate\Support\Facades\Gate;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -227,6 +228,9 @@ class Grooms extends Component
 
     public function render()
     {
+        if(Gate::denies('manage-admins')){
+            abort(403);
+        }
         return view('livewire.admin.grooms', [
             'data' => $this->read(),
             'pets' => $this->pets(),

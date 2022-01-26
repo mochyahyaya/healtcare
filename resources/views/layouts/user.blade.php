@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!--====== Favicon Icon ======-->
-    <link rel="shortcut icon" href="../shine/assets/img/favicon.png" type="image/png">
+    <link rel="shortcut icon" href="../shine/assets/img/Logo.png" type="image/png">
 
     <link rel="stylesheet" href="{!! asset('css/app.css') !!}">
 
@@ -36,12 +36,13 @@
     
     @livewireScripts
   </head>
+  
   <body>
-    @livewire('navigation-menu')
     <div>
-        @yield('main')
-    </div>  
-
+        @yield('content')
+    </div>
+        
+    
     <!-- Header Area wrapper End -->
     	  <!-- Footer Section Start -->
           <footer id="footer" class="bg-gray-800 py-16">
@@ -49,12 +50,12 @@
               <div class="flex flex-wrap">
                 <div class="w-full sm:w-1/2 md:w-1/2 lg:w-1/4 wow fadeInUp" data-wow-delay="0.2s">
                   <div class="mx-3 mb-8">
-                    <div class="footer-logo mb-3">
-                      <img src="../shine/assets/img/logo.svg" alt="">
+                    <div class="footer-logo mb-3 inline">
+                      <img src="../shine/assets/img/Logo.png" alt="" style="width: 150px; height:50px">
+                      <span class="font-mono font-semibold text-blue-500 ml-4">GARDEN PETSHOP</span></a>
                     </div>
-                    <p class="text-gray-300">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quisquam excepturi quasi, ipsam
-                      voluptatem.</p>
-                  </div>
+                    <p class="text-gray-300">Bersama Kami Selalu Menyanyangi.</p>
+                    </div>
                 </div>
                 <div class="w-full sm:w-1/2 md:w-1/2 lg:w-1/4 wow fadeInUp" data-wow-delay="0.4s">
                   <div class="mx-3 mb-8">
@@ -71,7 +72,6 @@
                     <ul>
                       <li><a href="#" class="footer-links">Career</a></li>
                       <li><a href="#" class="footer-links">Team</a></li>
-                      <li><a href="#" class="footer-links">Clients</a></li>
                     </ul>
                   </div>
                 </div>

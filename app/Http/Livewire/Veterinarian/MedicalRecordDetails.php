@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Veterinarian;
 use App\Models\MedicalRecord;
 use App\Models\Pet;
 use App\Models\TypeVaccinee;
+use Illuminate\Support\Facades\Gate;
 use Livewire\Component;
 
 class MedicalRecordDetails extends Component
@@ -54,6 +55,9 @@ class MedicalRecordDetails extends Component
     }
     public function render()
     {
+        if(Gate::denies('manage-veterinarian')){
+            abort(403);
+        }
         return view('livewire.veterinarian.medical-record-details', [
             'pet' => $this->records(),
             'vaccinees' => $this->vaccinee(),

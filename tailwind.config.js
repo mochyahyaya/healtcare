@@ -23,7 +23,7 @@ module.exports = {
         },
     },
 
-    plugins: [require('@tailwindcss/forms'), require('@tailwindcss/typography')],
+    plugins: [require('@tailwindcss/forms'), require('@tailwindcss/typography'), require('tw-elements/dist/plugin')],
 
-   
+    content: ['./src/**/*.{html,js}', './node_modules/tw-elements/dist/js/**/*.js']
 };

@@ -8,9 +8,7 @@ use App\Http\Livewire\Admin\Monitorings;
 use App\Http\Livewire\Admin\Pets;
 use App\Http\Livewire\Admin\Cages;
 use App\Http\Livewire\Admin\Dashboard;
-
 use App\Http\Livewire\Admin\ShowMonitorings;
-
 use App\Http\Livewire\Admin\ShowMonitoringBreedings;
 use App\Http\Livewire\Admin\BreedingMonitorings;
 
@@ -72,7 +70,9 @@ Route::get('redirects', 'App\Http\Livewire\Admin\Home');
     
         Route::get('pets', [\App\Http\Controllers\PetController::class, 'index'])
         ->name('pets.index');
-    
+
+        Route::group(['middleware' => ['role:admin']], function() {
+
         Route::get('admin/dashboard', Dashboard::class)->name('admin/dashboard');
         Route::get('admin/groom', Grooms::class)->name('admin/grooms');
         Route::get('admin/hotel', Hotels::class)->name('admin/hotels');
@@ -84,14 +84,17 @@ Route::get('redirects', 'App\Http\Livewire\Admin\Home');
         Route::get('admin/user', Users::class)->name('admin/users');
         Route::get('admin/pet', Pets::class)->name('admin/pets');
         Route::get('admin/cage', Cages::class)->name('admin/cages');
+        });
 
-
+        Route::group(['middleware' => ['role:veterinarian']], function() {
         Route::get('veterinarian/dashboard', DashboardD::class)->name('veterinarian/dashboard');
         Route::get('veterinarian/inpatients', Inpatients::class)->name('veterinarian/inpatients');
         Route::get('veterinarian/medical-records', MedicalRecords::class)->name('veterinarian/medicalRecords');
         Route::get('veterinarian/medicalrecordUser/{id}', MedicalrecordUsers::class)->name('veterinarian/medicalusers');
         Route::get('veterinarian/medicalrecordDetail/{id}', MedicalRecordDetails::class)->name('veterinarian/medicaldetails');
-        
+        });
+
+        Route::group(['middleware' => ['role:user']], function() {
         Route::get('user/dashboard', DashboardU::class)->name('user/dashboard');
         Route::get('user/grooming', UserGrooming::class)->name('user/groomings');
         Route::get('user/hotel', UserBoarding::class)->name('user/hotels');
@@ -104,9 +107,15 @@ Route::get('redirects', 'App\Http\Livewire\Admin\Home');
 >>>>>>> 11cc42b (enchance(user): someline code changes, breeding ui)
 =======
         Route::get('user/login', Auths::class)->name('user/logins');
+<<<<<<< HEAD
         Route::get('user/regis', Registers::class)->name('user/regis');
 >>>>>>> d88754d (enchance(user): create login and register ui)
                 
     
+=======
+        Route::get('user/regis', Registers::class)->name('user/regis');   
+        });
+
+>>>>>>> d7e0f63 (enhance(fix/error): fix error header, logo)
 });
 

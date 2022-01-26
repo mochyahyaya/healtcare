@@ -8,6 +8,7 @@ use App\Models\Cage;
 use App\Models\Hotel;
 use App\Models\Pet;
 use App\Models\User;
+use Illuminate\Support\Facades\Gate;
 use Livewire\WithPagination;
 
 class Breedings extends Component
@@ -250,6 +251,9 @@ class Breedings extends Component
     }
     public function render()
     {
+        if(Gate::denies('manage-admins')){
+            abort(403);
+        }
         return view('livewire.admin.breedings', 
         [
             'data' => $this->read(),

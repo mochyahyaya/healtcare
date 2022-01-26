@@ -6,6 +6,7 @@ use App\Models\Groom;
 use App\Models\Pet;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -26,7 +27,7 @@ class UserGrooming extends Component
     }
     public function store()
     {
-//        dd('test');
+        dd('test');
 
         Groom::create([
             'pet_id'          => $this->pet_id,
@@ -47,8 +48,11 @@ class UserGrooming extends Component
 
     public function render()
     {
+        if(Gate::denies('manage-users')){
+            abort(403);
+        }
         return view('livewire.user.user-grooming', [
             'pet'  => $this->pet(),
-        ])->extends('layouts.user')->section('main');
+        ])->extends('layouts.user')->section('content');
     }
 }

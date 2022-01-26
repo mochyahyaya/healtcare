@@ -1,4 +1,5 @@
-<style>
+<div>
+  <style>
   .hover-trigger .hover-target {
       display: none;
   }
@@ -6,16 +7,23 @@
   .hover-trigger:hover .hover-target {
       display: block;
   }
+
+  .dropdown:hover .dropdown-menu {
+  display: block;
+}
+
   </style>
 <!-- Header Area wrapper Starts -->
+
    <header id="header-wrap" class="relative">
     <!-- Navbar Start -->      
     <div class="navigation fixed top-0 left-0 w-full z-30 duration-300">
         <div class="container">
             <nav class="navbar py-2 navbar-expand-lg flex justify-between items-center relative duration-300">
                 <a class="navbar-brand" href="{{ route('user/dashboard')}}">
-                  <img src="../shine/assets/img/logo.svg" alt="Logo">
+                  <img src="../shine/assets/img/Logo.png" alt="Logo" style="width: 90px; height:45px">
                 </a>
+                <a  href="{{ route('user/dashboard')}}"><span class="inline font-mono font-semibold text-blue-500">Garden Petshop</span></a>
                 <button class="navbar-toggler focus:outline-none block lg:hidden" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="toggler-icon"></span>
                     <span class="toggler-icon"></span>
@@ -48,24 +56,25 @@
                     </ul>
                 </div>
                 @if (auth()->user()->role_id == 3)
-                <div class="relative inline-block text-left">
-                  <div>
-                  <button class="flex text-sm border-2 border-transparent rounded-full focus:outline-none focus:border-gray-300 transition relative" id="menu-button" aria-expanded="true" aria-haspopup="true">
-                    <img class="h-12 w-12 rounded-full object-cover" src="{{ Auth::user()->profile_photo_url }}" alt="{{ Auth::user()->name }}" />
-                  </button>
-                </div>
-                  <div class="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1">
-                    <div class="py-1" role="none">
-                      {{-- Active: "bg-gray-100 text-gray-900", Not Active: "text-gray-700" --}}
-                      <a href="#" class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-0">Account settings</a>
-                      <a href="#" class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-1">Support</a>
-                      <a href="#" class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-2">License</a>
-                    <form method="POST" action="{{ route('logout') }}">
-                      @csrf
-                      <a class= "text-gray-700 block px-4 py-2 text-sm" href="{{ route('logout') }}" onclick="event.preventDefault();
-                      this.closest('form').submit();"> Logout</a>
-                    </form>
-                   </div>
+                <div class="">
+                  <div class="dropdown inline-block relative">
+                    <button class="">
+                      <img class="h-12 w-12 rounded-full object-cover" src="{{ Auth::user()->profile_photo_url }}" alt="{{ Auth::user()->name }}" />
+                    </button>
+                    <ul class="dropdown-menu absolute hidden w-56 pt-1">
+                      <li class=""><p class="rounded-t text-black font-bold bg-white py-2 px-4 block whitespace-no-wrap">{{Auth::user()->name}}<p></li>
+                       <li class=""><p class="rounded-t text-black ont-bold text-sm bg-white px-4 block whitespace-no-wrap">{{Auth::user()->email}}</p></li>
+                      <div class="border-t border-gray-200"></div>
+                      <li class=""><a class="rounded-t bg-white hover:bg-blue-200 py-2 px-4 block whitespace-no-wrap" href="#">Profile</a></li>
+                      <li class=""><a class="rounded-t bg-white hover:bg-blue-200 py-2 px-4 block whitespace-no-wrap" href="#">Riwayat Aktivitas</a></li>
+                      <form method="POST" action="{{ route('logout') }}">
+                        @csrf
+                        <a class= "rounded-t bg-white hover:bg-blue-200 py-2 px-4 block whitespace-no-wrap" href="{{ route('logout') }}" onclick="event.preventDefault();
+                        this.closest('form').submit();"> Logout</a>
+                      </form>
+                    </ul>
+                  </div>
+                
                 </div>
                 @else
                   <div class="header-btn hidden sm:block sm:absolute sm:right-0 sm:mr-16 lg:static lg:mr-0">
@@ -78,8 +87,6 @@
     </div>
     <!-- Navbar End -->
   </header> 
-
-@section('main')
 
   <!-- Hero Area Start -->
   <section id="hero-area" class="bg-blue-100 pt-48 pb-10">
@@ -293,11 +300,49 @@
       <div class="flex">
         <div class="w-full relative">
           <div class="portfolio-carousel">
-            <div>
-              {{-- @foreach ($image as $items)
-                <img src="{{ url('storage/photos/'.$items->featured_image )}}" alt="{{ $items->name }}" class="w-full" alt="Image"> 
-              @endforeach --}}
-            </div>>
+            <div id="carouselExampleControls" class="carousel slide relative" data-bs-ride="carousel">
+              <div class="carousel-inner relative w-full overflow-hidden">
+                <div class="carousel-item active relative float-left w-full">
+                  <img
+                    src="https://mdbcdn.b-cdn.net/img/new/slides/041.webp"
+                    class="block w-full"
+                    alt="Wild Landscape"
+                  />
+                </div>
+                <div class="carousel-item relative float-left w-full">
+                  <img
+                    src="https://mdbcdn.b-cdn.net/img/new/slides/042.webp"
+                    class="block w-full"
+                    alt="Camera"
+                  />
+                </div>
+                <div class="carousel-item relative float-left w-full">
+                  <img
+                    src="https://mdbcdn.b-cdn.net/img/new/slides/043.webp"
+                    class="block w-full"
+                    alt="Exotic Fruits"
+                  />
+                </div>
+              </div>
+              <button
+                class="carousel-control-prev absolute top-0 bottom-0 flex items-center justify-center p-0 text-center border-0 hover:outline-none hover:no-underline focus:outline-none focus:no-underline left-0"
+                type="button"
+                data-bs-target="#carouselExampleControls"
+                data-bs-slide="prev"
+              >
+                <span class="carousel-control-prev-icon inline-block bg-no-repeat" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+              </button>
+              <button
+                class="carousel-control-next absolute top-0 bottom-0 flex items-center justify-center p-0 text-center border-0 hover:outline-none hover:no-underline focus:outline-none focus:no-underline right-0"
+                type="button"
+                data-bs-target="#carouselExampleControls"
+                data-bs-slide="next"
+              >
+                <span class="carousel-control-next-icon inline-block bg-no-repeat" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+              </button>
+            </div>
           </div>
         </div>
       </div>
@@ -407,7 +452,7 @@
               </div>
             </div>
             <div class="text-center px-5 py-3">
-              <h3 class="team-name">dr. Muhammad Dzaky</h3>
+              <h3 class="team-name">drh. Muhammad Dzaky</h3>
               <p>Veterinarian</p>
             </div>
           </div>
@@ -440,7 +485,7 @@
               </div>
             </div>
             <div class="text-center px-5 py-3">
-              <h3 class="team-name">dr. Vera Zura</h3>
+              <h3 class="team-name">drh. Vera Zura</h3>
               <p>Veterinarian</p>
             </div>
           </div>
@@ -472,7 +517,7 @@
               </div>
             </div>
             <div class="text-center px-5 py-3">
-              <h3 class="team-name">Muhammad Ghifa</h3>
+              <h3 class="team-name">drh. Muhammad Ghifa</h3>
               <p>Caretaker</p>
             </div>
           </div>
@@ -671,3 +716,7 @@
       </div>
   </section>
   <!-- Map Section End -->
+ 
+  @section('script')
+  @endsection
+</div>

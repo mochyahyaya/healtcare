@@ -6,6 +6,7 @@ use Livewire\Component;
 use Livewire\WithPagination;
 use App\Models\Cage;
 use App\Models\TypeCage;
+use Illuminate\Support\Facades\Gate;
 
 class Cages extends Component
 {
@@ -165,6 +166,10 @@ class Cages extends Component
 
     public function render()
     {
+        if(Gate::denies('manage-admins'))
+        {
+            abort(403);
+        }
         return view('livewire.admin.cages', [
             'data' => $this->read(), 
             'typecages' => $this->typecages()
