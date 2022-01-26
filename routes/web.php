@@ -19,9 +19,12 @@ use App\Http\Livewire\User\DashboardU;
 use App\Http\Livewire\User\Registers;
 use App\Http\Livewire\User\UserBoarding;
 use App\Http\Livewire\User\UserBreeding;
+<<<<<<< HEAD
 =======
 use App\Http\Livewire\User\UserBoarding;
 >>>>>>> 7a2475c (enchance(user): boarding create, cant store data)
+=======
+>>>>>>> 11cc42b (enchance(user): someline code changes, breeding ui)
 use App\Http\Livewire\User\UserGrooming;
 use App\Http\Livewire\Veterinarian\DashboardD;
 use App\Http\Livewire\Veterinarian\MedicalrecordUsers;
@@ -83,8 +86,11 @@ Route::group(['middleware' => 'web'], function () {
         Route::get('user/grooming', UserGrooming::class)->name('user/groomings');
         Route::get('user/hotel', UserBoarding::class)->name('user/hotels');
         Route::get('user/breed', UserBreeding::class)->name('user/breedings');
+<<<<<<< HEAD
         Route::get('user/login', Auths::class)->name('user/logins');
         Route::get('user/regis', Registers::class)->name('user/regis');
+=======
+>>>>>>> 11cc42b (enchance(user): someline code changes, breeding ui)
                 
     
     });
