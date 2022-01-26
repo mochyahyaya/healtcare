@@ -40,6 +40,14 @@ class UserBreeding extends Component
     {
         return (Pet::where('user_id', '1')->get());
     }
+    public function pet()
+    {
+        return Pet::where('user_id', Auth::user()->id)->get();
+    }
+    public function pets2()
+    {
+        return Pet::where('user_id', '1')->get();
+    }
     public function render()
     {
         return view('livewire.user.user-breeding', [

@@ -16,6 +16,9 @@ use App\Http\Livewire\Admin\BreedingMonitorings;
 use App\Http\Livewire\User\Auths;
 use App\Http\Livewire\User\DashboardU;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> d88754d (enchance(user): create login and register ui)
 use App\Http\Livewire\User\Registers;
 use App\Http\Livewire\User\UserBoarding;
 use App\Http\Livewire\User\UserBreeding;
@@ -87,10 +90,15 @@ Route::group(['middleware' => 'web'], function () {
         Route::get('user/hotel', UserBoarding::class)->name('user/hotels');
         Route::get('user/breed', UserBreeding::class)->name('user/breedings');
 <<<<<<< HEAD
+<<<<<<< HEAD
         Route::get('user/login', Auths::class)->name('user/logins');
         Route::get('user/regis', Registers::class)->name('user/regis');
 =======
 >>>>>>> 11cc42b (enchance(user): someline code changes, breeding ui)
+=======
+        Route::get('user/login', Auths::class)->name('user/logins');
+        Route::get('user/regis', Registers::class)->name('user/regis');
+>>>>>>> d88754d (enchance(user): create login and register ui)
                 
     
     });
