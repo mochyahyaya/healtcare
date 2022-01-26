@@ -33,13 +33,8 @@ class UserGrooming extends Component
             'size'            => $this->size,
             'service'         => $this->service,
             'address'         => $this->address,
-<<<<<<< HEAD
 
         ]);
-=======
-           
-        ]); 
->>>>>>> 0463140 (enchance(user): add template, crud)
 
         session()->flash('success', 'Berhasil mendaftarkan grooming.');
         return redirect()->to('/user/dashboard');
