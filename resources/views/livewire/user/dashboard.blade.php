@@ -40,6 +40,7 @@
                           </li>
                       </ul>
                   </div>
+<<<<<<< HEAD
                   @if (auth()->user()->role_id == 3)
                   <form method="POST" action="{{ route('logout') }}">
                     @csrf
@@ -54,13 +55,22 @@
                     </div>
                   @endif
 
+=======
+                  <div class="header-btn hidden sm:block sm:absolute sm:right-0 sm:mr-16 lg:static lg:mr-0">
+                    <a class="text-blue-600 border border-blue-600 px-10 py-3 rounded-full duration-300 hover:bg-blue-600 hover:text-white" href="#feature">Masuk</a>
+                  </div>
+>>>>>>> 0463140 (enchance(user): add template, crud)
               </nav>
           </div>
       </div>
       <!-- Navbar End -->
     </header>
 
+<<<<<<< HEAD
 @section('main')
+=======
+@section('content')
+>>>>>>> 0463140 (enchance(user): add template, crud)
 
     <!-- Hero Area Start -->
     <section id="hero-area" class="bg-blue-100 pt-48 pb-10">
@@ -172,12 +182,21 @@
           <div class="w-full sm:w-3/4 md:w-2/3 lg:w-1/2">
             <h4 class="mb-3 section-heading wow fadeInUp" data-wow-delay="0.3s">Pet Hotel</h4>
             <p class="mb-4 text-gray-600 leading-loose text-sm wow fadeInUp" data-wow-delay="0.6s">Tempat penitipan hewan yang aman dan nyaman. <br> Titipkan hewan anda sekarang.</p>
+<<<<<<< HEAD
               <div class="wow fadeInDown" data-wow-delay="0.3s">
                 {{-- <input type="Email" class="w-full mb-5 bg-white border border-blue-300 rounded-full px-5 py-3 duration-300 focus:border-blue-600 outline-none" name="email" placeholder="Nama Hewan peliharaan"> --}}
                 <a href="{{ route('user/hotels')}}">
                   <button class="border-0 bg-blue-600 text-white rounded-full w-12 h-12 duration-300 hover:opacity-75"><i class="lni lni-arrow-right"></i></button>
                 </a>
               </div>
+=======
+            <form for="">
+              <div class="wow fadeInDown" data-wow-delay="0.3s">
+                {{-- <input type="Email" class="w-full mb-5 bg-white border border-blue-300 rounded-full px-5 py-3 duration-300 focus:border-blue-600 outline-none" name="email" placeholder="Nama Hewan peliharaan"> --}}
+                <button class="border-0 bg-blue-600 text-white rounded-full w-12 h-12 duration-300 hover:opacity-75" type="submit"><i class="lni lni-arrow-right"></i></button>
+              </div>
+            </form>
+>>>>>>> 0463140 (enchance(user): add template, crud)
           </div>
         </div>
       </div>
@@ -209,7 +228,11 @@
                 <li class="text-gray-500 leading-9">Anti Tick Shampoo</li>
                 <li class="text-gray-500 leading-9">Tick Treatment</li>
               </ul>
+<<<<<<< HEAD
               <a href="{{ route('user/groomings')}}" class="btn">Get It</a>
+=======
+              <a href="#" class="btn">Get It</a>
+>>>>>>> 0463140 (enchance(user): add template, crud)
             </div>
           </div>
           <!-- single pricing table ends -->
@@ -232,7 +255,11 @@
                 <li class="text-gray-500 leading-9">Anti Mold Powder</li>
                 <li class="text-gray-500 leading-9">Mold Treatment</li>
               </ul>
+<<<<<<< HEAD
               <a href="{{ route('user/groomings')}}" class="btn">Get It</a>
+=======
+              <a href="#" class="btn">Get It</a>
+>>>>>>> 0463140 (enchance(user): add template, crud)
             </div>
           </div>
           <!-- single pricing table ends -->
@@ -256,7 +283,11 @@
                 <li class="text-gray-500 leading-9">Tick Treatment</li>
                 <li class="text-gray-500 leading-9">Mold Treatment</li>
               </ul>
+<<<<<<< HEAD
               <a href="{{ route('user/groomings')}}" class="btn">Get It</a>
+=======
+              <a href="#" class="btn">Get It</a>
+>>>>>>> 0463140 (enchance(user): add template, crud)
             </div>
           </div>
           <!-- single pricing table ends -->
@@ -275,15 +306,39 @@
           <div class="w-full relative">
             <div class="portfolio-carousel">
               <div>
+<<<<<<< HEAD
                 {{-- @foreach ($image as $items)
                   <img src="{{ url('storage/photos/'.$items->featured_image )}}" alt="{{ $items->name }}" class="w-full" alt="Image"> 
                 @endforeach --}}
               </div>>
+=======
+                <img class="w-full" src="../shine/assets/img/slide/img1.jpg" alt="">
+              </div>
+              <div>
+                <img class="w-full" src="../shine/assets/img/slide/img2.jpg" alt="">
+              </div>
+              <div>
+                <img class="w-full" src="../shine/assets/img/slide/img3.jpg" alt="">
+              </div>
+              <div>
+                <img class="w-full" src="../shine/assets/img/slide/img4.jpg" alt="">
+              </div>
+              <div>
+                <img class="w-full" src="../shine/assets/img/slide/img5.jpg" alt="">
+              </div>
+              <div>
+                <img  class="w-full" src="../shine/assets/img/slide/img6.jpg" alt="">
+              </div>
+>>>>>>> 0463140 (enchance(user): add template, crud)
             </div>
           </div>
         </div>
       </div>
+<<<<<<< HEAD
       <a href="{{ route('user/breedings')}}">
+=======
+      <a href="{{ route('user/groomings')}}">
+>>>>>>> 0463140 (enchance(user): add template, crud)
         <button class="flex mx-auto mt-16 text-white bg-blue-300 border-0 py-2 px-8 focus:outline-none hover:bg-blue-600 rounded text-lg">Breeding Menu</button>
       </a>
     </section>
@@ -388,8 +443,13 @@
                 </div>
               </div>
               <div class="text-center px-5 py-3">
+<<<<<<< HEAD
                 <h3 class="team-name">dr. Muhammad Dzaky</h3>
                 <p>Veterinarian</p>
+=======
+                <h3 class="team-name">John Doe</h3>
+                <p>UX UI Designer</p>
+>>>>>>> 0463140 (enchance(user): add template, crud)
               </div>
             </div>
           </div>
@@ -421,8 +481,13 @@
                 </div>
               </div>
               <div class="text-center px-5 py-3">
+<<<<<<< HEAD
                 <h3 class="team-name">dr. Vera Zura</h3>
                 <p>Veterinarian</p>
+=======
+                <h3 class="team-name">Sarah Doe</h3>
+                <p>Front-End Developer</p>
+>>>>>>> 0463140 (enchance(user): add template, crud)
               </div>
             </div>
           </div>
@@ -453,8 +518,13 @@
                 </div>
               </div>
               <div class="text-center px-5 py-3">
+<<<<<<< HEAD
                 <h3 class="team-name">Muhammad Ghifa</h3>
                 <p>Caretaker</p>
+=======
+                <h3 class="team-name">Rob Hope</h3>
+                <p>Front-end Developer</p>
+>>>>>>> 0463140 (enchance(user): add template, crud)
               </div>
             </div>
           </div>
