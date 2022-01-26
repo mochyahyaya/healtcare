@@ -33,10 +33,6 @@ class UserBreeding extends Component
         session()->flash('success', 'Berhasil mendaftarkan boarding.');
         return redirect()->to('/user/dashboard');
     }
-    public function pet()
-    {
-        return Pet::where('user_id', Auth::user()->id)->get();
-    }
     public function pets2()
     {
         return (Pet::where('user_id', '1')->get());
@@ -44,10 +40,6 @@ class UserBreeding extends Component
     public function pet()
     {
         return Pet::where('user_id', Auth::user()->id)->get();
-    }
-    public function pets2()
-    {
-        return Pet::where('user_id', '1')->get();
     }
     public function render()
     {
@@ -57,6 +49,6 @@ class UserBreeding extends Component
         return view('livewire.user.user-breeding', [
             'pet'   => $this->pet(),
             'pets2'  => $this->pets2()
-        ])->extends('layouts.user')->section('content');;
+        ])->extends('layouts.user')->section('content');
     }
 }
