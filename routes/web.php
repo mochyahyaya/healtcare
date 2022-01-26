@@ -61,8 +61,6 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 
 Route::get('redirects', 'App\Http\Livewire\Admin\Home');
 
-Route::group(['middleware' => 'web'], function () {
-
     Route::get('/', function () {
         return view('auth.login');
     });
@@ -110,6 +108,5 @@ Route::group(['middleware' => 'web'], function () {
 >>>>>>> d88754d (enchance(user): create login and register ui)
                 
     
-    });
 });
 

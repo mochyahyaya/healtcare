@@ -3,14 +3,18 @@
 namespace App\Http\Livewire\Veterinarian;
 
 use App\Models\Pet;
+use App\Models\User;
 use Livewire\Component;
 
 class MedicalrecordUsers extends Component
 {
-    public $user_id;
+    public $user_id, $name;
     public function mount($id)
     {
         $this->user_id = $id;
+        $data = User::find($this->user_id);
+        $this->name = $data->name;
+
     }
 
     public function petusers()

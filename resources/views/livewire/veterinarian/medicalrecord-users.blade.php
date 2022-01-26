@@ -37,13 +37,14 @@
                          <div class="container px-5 py-19 mx-auto">
                            <div class="flex flex-col text-center w-full mb-10">
                              <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900">Medical Record</h1>
+                             <h3 class="sm:text-2xl text-1xl font-medium title-font mb-4 text-gray-900">{{$name}}</h3>
                            </div>
                             <div class="flex flex-wrap -m-2 mb-4">
                               @foreach ($pet as $item)
                               <div class="p-2 lg:w-1/4 md:w-1/2 w-full">
                                 <a href="{{ route('veterinarian/medicaldetails', ['id'=>$item->id]) }}">
                                   <div class="h-full flex items-center border-gray-200 border p-4 rounded-lg">
-                                    <img alt="team" class="w-16 h-16 bg-gray-100 object-cover object-center flex-shrink-0 rounded-full mr-4" src="https://dummyimage.com/80x80" alt="" >
+                                    <img alt="team" class="w-16 h-16 bg-gray-100 object-cover object-center flex-shrink-0 rounded-full mr-4" src="{{$item->profile_photo_url }}" alt="{{ Auth::user()->name }}" >
                                     <div class="flex-grow">
                                       <h2 class="text-gray-900 title-font font-medium">{{$item->name}}</h2>
                                       <p class="text-gray-500">{{$item->race}}</p>

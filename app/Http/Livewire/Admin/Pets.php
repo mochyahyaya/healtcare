@@ -101,6 +101,7 @@ class Pets extends Component
         $this->galery = $data->galery;
         $this->type_id = $data->type_id;
         $this->gender = $data->gender;
+        $this->birthday = $data->birthday;
     }
         
     /**
@@ -111,12 +112,12 @@ class Pets extends Component
     public function create()
     {   
         if (!empty($this->feature_image)) {
-            $this->feature_image->store('public/photos');
+            $this->feature_image->store('');
         }
 
         if (!empty($this->galery)){
             foreach($this->galery as $key=>$galeries){
-                $this->galery[$key] = $galeries->store('public/galery');
+                $this->galery[$key] = $galeries->store('');
             }
         }
         $this->galery = json_encode($this->galery); 
@@ -129,12 +130,12 @@ class Pets extends Component
     public function update()
     {
         if (!empty($this->feature_image)) {
-            $this->feature_image->store('public/photos');
+            $this->feature_image->store('');
         }
 
         if (!empty($this->galery)){
             foreach($this->galery as $key=>$galeries){
-                $this->galery[$key] = $galeries->store('public/galery');
+                $this->galery[$key] = $galeries->store('');
             }
         }
         $this->galery = json_encode($this->galery); 
