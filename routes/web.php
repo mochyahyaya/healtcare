@@ -13,23 +13,10 @@ use App\Http\Livewire\Admin\ShowMonitoringBreedings;
 use App\Http\Livewire\Admin\BreedingMonitorings;
 
 use App\Http\Livewire\User\DashboardU;
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> d88754d (enchance(user): create login and register ui)
-=======
 use App\Http\Livewire\User\Auths;
->>>>>>> ae71492 (enhance(ferror): fix error from merging branch)
 use App\Http\Livewire\User\Registers;
 use App\Http\Livewire\User\UserBoarding;
 use App\Http\Livewire\User\UserBreeding;
-<<<<<<< HEAD
-=======
-use App\Http\Livewire\User\UserBoarding;
->>>>>>> 7a2475c (enchance(user): boarding create, cant store data)
-=======
->>>>>>> 11cc42b (enchance(user): someline code changes, breeding ui)
 use App\Http\Livewire\User\UserGrooming;
 
 use App\Http\Livewire\Veterinarian\DashboardD;
@@ -99,23 +86,14 @@ Route::get('redirects', 'App\Http\Livewire\Admin\Home');
         Route::get('user/grooming', UserGrooming::class)->name('user/groomings');
         Route::get('user/hotel', UserBoarding::class)->name('user/hotels');
         Route::get('user/breed', UserBreeding::class)->name('user/breedings');
-<<<<<<< HEAD
-<<<<<<< HEAD
+
         Route::get('user/login', Auths::class)->name('user/logins');
         Route::get('user/regis', Registers::class)->name('user/regis');
-=======
->>>>>>> 11cc42b (enchance(user): someline code changes, breeding ui)
-=======
+
         Route::get('user/login', Auths::class)->name('user/logins');
-<<<<<<< HEAD
         Route::get('user/regis', Registers::class)->name('user/regis');
->>>>>>> d88754d (enchance(user): create login and register ui)
-                
-    
-=======
+
         Route::get('user/regis', Registers::class)->name('user/regis');   
         });
-
->>>>>>> d7e0f63 (enhance(fix/error): fix error header, logo)
 });
 
