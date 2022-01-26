@@ -150,7 +150,7 @@
                         @endforeach
                       </select>
                     @error('selectedUser') <span class="error">{{ $message }}</span> @enderror
-                  </div>
+
                     @if(!is_null($pet))
                       <div class="mt-4">
                         <x-jet-label for="pet_id" value="{{ __('Nama Pet') }}" />
@@ -198,19 +198,18 @@
             </x-slot>
         
             <x-slot name="footer">
-                <x-jet-secondary-button wire:click="$toggle('modalFormVisible')" wire:loading.attr="disabled">
-                    {{ __('Batalkan') }}
-                
-                @if ($modelId)
-                <x-jet-button class="ml-2" wire:click="update" wire:loading.attr="disabled">
-                    {{ __('Ubah') }}
-                </x-jet-danger-button>
-                @else
-                <x-jet-button class="ml-2" wire:click="create" wire:loading.attr="disabled">
-                    {{ __('Simpan') }}
-                </x-jet-danger-button>
-                @endif
-            </x-jet-secondary-button>
+              <x-jet-secondary-button wire:click="$toggle('modalFormVisible')" wire:loading.attr="disabled">
+                {{ __('Batalkan') }}
+              @if ($modelId)
+              <x-jet-button class="ml-2" wire:click="update" wire:loading.attr="disabled">
+                  {{ __('Ubah') }}
+              </x-jet-danger-button>
+              @else
+              <x-jet-button class="ml-2" wire:click="create" wire:loading.attr="disabled">
+              {{ __('Simpan') }}
+          </x-jet-danger-button>
+          @endif
+        </x-jet-secondary-button>
             </x-slot>
         </x-jet-dialog-modal>
     
@@ -258,7 +257,7 @@
                     </div>
                     <div class="flex-grow">
                       <h5 class="leading-tight text-sm text-gray-700 font-semibold">Nama Hewan Peliharaan</h5>
-                      <span class="text-xs text-gray-500">{{$selectedPet}}</span>
+                      <span class="text-xs text-gray-500">{{$pet_id}}</span>
                     </div>
                   </span >
                   <span  class="flex items-center gap-4 px-6 py-3 w-full">

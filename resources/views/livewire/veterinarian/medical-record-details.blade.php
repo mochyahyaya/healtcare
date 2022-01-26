@@ -15,7 +15,7 @@
                     @foreach ($pet as $items)
                     <div class="image overflow-hidden">
                         <img class="h-auto w-full mx-auto"
-                            src="{{ url('storage/photos/'.$items->featured_image )}}"
+                            src="{{ url('storage/featured_image/'.$items->featured_image )}}"
                             alt="No Image">
                     </div>
                     <h1 class="text-gray-900 font-bold text-xl leading-8 my-1">Pemilik</h1>
@@ -50,28 +50,28 @@
                     </div>
                     <div class="grid grid-cols-3">
                         <div class="text-center my-2">
-                            <img class="h-16 w-16 rounded-full mx-auto"
-                                src="https://cdn.australianageingagenda.com.au/wp-content/uploads/2015/06/28085920/Phil-Beckett-2-e1435107243361.jpg"
+                            <img class="h-16 w-16 rounded-full object-cover"
+                                src="/shine/assets/img/pet/Cat-3.jpg"
                                 alt="">
-                            <a href="#" class="text-main-color">Kojstantin</a>
+                            <a href="#" class="text-main-color">Gray</a>
                         </div>
                         <div class="text-center my-2">
-                            <img class="h-16 w-16 rounded-full mx-auto"
-                                src="https://widgetwhats.com/app/uploads/2019/11/free-profile-photo-whatsapp-4.png"
+                            <img class="h-16 w-16 rounded-full object-cover"
+                                src="/shine/assets/img/pet/Cat-4.jpg"
                                 alt="">
-                            <a href="#" class="text-main-color">James</a>
+                            <a href="#" class="text-main-color">Mili</a>
                         </div>
                         <div class="text-center my-2">
-                            <img class="h-16 w-16 rounded-full mx-auto"
-                                src="https://lavinephotography.com.au/wp-content/uploads/2017/01/PROFILE-Photography-112.jpg"
+                            <img class="h-16 w-16 rounded-full object-cover"
+                                src="/shine/assets/img/pet/Cat-5.jpg"
                                 alt="">
-                            <a href="#" class="text-main-color">Natie</a>
+                            <a href="#" class="text-main-color">Miki</a>
                         </div>
                         <div class="text-center my-2">
-                            <img class="h-16 w-16 rounded-full mx-auto"
-                                src="https://bucketeer-e05bbc84-baa3-437e-9518-adb32be77984.s3.amazonaws.com/public/images/f04b52da-12f2-449f-b90c-5e4d5e2b1469_361x361.png"
+                            <img class="h-16 w-16 rounded-full object-cover"
+                                src="/shine/assets/img/pet/Cat-6.jpg"
                                 alt="">
-                            <a href="#" class="text-main-color">Casey</a>
+                            <a href="#" class="text-main-color">Caty</a>
                         </div>
                     </div>
                 </div>

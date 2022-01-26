@@ -1,6 +1,6 @@
 <x-slot name="header">
     <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-        List Data Hotel
+        Monitoring Hotel
     </h2>
   </x-slot>
 <div class="py-12">
