@@ -83,10 +83,22 @@
                                   {{ \Carbon\Carbon::parse($items->start_date)->locale('id')->format('d M Y')}}
                                  </td>
                                  <td class="px-6 py-4 whitespace-nowrap">
-                                     {{$items->cages->typecages->alias}} - {{$items->cages->number}} 
+                                     {{$items->cages->typecages->alias ?? ''}} - {{$items->cages->number ?? ''}} 
                                  </td>
                                  <td class="px-6 py-4 whitespace-nowrap">
-                                     {{$items->status}}
+                                  @if($items->status == 'belum diproses')
+                                    <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-200 text-green-800">
+                                      {{$items->status}}
+                                    </span>
+                                  @elseif ( $items->status == 'diproses' ) 
+                                    <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-200 text-green-800">
+                                      {{$items->status}}
+                                    </span>          
+                                  @else
+                                    <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-200 text-green-800">
+                                      {{$items->status}}
+                                    </span>
+                                  @endif
                                  </td>
                                  <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                                    <a href= "#" wire:click="detailShowModal({{$items->id}})" class="text-indigo-600 hover:text-indigo-900 mr-3">Lihat</a>
@@ -114,11 +126,11 @@
                      <x-jet-dialog-modal wire:model="modalFormVisible">
                          @if ($modelId)
                          <x-slot name="title">
-                             {{ __('Ubah Data Grooming') }}
+                             {{ __('Ubah Data Breeding') }}
                          </x-slot>
                          @else
                          <x-slot name="title">
-                             {{ __('Tambah Data Grooming') }}
+                             {{ __('Tambah Data Breeding') }}
                          </x-slot>
                          @endif
                          

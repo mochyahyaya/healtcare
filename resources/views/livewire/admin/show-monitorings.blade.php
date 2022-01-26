@@ -35,21 +35,22 @@
                                 <div class="my-1 px-1 w-full md:w-1/2 lg:my-4 lg:px-4 lg:w-1/4">
                                         <!-- Article -->
                                         <article class="overflow-hidden rounded-lg shadow-lg">
-                                           @if ($items->cages->typecages->alias == 'CT')
+                                           @if ($items->pets->typepet->name == 'Kucing')
                                             <div>
                                                 <img alt="Kucing" class="block h-full w-full fit" style="height: 150px; width: 500px" src="{!! asset('tempt/images/cat.jpg') !!}">
                                             </div>
-                                            @else
+                                            @elseif($items->pets->typepet->name == 'Anjing')
                                             <div>
                                                 <img alt="Anjing" class="block h-auto w-full " style="height: 150px; width: 500px"  src="{!! asset('tempt/images/dog-2.jpg') !!}">
                                             </div>
+                                            @else
                                            @endif
                         
                                             <header class="flex items-center justify-between leading-tight p-2 md:p-4">
                                                 <h1 class="text-lg">
                                                     <a class="no-underline hover:underline text-black" href="#">
                                                         <span> Kandang </span> <br>
-                                                        {{$items->cages->typecages->alias}}-{{$items->cages->number}}
+                                                        {{$items->cages->typecages->alias ?? '' }} - {{$items->cages->number ?? ''}} 
                                                     </a>
                                                 </h1>
                                                 <p class="text-grey-darker text-sm">
@@ -60,7 +61,7 @@
                         
                                             <footer class="flex items-center justify-between leading-none p-2 md:p-4">
                                                 <a class="flex items-center no-underline hover:underline text-black" href="#">
-                                                    <img alt="Placeholder" class="h-10 w-10 rounded-full" src="{{ url('storage/photos/'.$items->pets->featured_image )}}">
+                                                    <img alt="{{$items->pets->name}}" class="h-10 w-10 rounded-full" src="{{ url('storage/photos/'.$items->pets->featured_image )}}">
                                                     <p class="ml-2 text-sm">
                                                        {{$items->pets->name}}
                                                     </p>

@@ -20,7 +20,7 @@ class Pets extends Component
     public $modalFormVisible = false;
     public $modalDeleteVisible = false;
     public $modalDetailVisible = false;
-    public $name, $type_id, $race, $size, $weight, $colour, $birthday, $feature_image, $user_id;
+    public $name, $type_id, $race, $size, $weight, $colour, $birthday, $feature_image, $user_id, $gender;
     public $modelId;
     public $search='';
     public $sortDirection = 'asc';
@@ -100,6 +100,7 @@ class Pets extends Component
         $this->feature_image = $data->featured_image;
         $this->galery = $data->galery;
         $this->type_id = $data->type_id;
+        $this->gender = $data->gender;
     }
         
     /**
@@ -173,7 +174,8 @@ class Pets extends Component
             'birthday'       => $this->birthday,
             'featured_image' => $this->feature_image->hashName(),
             'galery'         => $this->galery,
-            'user_id'        => Auth::user()->id
+            'user_id'        => Auth::user()->id,
+            'gender'         => 'Jantan'
         ];
     }
     
@@ -194,7 +196,13 @@ class Pets extends Component
              $this->feature_image = null;
              $this->galery = null;
     }
+
     public function read()
+    {
+        return Pet::where('user_id', 1);
+    }
+
+    public function search()
     {
         return Pet::query()
         ->search($this->search)
@@ -224,14 +232,15 @@ class Pets extends Component
         $today = Carbon::now();
         $bd = $this->birthday ;
 
-        $age = $today->diff($bd);
+        return $today->diff($bd);
     }
 
     public function render()
     {
         return view('livewire.admin.pets',[
-            'data' => $this->read(),
-            'typepets' => $this->typepets()
+            'data' => $this->search(),
+            'search' => $this->read(),
+            'typepets' => $this->typepets(),
         ]);
     }
 
