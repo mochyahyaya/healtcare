@@ -54,7 +54,6 @@
                             </div>
                           </a>
                       </div>
-                    </section>
                  </div>
                </div>
              </div>
@@ -63,4 +62,4 @@
                </div>
                <div class="mt-5">
                    {{-- {{$data ->links()}} --}}
-               </div>
+</div>

@@ -1,8 +1,8 @@
 <x-slot name="header">
-    <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-        Rekam Medis
-    </h2>
-  </x-slot>
+  <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+      Rekam Medis
+  </h2>
+</x-slot>
   
   <div class="py-12">
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
@@ -44,24 +44,24 @@
                               <div class="p-2 lg:w-1/4 md:w-1/2 w-full">
                                 <a href="{{ route('veterinarian/medicaldetails', ['id'=>$item->id]) }}">
                                   <div class="h-full flex items-center border-gray-200 border p-4 rounded-lg">
-                                    <img alt="team" class="w-16 h-16 bg-gray-100 object-cover object-center flex-shrink-0 rounded-full mr-4" src="{{$item->profile_photo_url }}" alt="{{ Auth::user()->name }}" >
+                                    <img alt="team" class="w-16 h-16 bg-gray-100 object-cover object-center flex-shrink-0 rounded-full mr-4" src="{{url('storage/featured_image/'.$item->featured_image) }}" alt="{{ Auth::user()->name }}" >
                                     <div class="flex-grow">
                                       <h2 class="text-gray-900 title-font font-medium">{{$item->name}}</h2>
                                       <p class="text-gray-500">{{$item->race}}</p>
                                     </div>
                                   </div>
                                 </div>
-                                @endforeach
                               </div>
                             </a>
-                        </div>
-                      </section>
-                   </div>
+                          </div>
+                        </section>
+                      </div>
+                    </div>
+                  </div>
+                  <div>
+                    {{-- Showing {{$item -> firstItem()}} to {{$item -> lastItem()}} out of {{$item->total()}} items --}}
+                  </div>
+                  <div class="mt-5">
+                    {{-- {{$item ->links()}} --}}
                  </div>
-               </div>
-                 <div>
-                   {{-- Showing {{$data -> firstItem()}} to {{$data -> lastItem()}} out of {{$data->total()}} items --}}
-                 </div>
-                 <div class="mt-5">
-                     {{-- {{$data ->links()}} --}}
-                 </div>
+                  @endforeach
