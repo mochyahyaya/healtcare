@@ -15,9 +15,13 @@ use App\Http\Livewire\Admin\ShowMonitoringBreedings;
 use App\Http\Livewire\Admin\BreedingMonitorings;
 use App\Http\Livewire\User\Auths;
 use App\Http\Livewire\User\DashboardU;
+<<<<<<< HEAD
 use App\Http\Livewire\User\Registers;
 use App\Http\Livewire\User\UserBoarding;
 use App\Http\Livewire\User\UserBreeding;
+=======
+use App\Http\Livewire\User\UserBoarding;
+>>>>>>> 7a2475c (enchance(user): boarding create, cant store data)
 use App\Http\Livewire\User\UserGrooming;
 use App\Http\Livewire\Veterinarian\DashboardD;
 use App\Http\Livewire\Veterinarian\MedicalrecordUsers;

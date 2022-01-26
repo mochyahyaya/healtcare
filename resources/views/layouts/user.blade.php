@@ -1,3 +1,5 @@
+<!DOCTYPE html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -16,12 +18,16 @@
     <link rel="stylesheet" type="text/css" href="../shine/assets/css/tiny-slider.css">
     <!-- Tailwind css -->
     <link rel="stylesheet" type="text/css" href="../shine/assets/css/tailwind.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+
+    @livewireStyles
   </head>
   <body>
 
     <div>
-        @yield('content')
+        @yield('main')
     </div>
+
     <!-- Header Area wrapper End -->
     	  <!-- Footer Section Start -->
           <footer id="footer" class="bg-gray-800 py-16">
@@ -102,13 +108,19 @@
           <!-- End Preloader -->
           
           <!-- All js Here -->
+          <script src="{{ mix('js/app.js') }}" defer></script>
           <script src="../shine/assets/js/wow.js"></script>
           <script src="../shine/assets/js/tiny-slider.js"></script>
           <script src="../shine/assets/js/contact-form.js"></script>      
-          <script src="../shine/assets/js/main.js"></script>      
+          <script src="../shine/assets/js/main.js"></script>     
+          <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+          <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+          <script src="https://npmcdn.com/flatpickr/dist/flatpickr.min.js"></script>
+          <script src="https://npmcdn.com/flatpickr/dist/l10n/id.js"></script> 
         </body>
-
-
+        @livewireScripts
+        @yield('scripts')
+</html>
 {{-- <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
