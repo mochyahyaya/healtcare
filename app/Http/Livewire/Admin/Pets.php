@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Pet;
 use App\Models\TypePet;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Gate;
 use Intervention\Image\Imagemanager;
 
 class Pets extends Component
@@ -238,6 +239,9 @@ class Pets extends Component
 
     public function render()
     {
+        if(Gate::denies('manage-admins')){
+            abort(403);
+        }
         return view('livewire.admin.pets',[
             'data' => $this->search(),
             'search' => $this->read(),

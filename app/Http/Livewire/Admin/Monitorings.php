@@ -6,6 +6,7 @@ use App\Models\Hotel;
 use App\Models\Monitoring;
 use App\Models\Pet;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 use Livewire\Component;
 use Livewire\WithPagination;
 use Livewire\WithFileUploads;
@@ -58,6 +59,9 @@ class Monitorings extends Component
 
     public function render()
     {
+        if(Gate::denies('manage-admins')){
+            abort(403);
+        }
         return view('livewire.admin.monitorings', [
             'data' => $this->read(),
         ]);

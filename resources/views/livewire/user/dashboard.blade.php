@@ -1,4 +1,5 @@
-<style>
+<div>
+  <style>
   .hover-trigger .hover-target {
       display: none;
   }
@@ -6,16 +7,23 @@
   .hover-trigger:hover .hover-target {
       display: block;
   }
+
+  .dropdown:hover .dropdown-menu {
+  display: block;
+}
+
   </style>
 <!-- Header Area wrapper Starts -->
+
    <header id="header-wrap" class="relative">
     <!-- Navbar Start -->      
     <div class="navigation fixed top-0 left-0 w-full z-30 duration-300">
         <div class="container">
             <nav class="navbar py-2 navbar-expand-lg flex justify-between items-center relative duration-300">
                 <a class="navbar-brand" href="{{ route('user/dashboard')}}">
-                  <img src="../shine/assets/img/logo.svg" alt="Logo">
+                  <img src="../shine/assets/img/Logo.png" alt="Logo" style="width: 90px; height:45px">
                 </a>
+                <a  href="{{ route('user/dashboard')}}"><span class="inline font-mono font-semibold text-blue-500">Garden Petshop</span></a>
                 <button class="navbar-toggler focus:outline-none block lg:hidden" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="toggler-icon"></span>
                     <span class="toggler-icon"></span>
@@ -126,8 +134,6 @@
     </div>
     <!-- Navbar End -->
   </header> 
-
-@section('main')
 
   <!-- Hero Area Start -->
   <section id="hero-area" class="bg-blue-100 pt-48 pb-10">
@@ -453,7 +459,6 @@
               <li class="text-gray-500 leading-9">Mold Treatment</li>
             </ul>
             <a href="{{ route('user/groomings')}}" class="btn">Get It</a>
->>>>>>> 0294142 (enhance(fix/error): fix dash, mrecord, redirects)
           </div>
         </div>
         <!-- single pricing table ends -->
@@ -471,11 +476,49 @@
       <div class="flex">
         <div class="w-full relative">
           <div class="portfolio-carousel">
-            <div>
-              {{-- @foreach ($image as $items)
-                <img src="{{ url('storage/photos/'.$items->featured_image )}}" alt="{{ $items->name }}" class="w-full" alt="Image"> 
-              @endforeach --}}
-            </div>>
+            <div id="carouselExampleControls" class="carousel slide relative" data-bs-ride="carousel">
+              <div class="carousel-inner relative w-full overflow-hidden">
+                <div class="carousel-item active relative float-left w-full">
+                  <img
+                    src="https://mdbcdn.b-cdn.net/img/new/slides/041.webp"
+                    class="block w-full"
+                    alt="Wild Landscape"
+                  />
+                </div>
+                <div class="carousel-item relative float-left w-full">
+                  <img
+                    src="https://mdbcdn.b-cdn.net/img/new/slides/042.webp"
+                    class="block w-full"
+                    alt="Camera"
+                  />
+                </div>
+                <div class="carousel-item relative float-left w-full">
+                  <img
+                    src="https://mdbcdn.b-cdn.net/img/new/slides/043.webp"
+                    class="block w-full"
+                    alt="Exotic Fruits"
+                  />
+                </div>
+              </div>
+              <button
+                class="carousel-control-prev absolute top-0 bottom-0 flex items-center justify-center p-0 text-center border-0 hover:outline-none hover:no-underline focus:outline-none focus:no-underline left-0"
+                type="button"
+                data-bs-target="#carouselExampleControls"
+                data-bs-slide="prev"
+              >
+                <span class="carousel-control-prev-icon inline-block bg-no-repeat" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+              </button>
+              <button
+                class="carousel-control-next absolute top-0 bottom-0 flex items-center justify-center p-0 text-center border-0 hover:outline-none hover:no-underline focus:outline-none focus:no-underline right-0"
+                type="button"
+                data-bs-target="#carouselExampleControls"
+                data-bs-slide="next"
+              >
+                <span class="carousel-control-next-icon inline-block bg-no-repeat" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+              </button>
+            </div>
           </div>
         </div>
       </div>
@@ -585,7 +628,7 @@
               </div>
             </div>
             <div class="text-center px-5 py-3">
-              <h3 class="team-name">dr. Muhammad Dzaky</h3>
+              <h3 class="team-name">drh. Muhammad Dzaky</h3>
               <p>Veterinarian</p>
             </div>
           </div>
@@ -618,7 +661,7 @@
               </div>
             </div>
             <div class="text-center px-5 py-3">
-              <h3 class="team-name">dr. Vera Zura</h3>
+              <h3 class="team-name">drh. Vera Zura</h3>
               <p>Veterinarian</p>
             </div>
           </div>
@@ -650,7 +693,7 @@
               </div>
             </div>
             <div class="text-center px-5 py-3">
-              <h3 class="team-name">Muhammad Ghifa</h3>
+              <h3 class="team-name">drh. Muhammad Ghifa</h3>
               <p>Caretaker</p>
             </div>
           </div>
@@ -849,3 +892,7 @@
       </div>
   </section>
   <!-- Map Section End -->
+ 
+  @section('script')
+  @endsection
+</div>

@@ -14,17 +14,19 @@ class Redirects
      * @param  \Closure  $next
      * @return mixed
      */
-    public function handle(Request $request, Closure $next)
+    public function handle(Request $request, Closure $next, string $role)
     {
-        if(auth()->user()->role_id == 1)
-        {
-             redirect('admin/dashboard');
-        } elseif (auth()->user()->role_id == 2)
-        {
-           redirect('veterinarian/dashboard');
-        } else {
-             redirect('veterinarian/dashboard');
-        }
+     if ($role == 'admin' && auth()->user()->role_id != 1) {
+          abort(403);
+      }
+
+      if ($role == 'dokter' && auth()->user()->role_id != 2) {
+          abort(403);
+      }
+
+      if ($role == 'user' && auth()->user()->role_id != 3) {
+          abort(403);
+      }
           return $next($request);
     }
 }
