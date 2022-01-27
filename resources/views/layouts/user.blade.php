@@ -23,26 +23,24 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 
     @livewireStyles
+
+    <script src="{{ mix('js/app.js') }}" defer></script>
+    <script src="../shine/assets/js/wow.js"></script>
+    <script src="../shine/assets/js/tiny-slider.js"></script>
+    <script src="../shine/assets/js/contact-form.js"></script>
+    <script src="../shine/assets/js/main.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://npmcdn.com/flatpickr/dist/flatpickr.min.js"></script>
+    <script src="https://npmcdn.com/flatpickr/dist/l10n/id.js"></script>
+    
+    @livewireScripts
   </head>
   <body>
-
-{{--  <header id="header-wrap" class="relative">--}}
-{{--      <!-- Navbar Start -->--}}
-{{--      <div class="navigation fixed top-0 left-0 w-full z-30 duration-300">--}}
-{{--          <div class="container">--}}
-{{--              <nav class="navbar py-2 navbar-expand-lg flex justify-between items-center relative duration-300">--}}
-{{--                  <a class="navbar-brand" href="{{ route('user/dashboard')}}">--}}
-{{--                      <img src="../shine/assets/img/logo.svg" alt="Logo">--}}
-{{--                  </a>--}}
-{{--              </nav>--}}
-{{--          </div>--}}
-{{--      </div>--}}
-{{--      <!-- Navbar End -->--}}
-{{--  </header>--}}
-
+    @livewire('navigation-menu')
     <div>
         @yield('main')
-    </div>
+    </div>  
 
     <!-- Header Area wrapper End -->
     	  <!-- Footer Section Start -->
@@ -124,15 +122,7 @@
           <!-- End Preloader -->
 
           <!-- All js Here -->
-          <script src="{{ mix('js/app.js') }}" defer></script>
-          <script src="../shine/assets/js/wow.js"></script>
-          <script src="../shine/assets/js/tiny-slider.js"></script>
-          <script src="../shine/assets/js/contact-form.js"></script>
-          <script src="../shine/assets/js/main.js"></script>
-          <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-          <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-          <script src="https://npmcdn.com/flatpickr/dist/flatpickr.min.js"></script>
-          <script src="https://npmcdn.com/flatpickr/dist/l10n/id.js"></script>
+
         </body>
         @livewireScripts
         @yield('scripts')

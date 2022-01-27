@@ -114,26 +114,31 @@
   
                      <x-slot name="content" >
                       <div x-data="{type: 0}">
-                        <div class="mt-4"  x-data="{user_id: 0}">
+                        @if (!$modelId)
+                        <div class="mt-4">
                           <x-jet-label for="user_id" value="{{ __('Nama Pemilik') }}" />
-                          <select x-model= "user_id" class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm mt-1 block w-full" wire:model="selectedUser">
-                                <option value="" selected> -- Nama pemilik --</option>
+                          <select class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm mt-1 block w-full" wire:model="selectedUser">
+                                <option value="" selected>  Pilih Nama Pemilik </option>
                               @foreach ($users as $item)
                                 <option value="{{$item->id}}">{{$item->name}}</option>
                               @endforeach
                             </select>
-                          @error('type') <span class="error">{{ $message }}</span> @enderror
-                          <div class="mt-4" x-show="user_id > 0">
-                            <x-jet-label for="pet_id" value="{{ __('Nama Pet') }}" />
-                            <select class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm mt-1 block w-full" wire:model="selectedPet"> 
-                                  <option selected> -- Nama hewan --</option>
-                                @foreach ($pets as $item)
-                                  <option value= "{{$item->id}}">{{$item->name}}</option>
-                                @endforeach
-                              </select>
-                            @error('pet_id') <span class="error">{{ $message }}</span> @enderror
-                          </div>  
-                        </div>   
+                          @error('selectedUser') <span class="error">{{ $message }}</span> @enderror
+                       </div>
+                       @endif
+
+                       @if(!is_null($pet))
+                       <div class="mt-4">
+                        <x-jet-label for="user_id" value="{{ __('Nama Pet') }}" />
+                        <select class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm mt-1 block w-full" wire:model="selectedPet">
+                              <option value="" selected>  Pilih Pet </option>
+                            @foreach ($pet as $item)
+                              <option value="{{$item->id}}">{{$item->name}} </option>
+                            @endforeach
+                          </select>
+                        @error('selectedUser') <span class="error">{{ $message }}</span> @enderror
+                     </div>
+                     @endif                  
                          <div class="mt-4">
                            <x-jet-label for="type" value="{{ __('Jenis Hewan') }}" />
                            <select name="type" x-model="type" class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm mt-1 block w-full">
