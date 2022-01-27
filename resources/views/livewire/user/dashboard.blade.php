@@ -40,6 +40,7 @@
                           </li>
                       </ul>
                   </div>
+<<<<<<< HEAD
                   @if (auth()->user()->role_id == 3)
                   <form method="POST" action="{{ route('logout') }}">
                     @csrf
@@ -54,6 +55,11 @@
                     </div>
                   @endif
 
+=======
+                  <div class="header-btn hidden sm:block sm:absolute sm:right-0 sm:mr-16 lg:static lg:mr-0">
+                    <a class="text-blue-600 border border-blue-600 px-10 py-3 rounded-full duration-300 hover:bg-blue-600 hover:text-white" href="{{route('user/logins')}}">Masuk</a>
+                  </div>
+>>>>>>> 40e4a02 (enchance(user): create login and register ui)
               </nav>
           </div>
       </div>
@@ -397,12 +403,17 @@
               </div>
               <div class="text-center px-5 py-3">
 <<<<<<< HEAD
+<<<<<<< HEAD
                 <h3 class="team-name">dr. Muhammad Dzaky</h3>
                 <p>Veterinarian</p>
 =======
                 <h3 class="team-name">John Doe</h3>
                 <p>UX UI Designer</p>
 >>>>>>> c66733d (enchance(user): add template, crud)
+=======
+                <h3 class="team-name">dr. Muhammad Dzaky</h3>
+                <p>Veterinarian</p>
+>>>>>>> 40e4a02 (enchance(user): create login and register ui)
               </div>
             </div>
           </div>
@@ -435,12 +446,17 @@
               </div>
               <div class="text-center px-5 py-3">
 <<<<<<< HEAD
+<<<<<<< HEAD
                 <h3 class="team-name">dr. Vera Zura</h3>
                 <p>Veterinarian</p>
 =======
                 <h3 class="team-name">Sarah Doe</h3>
                 <p>Front-End Developer</p>
 >>>>>>> c66733d (enchance(user): add template, crud)
+=======
+                <h3 class="team-name">dr. Vera Zura</h3>
+                <p>Veterinarian</p>
+>>>>>>> 40e4a02 (enchance(user): create login and register ui)
               </div>
             </div>
           </div>
@@ -472,12 +488,17 @@
               </div>
               <div class="text-center px-5 py-3">
 <<<<<<< HEAD
+<<<<<<< HEAD
                 <h3 class="team-name">Muhammad Ghifa</h3>
                 <p>Caretaker</p>
 =======
                 <h3 class="team-name">Rob Hope</h3>
                 <p>Front-end Developer</p>
 >>>>>>> c66733d (enchance(user): add template, crud)
+=======
+                <h3 class="team-name">Muhammad Ghifa</h3>
+                <p>Caretaker</p>
+>>>>>>> 40e4a02 (enchance(user): create login and register ui)
               </div>
             </div>
           </div>
