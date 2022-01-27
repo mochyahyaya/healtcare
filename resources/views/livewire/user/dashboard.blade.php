@@ -1,18 +1,60 @@
+  @section('style')
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/swiper/swiper-bundle.min.css"
+  />
+  <!-- Demo styles -->
+    <style>
+      .swiper {
+        width: 100%;
+        height: 100%;
+      }
+
+      .swiper-slide {
+        text-align: center;
+        font-size: 18px;
+        background: rgb(255, 255, 255);
+        margin-left: 20px;
+
+        /* Center slide text vertically */
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        -webkit-justify-content: center;
+        justify-content: center;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        -webkit-align-items: center;
+        align-items: center;
+
+        width: 500px;
+        height: 400px;
+      }
+
+      .swiper-slide img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .hover-trigger .hover-target {
+        display: none;
+      }
+      
+      .hover-trigger:hover .hover-target {
+        display: block;
+      }
+
+      .dropdown:hover .dropdown-menu {
+        display: block;
+      }
+    </style>
+@endsection
 <div>
-  <style>
-  .hover-trigger .hover-target {
-      display: none;
-  }
-  
-  .hover-trigger:hover .hover-target {
-      display: block;
-  }
-
-  .dropdown:hover .dropdown-menu {
-  display: block;
-}
-
-  </style>
 <!-- Header Area wrapper Starts -->
 
    <header id="header-wrap" class="relative">
@@ -469,60 +511,28 @@
 
   <!-- Breeding Section Start -->
   <section id ="breeding" class="carousel-area bg-gray-800 py-32">
-    <div class="container">
-      <div class="text-center">
-        <h2 class="mb-12 text-white section-heading wow fadeInDown" data-wow-delay="0.3s">Breeding</h2>
-      </div>
-      <div class="flex">
-        <div class="w-full relative">
-          <div class="portfolio-carousel">
-            <div id="carouselExampleControls" class="carousel slide relative" data-bs-ride="carousel">
-              <div class="carousel-inner relative w-full overflow-hidden">
-                <div class="carousel-item active relative float-left w-full">
-                  <img
-                    src="https://mdbcdn.b-cdn.net/img/new/slides/041.webp"
-                    class="block w-full"
-                    alt="Wild Landscape"
-                  />
-                </div>
-                <div class="carousel-item relative float-left w-full">
-                  <img
-                    src="https://mdbcdn.b-cdn.net/img/new/slides/042.webp"
-                    class="block w-full"
-                    alt="Camera"
-                  />
-                </div>
-                <div class="carousel-item relative float-left w-full">
-                  <img
-                    src="https://mdbcdn.b-cdn.net/img/new/slides/043.webp"
-                    class="block w-full"
-                    alt="Exotic Fruits"
-                  />
-                </div>
-              </div>
-              <button
-                class="carousel-control-prev absolute top-0 bottom-0 flex items-center justify-center p-0 text-center border-0 hover:outline-none hover:no-underline focus:outline-none focus:no-underline left-0"
-                type="button"
-                data-bs-target="#carouselExampleControls"
-                data-bs-slide="prev"
-              >
-                <span class="carousel-control-prev-icon inline-block bg-no-repeat" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-              </button>
-              <button
-                class="carousel-control-next absolute top-0 bottom-0 flex items-center justify-center p-0 text-center border-0 hover:outline-none hover:no-underline focus:outline-none focus:no-underline right-0"
-                type="button"
-                data-bs-target="#carouselExampleControls"
-                data-bs-slide="next"
-              >
-                <span class="carousel-control-next-icon inline-block bg-no-repeat" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-              </button>
-            </div>
-          </div>
+    <div class="text-center text-white">
+      <h2 class="mb-12 section-heading wow fadeInDown" data-wow-delay="0.3s">Pet Galery</h2>
+    </div>
+    <div class="mx-auto">
+      <div class="swiper mySwiper">
+        <div class="swiper-wrapper">
+          @foreach ($image as $item)  
+            <div class="swiper-slide"><img alt="Kucing" class="object-fill" src="{{url('storage/featured_image/'.$item->featured_image )}}"></div>
+          @endforeach
+          <div class="swiper-slide">Slide 1</div>
+          <div class="swiper-slide">Slide 2</div>
+          <div class="swiper-slide">Slide 3</div>
+          <div class="swiper-slide">Slide 4</div>
+          <div class="swiper-slide">Slide 5</div>
+          <div class="swiper-slide">Slide 6</div>
+          <div class="swiper-slide">Slide 7</div>
+          <div class="swiper-slide">Slide 8</div>
         </div>
+        <div class="swiper-pagination"></div>
       </div>
     </div>
+
     <a href="{{ route('user/breedings')}}">
       <button class="flex mx-auto mt-16 text-white bg-blue-300 border-0 py-2 px-8 focus:outline-none hover:bg-blue-600 rounded text-lg">Breeding Menu</button>
     </a>
@@ -693,7 +703,7 @@
               </div>
             </div>
             <div class="text-center px-5 py-3">
-              <h3 class="team-name">drh. Muhammad Ghifa</h3>
+              <h3 class="team-name">Muhammad Ghifa</h3>
               <p>Caretaker</p>
             </div>
           </div>
@@ -893,6 +903,23 @@
   </section>
   <!-- Map Section End -->
  
-  @section('script')
-  @endsection
+     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+    <!-- Initialize Swiper -->
+    <script>
+      var swiper = new Swiper(".mySwiper", {
+        slidesPerView: 3,
+        spaceBetween: 20,
+        loop: true,
+        loopFillGroupWithBlank: true,
+        autoplay: {
+          delay: 2500,
+          disableOnInteraction: false,
+        },
+        pagination: {
+          el: ".swiper-pagination",
+          dynamicBullets: true,
+        },
+      });
+    </script>
 </div>
