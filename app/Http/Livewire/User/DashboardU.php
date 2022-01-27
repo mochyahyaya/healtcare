@@ -11,10 +11,14 @@ class DashboardU extends Component
     public function imagecoursel()
     {
 <<<<<<< HEAD
+<<<<<<< HEAD
         return Pet::where('user_id', '1')->get();
 =======
         return (Pet::where('user_id', '1'));
 >>>>>>> 40e4a02 (enchance(user): create login and register ui)
+=======
+        return Pet::where('user_id', '1')->get();
+>>>>>>> 6780c05 (enchance(user): add logout)
     }
     public function render()
     {
