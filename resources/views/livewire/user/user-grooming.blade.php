@@ -8,11 +8,6 @@
               <a class="navbar-brand" href="{{ route('user/dashboard')}}">
                 <img src="../shine/assets/img/logo.svg" alt="Logo">
               </a>
-              <button class="navbar-toggler focus:outline-none block lg:hidden" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                  <span class="toggler-icon"></span>
-                  <span class="toggler-icon"></span>
-                  <span class="toggler-icon"></span>
-              </button>
           </nav>
       </div>
   </div>
