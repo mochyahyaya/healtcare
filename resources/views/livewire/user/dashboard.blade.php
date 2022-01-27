@@ -21,7 +21,7 @@
         <div class="container">
             <nav class="navbar py-2 navbar-expand-lg flex justify-between items-center relative duration-300">
                 <a class="navbar-brand" href="{{ route('user/dashboard')}}">
-                  <img src="../shine/assets/img/Logo.png" alt="Logo" style="width: 90px; height:45px">
+                  <img src="../shine/assets/img/Logo.png" alt="Logo" class="h-8 w-8 rounded-full object-cover" >
                 </a>
                 <a  href="{{ route('user/dashboard')}}"><span class="inline font-mono font-semibold text-blue-500">Garden Petshop</span></a>
                 <button class="navbar-toggler focus:outline-none block lg:hidden" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -136,7 +136,7 @@
   </header> 
 
   <!-- Hero Area Start -->
-  <section id="hero-area" class="bg-blue-100 pt-48 pb-10">
+  <section id="hero-area" class="pt-48 pb-10">
     <div class="container">
       <div class="flex justify-between">
         <div class="w-full text-center">
@@ -152,7 +152,7 @@
   <!-- Hero Area End -->
 
   <!-- Services Section Start -->
-  <section id="services" class="py-24">
+  <section id="services" class="bg-white py-24">
     <div class="container">
       <div class="text-center">
         <h2 class="mb-12 section-heading wow fadeInDown" data-wow-delay="0.3s">Pelayanan Kami</h2>
@@ -266,7 +266,7 @@
   <!-- Services Section End -->
   
   <!-- Boarding Section Start -->
-  <section id="boarding" class="text-center py-20 bg-blue-100">
+  <section id="boarding" class="text-center py-20">
     <div class="container">
       <div class="flex justify-center mx-3">
         <div class="w-full sm:w-3/4 md:w-2/3 lg:w-1/2">
@@ -387,7 +387,7 @@
               </div>
             </div>
   <!-- Grooming section Start --> 
-  <section id="grooming" class="py-24">
+  <section id="grooming" class="bg-white py-24">
     <div class="container">
       <div class="text-center">
         <h2 class="mb-12 section-heading wow fadeInDown" data-wow-delay="0.3s">Grooming</h2>
@@ -530,7 +530,7 @@
   <!-- Breeding Section End -->
 
   <!-- Feature Section Start -->
-  <div id="feature" class="bg-blue-100 py-24">
+  <div id="feature" class="py-24">
     <div class="container">
       <div class="flex flex-wrap items-center">
         <div class="w-full lg:w-1/2">
@@ -596,7 +596,7 @@
   <!-- Feature Section End -->
 
   <!-- Team Section Start -->
-  <section id="team" class="py-24 text-center">
+  <section id="team" class="bg-white py-24 text-center">
     <div class="container">
       <div class="text-center">
         <h2 class="mb-12 section-heading wow fadeInDown" data-wow-delay="0.3s">Tim Kami</h2>

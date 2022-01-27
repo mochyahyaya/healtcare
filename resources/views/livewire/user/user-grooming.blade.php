@@ -7,7 +7,9 @@
   .hover-trigger:hover .hover-target {
       display: block;
   }
-
+  .dropdown:hover .dropdown-menu {
+  display: block;
+  }
   </style>
 <!-- Header Area wrapper Starts -->
 
@@ -29,24 +31,25 @@
                 <div class="collapse navbar-collapse hidden lg:block duration-300 shadow absolute top-100 left-0 mt-full bg-white z-20 px-5 py-3 w-full lg:static lg:bg-transparent lg:shadow-none" id="navbarSupportedContent">
                 </div>
                 @if (auth()->user()->role_id == 3)
-                <div class="relative inline-block text-left">
-                  <div>
-                  <button class="flex text-sm border-2 border-transparent rounded-full focus:outline-none focus:border-gray-300 transition relative" id="menu-button" aria-expanded="true" aria-haspopup="true">
-                    <img class="h-12 w-12 rounded-full object-cover" src="{{ Auth::user()->profile_photo_url }}" alt="{{ Auth::user()->name }}" />
-                  </button>
-                </div>
-                  <div class="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1">
-                    <div class="py-1" role="none">
-                      {{-- Active: "bg-gray-100 text-gray-900", Not Active: "text-gray-700" --}}
-                      <a href="#" class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-0">Account settings</a>
-                      <a href="#" class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-1">Support</a>
-                      <a href="#" class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-2">License</a>
-                    <form method="POST" action="{{ route('logout') }}">
-                      @csrf
-                      <a class= "text-gray-700 block px-4 py-2 text-sm" href="{{ route('logout') }}" onclick="event.preventDefault();
-                      this.closest('form').submit();"> Logout</a>
-                    </form>
-                   </div>
+                <div class="">
+                  <div class="dropdown inline-block relative">
+                    <button class="">
+                      <img class="h-12 w-12 rounded-full object-cover" src="{{ Auth::user()->profile_photo_url }}" alt="{{ Auth::user()->name }}" />
+                    </button>
+                    <ul class="dropdown-menu absolute hidden w-56 pt-1">
+                      <li class=""><p class="rounded-t text-black font-bold bg-white py-2 px-4 block whitespace-no-wrap">{{Auth::user()->name}}<p></li>
+                       <li class=""><p class="rounded-t text-black ont-bold text-sm bg-white px-4 block whitespace-no-wrap">{{Auth::user()->email}}</p></li>
+                      <div class="border-t border-gray-200"></div>
+                      <li class=""><a class="rounded-t bg-white hover:bg-blue-200 py-2 px-4 block whitespace-no-wrap" href="{{route('user/profil')}}">Profile</a></li>
+                      <li class=""><a class="rounded-t bg-white hover:bg-blue-200 py-2 px-4 block whitespace-no-wrap" href="{{route('user/pet')}}">Pet</a></li>
+                      <li class=""><a class="rounded-t bg-white hover:bg-blue-200 py-2 px-4 block whitespace-no-wrap" href="#">Riwayat Aktivitas</a></li>
+                      <form method="POST" action="{{ route('logout') }}">
+                        @csrf
+                        <a class= "rounded-t bg-white hover:bg-blue-200 py-2 px-4 block whitespace-no-wrap" href="{{ route('logout') }}" onclick="event.preventDefault();
+                        this.closest('form').submit();"> Logout</a>
+                      </form>
+                    </ul>
+                  </div>
                 </div>
                 @else
                   <div class="header-btn hidden sm:block sm:absolute sm:right-0 sm:mr-16 lg:static lg:mr-0">
@@ -59,6 +62,7 @@
     </div>
     <!-- Navbar End -->
   </header>
+
   <div class="h-screen bg-blue-100 flex justify-center items-center">
 	<div class="lg:w-2/5 md:w-1/2 w-2/3">
     <div>

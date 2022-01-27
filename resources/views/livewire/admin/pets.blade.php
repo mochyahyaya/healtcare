@@ -87,7 +87,7 @@
                               {{ \Carbon\Carbon::parse($items->birthday)->locale('id')->format('d M Y')}}
                              </td>
                              <td class="px-6 py-4 whitespace-nowrap">
-                                <img src="{{ url('$items->featured_image' )}}" alt="{{ $items->name }}" class="h-10 w-10 rounded-full" alt="Image">
+                                <img src="{{ url('storage/featured_image/'.$items->featured_image )}}" alt="{{ $items->name }}" class="h-10 w-10 rounded-full" alt="Image">
                              </td>
                              <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                                <a href= "#" wire:click="detailShowModal({{$items->id}})" class="text-indigo-600 hover:text-indigo-900 mr-3">Lihat</a>
@@ -112,11 +112,11 @@
                  <x-jet-dialog-modal wire:model="modalFormVisible">
                      @if ($modelId)
                      <x-slot name="title">
-                         {{ __('Ubah Data Hotel') }}
+                         {{ __('Ubah Data Pet') }}
                      </x-slot>
                      @else
                      <x-slot name="title">
-                         {{ __('Tambah Data Hotel') }}
+                         {{ __('Tambah Data Pet') }}
                      </x-slot>
                      @endif
   
@@ -172,6 +172,7 @@
                       @error('galery.*') <span class="error">{{ $message }}</span> @enderror
                     </div>
                      </x-slot>
+                     
                      <x-slot name="footer">
                          <x-jet-secondary-button wire:click="$toggle('modalFormVisible')" wire:loading.attr="disabled">
                              {{ __('Batalkan') }}
@@ -219,7 +220,9 @@
                      <x-slot name="content">
                          <div class="flex flex-col py-8 overflow-hidden bg-white">
                              <span class="flex items-center gap-4 px-6 py-3 w-full">
-                              {{json_encode([$galery])}}
+                               @foreach ($data as $item)
+                                  <img alt="gallery" class="absolute inset-0 w-full h-full object-fill object-center" src="{{ url('storage/galery/'.$item->galery )}}">
+                               @endforeach
                              </span>
                            </div>
                      </x-slot>

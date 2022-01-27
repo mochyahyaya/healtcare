@@ -1,64 +1,45 @@
 <?php
 
-namespace App\Http\Livewire\Admin;
+namespace App\Http\Livewire\User;
 
-use App\Models\Gallery;
-use Livewire\Component;
+use Illuminate\Support\Facades\Auth;
 use Livewire\WithFileUploads;
 use Livewire\WithPagination;
-use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\Auth;
+use Livewire\Component;
+
 use App\Models\Pet;
 use App\Models\TypePet;
-use Carbon\Carbon;
-use Illuminate\Support\Facades\Gate;
-use Intervention\Image\Imagemanager;
 
-class Pets extends Component
+class UserPet extends Component
 {
     use WithPagination,WithFileUploads;
 
     public $modalFormVisible = false;
-    public $modalDeleteVisible = false;
     public $modalDetailVisible = false;
-    public $name, $type_id, $race, $size, $weight, $colour, $birthday, $feature_image, $user_id, $gender;
+    public $modalDeleteVisible = false;
     public $modelId;
-    public $search='';
-    public $sortDirection = 'asc';
-    public $sortBy = 'name';    
-    public $perPage = 10;
-    public $galery = [];
-    /**
-     * function for validation
-     *
-     * @return void
-     */
-    
-    public function rules()
-    {
-        return [
-            'name' => 'required',
-            'type_id' => 'required',
-            'size' => 'required',
-            'weight' => 'required',
-            'colour' => 'required',
-            'birthday' => 'required',
-            'feature_image' => 'image',
-            'galery.*' => 'image'
-            
-        ];
-    }
+    public $name, $type_id, $race, $size, $weight, $colour, $birthday, $feature_image, $user_id, $gender;
 
     public function mount()
     {
         $this->resetPage();
     }
 
-    /**
-     * Show the form modal
-     * of create function
-     * @return void
-     */
+    public function rules()
+    {
+        return [
+            'name'          => 'required',
+            'type_id'       => 'required',
+            'size'          => 'required',
+            'weight'        => 'required',
+            'colour'        => 'required',
+            'birthday'      => 'required',
+            'gender'        => 'required',
+            'feature_image' => 'image',
+            
+        ];
+    }
+
     public function createShowModal()
     {
         $this->resetValidation();
@@ -80,16 +61,7 @@ class Pets extends Component
         $this->modelId = $id;
         $this->modalDeleteVisible = true;
     }
-
-    public function detailShowModal($id)
-    {
-        $this->modelId = $id;
-        $this->modalDetailVisible = true;
-
-        $data = Pet::find($this->modelId);
-        
-    }
-
+    
     public function loadModel()
     {
         
@@ -105,42 +77,23 @@ class Pets extends Component
         $this->gender = $data->gender;
         $this->birthday = $data->birthday;
     }
-        
-    /**
-     * create function
-     *
-     * @return void
-     */
+
     public function create()
     {   
         if (!empty($this->feature_image)) {
             $this->feature_image->store('public/featured_image');
-        }
-
-        if (!empty($this->galery)){
-            foreach($this->galery as $key=>$galeries){
-                $this->galery[$key] = $galeries->store('public/galery');
             }
-        }
-        $this->galery = json_encode($this->galery); 
         $this->validate();
         Pet::create($this->modelData());
         $this->modalFormVisible = false;
         $this->resetVars();
     }
-    
+
     public function update()
     {
         if (!empty($this->feature_image)) {
             $this->feature_image->store('public/featured_image');
-        }
-
-        if (!empty($this->galery)){
-            foreach($this->galery as $key=>$galeries){
-                $this->galery[$key] = $galeries->store('public/galery');
             }
-        }
-        $this->galery = json_encode($this->galery); 
         $this->validate();
         Pet::find($this->modelId)->update($this->modelData());
         $this->modalFormVisible = false;
@@ -153,17 +106,6 @@ class Pets extends Component
         $this->resetPage();
     }
 
-    public function show()
-    {
-        $this->modalDetailVisible = false;
-    }
-
-    
-    /**
-     * Fill model to create data
-     *
-     * @return void
-     */
     public function modelData()
     { 
 
@@ -176,17 +118,11 @@ class Pets extends Component
             'type_id'        => $this->type_id,
             'birthday'       => $this->birthday,
             'featured_image' => $this->feature_image->hashName(),
-            'galery'         => $this->galery,
             'user_id'        => Auth::user()->id,
-            'gender'         => 'Jantan'
+            'gender'         => $this->gender,
         ];
     }
     
-    /**
-     * function for reset
-     *
-     * @return void
-     */
     public function resetVars()
     {        
              $this->modelId = null;   
@@ -196,33 +132,9 @@ class Pets extends Component
              $this->weight = null;
              $this->colour = null;
              $this->type_id = null;
+             $this->gender = null;
              $this->feature_image = null;
              $this->galery = null;
-    }
-
-    public function read()
-    {
-        return Pet::where('user_id', 1)->get();
-    }
-
-    public function search()
-    {
-        return Pet::query()
-        ->search($this->search)
-        ->orderBy($this->sortBy, $this->sortDirection)
-        ->paginate($this->perPage);
-    }
-
-
-    public function sortBy($field)
-    {
-        if($this->sortDirection =='asc'){
-            $this->sortDirection ='desc';
-        } else {
-            $this->sortDirection = 'asc';
-        }
-
-        return $this->sortBy = $field;
     }
 
     public function typepets()
@@ -230,24 +142,16 @@ class Pets extends Component
         return TypePet::all();
     }
 
-    public function age()
+    public function read()
     {
-        $today = Carbon::now();
-        $bd = $this->birthday ;
-
-        return $today->diff($bd);
+        return Pet::where('user_id', Auth::id())->get();
     }
 
     public function render()
     {
-        if(Gate::denies('manage-admins')){
-            abort(403);
-        }
-        return view('livewire.admin.pets',[
-            'data' => $this->search(),
-            'search' => $this->read(),
-            'typepets' => $this->typepets(),
-        ]);
+        return view('livewire.user.user-pet', [
+            'data' => $this->read(),
+            'typepets' => $this->typepets()
+        ])->extends('layouts.user')->section('content');
     }
-
 }

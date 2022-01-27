@@ -38,7 +38,7 @@
   </head>
   
   <body>
-    <div>
+    <div class="bg-blue-100">
         @yield('content')
     </div>
         
