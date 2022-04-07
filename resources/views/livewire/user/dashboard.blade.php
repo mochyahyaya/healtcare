@@ -70,7 +70,7 @@
                   <span class="toggler-icon"></span>
               </button>
 
-              <div class="collapse navbar-collapse hidden lg:block duration-300 shadow absolute top-100 left-0 mt-full bg-white z-20 px-5 py-3 w-full lg:static lg:bg-transparent lg:shadow-none" id="navbarSupportedContent">
+              <div class="collapse navbar-collapse hidden lg:block duration-300 shadow absolute top-100 left-0 mt-full bg-white z-20 px-10 py-3 w-full lg:static lg:bg-transparent lg:shadow-none" id="navbarSupportedContent">
                   <ul class="navbar-nav mr-auto justify-center items-center lg:flex">
                       <li class="nav-item">
                         <a class="page-scroll active" href="#hero-area">Home</a>
@@ -84,9 +84,9 @@
                       <li class="nav-item">
                         <a class="page-scroll" href="#breeding">Breeding</a>
                       </li>
-                      {{-- <li class="nav-item">
-                        <a class="page-scroll" href="#testimonial">Testimoni</a>
-                      </li> --}}
+                      <li class="nav-item">
+                        <a class="page-scroll" href="#testimonial">Vaksinasi</a>
+                      </li>
                       <li class="nav-item">
                         <a class="page-scroll" href="#feature">Tentang Kami</a>
                       </li>
@@ -105,8 +105,9 @@
                     <li class=""><p class="rounded-t text-black font-bold bg-white py-2 px-4 block whitespace-no-wrap">{{Auth::user()->name}}<p></li>
                      <li class=""><p class="rounded-t text-black ont-bold text-sm bg-white px-4 block whitespace-no-wrap">{{Auth::user()->email}}</p></li>
                     <div class="border-t border-gray-200"></div>
-                    <li class=""><a class="rounded-t bg-white hover:bg-blue-200 py-2 px-4 block whitespace-no-wrap" href="#">Profile</a></li>
-                    <li class=""><a class="rounded-t bg-white hover:bg-blue-200 py-2 px-4 block whitespace-no-wrap" href="#">Riwayat Aktivitas</a></li>
+                      <li class=""><a class="rounded-t bg-white hover:bg-blue-200 py-2 px-4 block whitespace-no-wrap" href="{{route('user/profil')}}">Profile</a></li>
+                      <li class=""><a class="rounded-t bg-white hover:bg-blue-200 py-2 px-4 block whitespace-no-wrap" href="{{route('user/pet')}}">Pet</a></li>
+                      <li class=""><a class="rounded-t bg-white hover:bg-blue-200 py-2 px-4 block whitespace-no-wrap" href="#">Riwayat Aktivitas</a></li>
                     <form method="POST" action="{{ route('logout') }}">
                       @csrf
                       <a class= "rounded-t bg-white hover:bg-blue-200 py-2 px-4 block whitespace-no-wrap" href="{{ route('logout') }}" onclick="event.preventDefault();
@@ -342,14 +343,14 @@
           @foreach ($image as $item)  
             <div class="swiper-slide"><img alt="Kucing" class="object-fill" src="{{url('storage/featured_image/'.$item->featured_image )}}"></div>
           @endforeach
-          <div class="swiper-slide">Slide 1</div>
+          {{-- <div class="swiper-slide">Slide 1</div>
           <div class="swiper-slide">Slide 2</div>
           <div class="swiper-slide">Slide 3</div>
           <div class="swiper-slide">Slide 4</div>
           <div class="swiper-slide">Slide 5</div>
           <div class="swiper-slide">Slide 6</div>
           <div class="swiper-slide">Slide 7</div>
-          <div class="swiper-slide">Slide 8</div>
+          <div class="swiper-slide">Slide 8</div> --}}
         </div>
         <div class="swiper-pagination"></div>
       </div>

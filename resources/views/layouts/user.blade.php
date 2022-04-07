@@ -33,6 +33,7 @@
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script src="https://npmcdn.com/flatpickr/dist/flatpickr.min.js"></script>
     <script src="https://npmcdn.com/flatpickr/dist/l10n/id.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     
     @yield('scripts')
     @livewireScripts

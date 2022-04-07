@@ -27,7 +27,7 @@ class Breedings extends Component
     public $sortBy = 'pet_id_1';       
     public $start_date = null;
     public $end_date = null;
-    public $searchTerm;
+    public $search, $perPage;
     public $type= 1; 
     public $pet = null;
     public $selectedUser = null;
@@ -128,7 +128,17 @@ class Breedings extends Component
     public function create()
     {   
         $this->validate();
-        Breeding::create($this->modelData());
+        $breeding = Breeding::create($this->modelData());
+        $breeding->save();
+        $cage = Cage::find($breeding->cage_id);
+        $cage->counter = $cage->counter + 2;
+        $cage->save();
+        $this->dispatchBrowserEvent('swal:modal', [
+            'title'     => 'Sukses',
+            'icon'      => 'success',
+            'text'      => 'Data Breeding Berhasil Ditambahkan',
+            'iconcolor' => 'green'
+        ]);
         $this->modalFormVisible = false;
         $this->resetVars();
     }
@@ -137,6 +147,12 @@ class Breedings extends Component
     {
         $this->validate();
         Breeding::find($this->modelId)->update($this->modelData());
+        $this->dispatchBrowserEvent('swal:modal', [
+            'title'     => 'Sukses',
+            'icon'      => 'success',
+            'text'      => 'Data Breeding Berhasil Diubah',
+            'iconcolor' => 'green'
+        ]);
         $this->modalFormVisible = false;
     }
 
@@ -154,9 +170,11 @@ class Breedings extends Component
 
     public function proceed($id)
     {
-        $breed  = Breeding::findorFail($$this->modelIdd);
+        $breed  = Breeding::findorFail($this->modelId);
         $breed->status = 'proses';
         $breed->save();
+        $breed->cages->counter = $breed->cages->counter + 2;
+        $breed->cages->save();
         $this->modalDetailVisible = false;
     }
 
@@ -165,6 +183,8 @@ class Breedings extends Component
         $breed  = Breeding::findorFail($this->modelId);
         $breed->status = 'selesai';
         $breed->save();
+        $breed->cages->counter = $breed->cages->counter - 2;
+        $breed->cages->save();
         $this->modalDetailVisible = false;
     }
     
@@ -200,10 +220,10 @@ class Breedings extends Component
 
     public function read()
     {
-        $searchTerm = '%'.$this->searchTerm.'%';
-        return Breeding::where('pet_id_1', 'LIKE', $searchTerm)
-        ->orderBy($this->sortColumn, $this->sortDirection)
-        ->paginate(5);
+        return Breeding::query()
+        ->search($this->search)
+        ->orderBy($this->sortBy, $this->sortDirection)
+        ->paginate($this->perPage);
     }
 
     public function pets()
@@ -234,7 +254,7 @@ class Breedings extends Component
     public function cages()
     {
         return Cage::where('type_cage_id', '3')
-        // ->where('count', '>', '2')
+        ->where('counter', '<=', 'count')
         ->get();
     }
 

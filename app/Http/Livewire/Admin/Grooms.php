@@ -6,6 +6,8 @@ use App\Models\Groom;
 use App\Models\Pet;
 use App\Models\User;
 use App\Models\Hotel;
+use App\Notifications\GroomsNotification;
+use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Gate;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -35,10 +37,9 @@ class Grooms extends Component
     {
         return [
             'selectedPet' => 'required',
-            'size' => 'required',
+            'size'          => 'required',
             'service' => 'required',
             'address' => 'required',
-            'cage_id' => 'required'
             
         ];
     }
@@ -86,7 +87,7 @@ class Grooms extends Component
         $this->size         = $data->size;
         $this->address      = $data->address;
         $this->status       = $data->status;
-        $this->service  = $data->service;
+        $this->service      = $data->service;
 
     }
 
@@ -110,7 +111,17 @@ class Grooms extends Component
     public function create()
     {   
         $this->validate();
-        Groom::create($this->modelData());
+        $grooms = Groom::create($this->modelData());
+        $admins = User::whereHas('roles', function ($query) {
+            $query->where('id', 1);
+        })->get();
+        Notification::send($admins, new GroomsNotification($grooms));
+        $this->dispatchBrowserEvent('swal:modal', [
+            'title'     => 'Sukses',
+            'icon'      => 'success',
+            'text'      => 'Data Grooming Berhasil Ditambahkan',
+            'iconcolor' => 'green'
+        ]);
         $this->modalFormVisible = false;
         $this->resetVars();
     }
@@ -119,7 +130,14 @@ class Grooms extends Component
     {
         $this->validate();
         Groom::find($this->modelId)->update($this->modelData());
+        $this->dispatchBrowserEvent('swal:modal', [
+            'title'     => 'Sukses',
+            'icon'      => 'success',
+            'text'      => 'Data Grooming Berhasil Diubah',
+            'iconcolor' => 'green'
+        ]);
         $this->modalFormVisible = false;
+        $this->resetVars();
     }
 
     public function delete()
@@ -215,7 +233,6 @@ class Grooms extends Component
         ->orderBy($this->sortBy, $this->sortDirection)
         ->paginate($this->perPage);
     }
-
 
     public function render()
     {

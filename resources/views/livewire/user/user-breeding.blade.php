@@ -10,7 +10,7 @@
     .dropdown:hover .dropdown-menu {
     display: block;
     }
-    </style>
+  </style>
     <header id="header-wrap" class="relative">
       <!-- Navbar Start -->      
       <div class="navigation fixed top-0 left-0 w-full z-30 duration-300">
@@ -27,6 +27,23 @@
                   </button>
   
                   <div class="collapse navbar-collapse hidden lg:block duration-300 shadow absolute top-100 left-0 mt-full bg-white z-20 px-5 py-3 w-full lg:static lg:bg-transparent lg:shadow-none" id="navbarSupportedContent">
+                    <ul class="navbar-nav mr-auto justify-center items-center lg:flex">
+                      <li class="nav-item">
+                        <a class="page-scroll active" href="{{route('user/dashboard')}}">Home</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="page-scroll" href="{{route('user/groomings')}}">Grooming</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="page-scroll" href="{{route('user/hotels')}}">Boarding</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="page-scroll" href="{{route('user/breedings')}}">Breeding</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="page-scroll" href="">Vaksinasi</a>
+                      </li>
+                  </ul>
                   </div>
                   @if (auth()->user()->role_id == 3)
                   <div class="">
@@ -54,7 +71,6 @@
                       <a class="text-blue-600 border border-blue-600 px-10 py-3 rounded-full duration-300 hover:bg-blue-600 hover:text-white" href="{{route('user/logins')}}">Masuk</a>
                     </div>
                   @endif
-                  </div>
               </nav>
           </div>
       </div>
@@ -101,3 +117,18 @@
       </div>
   </div>
 </div>
+@section('scripts')
+  <script>
+    window.addEventListener('swal:modal', event=>
+    {
+      Swal.fire({
+        icon: event.detail.icon,
+        iconcolor: event.detail.iconcolor,
+        title: event.detail.title,
+        text: event.detail.text,
+        showConfirmButton: false,
+        timer: 1500,
+      });
+    });
+  </script>
+@endsection

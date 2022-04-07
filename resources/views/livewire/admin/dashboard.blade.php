@@ -18,7 +18,7 @@
                                     </div>
                                     <div class="flex-1 text-right md:text-center">
                                         <h5 class="font-bold uppercase text-gray-600">Total Member</h5>
-                                        <h3 class="font-bold text-3xl">3 <span class="text-green-500"><i class="fas fa-user"></i></span></h3>
+                                        <h3 class="font-bold text-3xl">{{$users}} <span class="text-green-500"><i class="fas fa-user"></i></span></h3>
                                     </div>
                                 </div>
                             </div>
@@ -33,7 +33,7 @@
                                     </div>
                                     <div class="flex-1 text-right md:text-center">
                                         <h5 class="font-bold uppercase text-gray-600">Total Pet</h5>
-                                        <h3 class="font-bold text-3xl">5 <span class="text-pink-500"><i class="fas fa-dog"></i></span></h3>
+                                        <h3 class="font-bold text-3xl">{{$pets}} <span class="text-pink-500"><i class="fas fa-dog"></i></span></h3>
                                     </div>
                                 </div>
                             </div>
@@ -48,7 +48,7 @@
                                     </div>
                                     <div class="flex-1 text-right md:text-center">
                                         <h5 class="font-bold uppercase text-gray-600">Total Kandang</h5>
-                                        <h3 class="font-bold text-3xl">2 <span class="text-yellow-600"><i class="fab fa-simplybuilt"></i></span></h3>
+                                        <h3 class="font-bold text-3xl">{{$cages}} <span class="text-yellow-600"><i class="fab fa-simplybuilt"></i></span></h3>
                                     </div>
                                 </div>
                             </div>
@@ -58,7 +58,6 @@
         
         
                     <div class="flex flex-row flex-wrap flex-grow mt-2">
-        
                         <div class="w-full md:w-1/2 xl:w-1/3 p-6">
                             <!--Graph Card-->
                             <div class="bg-white border-transparent rounded-lg shadow-xl">
@@ -67,6 +66,7 @@
                                 </div>
                                 <div class="p-5" style="height: 280px !important">
                                     <livewire:livewire-column-chart
+                                    key="{{ $columnChartModelgroom->reactiveKey() }}"
                                     :column-chart-model="$columnChartModelgroom "
                                 />  
                                 </div>
@@ -83,6 +83,7 @@
                                 <div class="p-5">
                                     <div class="p-5" style="height: 240px !important">
                                         <livewire:livewire-column-chart
+                                        key="{{ $columnChartModelboard->reactiveKey() }}"
                                         :column-chart-model="$columnChartModelboard"
                                     />  
                                     </div>
@@ -99,6 +100,7 @@
                                 </div>
                                     <div class="p-5" style="height: 280px !important">
                                         <livewire:livewire-column-chart
+                                        key="{{ $columnChartModelbreed->reactiveKey() }}"
                                         :column-chart-model="$columnChartModelbreed"
                                     />  
                                     </div>
@@ -108,32 +110,94 @@
                         </div>
         
                         <div class="w-full p-6">
+                            @if(auth()->user()->role_id == 1)
                             <!--Graph Card-->
                             <div class="bg-white border-transparent rounded-lg shadow-xl">
                                 <div class="bg-gradient-to-b from-gray-300 to-gray-100 uppercase text-gray-800 border-b-2 border-gray-300 rounded-tl-lg rounded-tr-lg p-2">
                                     <h5 class="font-bold uppercase text-gray-600">Notifikasi</h5>
                                 </div>
-                                <div class="p-5"><div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div><canvas id="chartjs-4" class="chartjs chartjs-render-monitor" width="482" height="241" style="display: block; width: 482px; height: 241px;"></canvas>
-                                    <script>
-                                        new Chart(document.getElementById("chartjs-4"), {
-                                            "type": "doughnut",
-                                            "data": {
-                                                "labels": ["P1", "P2", "P3"],
-                                                "datasets": [{
-                                                    "label": "Issues",
-                                                    "data": [300, 50, 100],
-                                                    "backgroundColor": ["rgb(255, 99, 132)", "rgb(54, 162, 235)", "rgb(255, 205, 86)"]
-                                                }]
-                                            }
-                                        });
-                                    </script>
+                                @forelse( json_decode($notifications) as $notification)
+        
+                                @if ($notification->type == 'App\Notifications\GroomsNotification') 
+                                <div>
+                                    <div class="alert border border-red-400 text-black px-2 py-2 mt-3 rounded-full relative" role="alert">
+                                        <span class="font-semibold mr-2 text-left flex-auto">{{ \Carbon\Carbon::parse($notification->created_at)->locale('id')->format('d M Y')}} {{($notification->data->name)}} telah melakukan reservasi grooming atas nama pet {{($notification->data->pet)}}.</span>
+                                        <a href="#" wire:click="markNotificationGroom('{{ ($notification->id) }}')" class="float-right mark-as-read">
+                                            Mark as read
+                                        </a>
+                                    </div>
                                 </div>
+                                @endif
+
+                                {{-- @if ($notification->type == 'App\Notifications\NewTReservation')
+                                <div class="alert alert-warning" role="alert">
+                                [{{ $notification->created_at }}] {{($notification->data->name)}} telah melakukan reservasi alat {{($notification->data->tool)}}.
+                                <a href="{{ route("admin.treservation.index") }}" class="float-right mark-as-read" data-id="{{ ($notification->id) }}">
+                                    Mark as read
+                                </a>
+                                </div>
+                                @endif
+
+                                @if ($notification->type == 'App\Notifications\NewRoomReturn')
+                                <div class="alert alert-primary" role="alert">
+                                [{{ $notification->created_at }}] {{($notification->data->name)}} telah melakukan pengembalian ruangan {{($notification->data->room)}}.
+                                <a href="{{ route("admin.return.index") }}" class="float-right mark-as-read" data-id="{{ ($notification->id) }}">
+                                    Mark as read
+                                </a>
+                                </div>
+                                @endif
+
+                                @if ($notification->type == 'App\Notifications\NewToolReturn')
+                                <div class="alert alert-danger" role="alert">
+                                [{{ $notification->created_at }}] {{($notification->data->name)}} telah melakukan pengembalian alat {{($notification->data->tool)}}.
+                                <a href="{{ route("admin.toolreturn.index") }}" class="float-right mark-as-read" data-id="{{ ($notification->id) }}">
+                                    Mark as read
+                                </a>
+                                </div>
+                                @endif --}}
+            
+                                @if($loop->last)
+                                    <a href="#" id="mark-all">
+                                        Mark all as read
+                                    </a>
+                                @endif
+                                @empty
+                                <h6 class="m-1 font-weight-bold text-dark">Tidak ada notifikasi baru</h6> 
+                                @endforelse 
                             </div>
                             <!--/Graph Card-->
+                            @endif
                         </div>
                     </div>
                 </div>
         </div>
     </div>
     <livewire:scripts />
+    @if(auth()->user()->role_id == 1)
+    {{-- <script>
+    function sendMarkRequest(id = null) {
+        return $.ajax("{{ route('markNotification') }}", {
+            method: 'POST',
+            data: {
+                _token,
+                id
+            }
+        });
+    }
+    $(function() {
+        $('.mark-as-read').click(function() {
+            let request = sendMarkRequest($(this).data('id'));
+            request.done(() => {
+                $(this).parents('div.alert').remove();
+            });
+        });
+        $('#mark-all').click(function() {
+            let request = sendMarkRequest();
+            request.done(() => {
+                $('div.alert').remove();
+            })
+        });
+    });
+    </script> --}}
+@endif
     @livewireChartsScripts

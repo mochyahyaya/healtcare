@@ -49,7 +49,14 @@ class Monitorings extends Component
             'medicine'      => $this->medicine,
             'notes'         => $this->notes,
             'photo'         => $this->photo,
-        ]); 
+        ]);
+        
+        $this->dispatchBrowserEvent('swal:modal', [
+            'title'     => 'Sukses',
+            'icon'      => 'success',
+            'text'      => 'Data Monitoring Boarding Berhasil Ditambahkan',
+            'iconcolor' => 'green'
+        ]);
     }
 
     public function read()

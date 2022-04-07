@@ -84,13 +84,13 @@
                                  {{$items->colour}}
                              </td>
                              <td class="px-6 py-4 whitespace-nowrap">
-                              {{ \Carbon\Carbon::parse($items->birthday)->locale('id')->format('d M Y')}}
+                              {{ \Carbon\Carbon::parse($items->birthday)->translatedFormat('d F Y')}}
                              </td>
                              <td class="px-6 py-4 whitespace-nowrap">
                                 <img src="{{ url('storage/featured_image/'.$items->featured_image )}}" alt="{{ $items->name }}" class="h-10 w-10 rounded-full" alt="Image">
                              </td>
                              <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                               <a href= "#" wire:click="detailShowModal({{$items->id}})" class="text-indigo-600 hover:text-indigo-900 mr-3">Lihat</a>
+                               <a href="{{ route('admin/gallery', ['id'=>$items->id]) }}" class="text-indigo-600 hover:text-indigo-900 mr-3">Lihat</a>
                                <a href= "#" wire:click="updateShowModal({{$items->id}})" class="text-indigo-600 hover:text-indigo-900 mr-3">Edit</a>
                                <a href= "#" wire:click="deleteShowModal({{$items->id}})" class="text-indigo-600 hover:text-indigo-900 mr-3">Hapus</a>
                              </td>
@@ -158,7 +158,7 @@
                        </div>
                          <div class="mt-4">
                             <x-jet-label for="birthday" value="{{ __('Ulang Tahun') }}" />
-                            <x-datetime-picker wire:model="birthday" class="w-full rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" />
+                            <x-datetime-picker-allday wire:model="birthday" class="w-full rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" />
                             @error('birthday') <span class="error">{{ $message }}</span> @enderror
                         </div>
                       <div class="mt-4">
@@ -209,32 +209,23 @@
                              {{ __('Hapus Data') }}
                          </x-jet-danger-button>
                      </x-slot>
-                 </x-jet-dialog-modal>
-             
-                 {{-- Detail Modal --}}
-                 <x-jet-dialog-modal wire:model="modalDetailVisible">
-                     <x-slot name="title">
-                         {{ __('Galeri Foto') }}
-                     </x-slot>
-             
-                     <x-slot name="content">
-                         <div class="flex flex-col py-8 overflow-hidden bg-white">
-                             <span class="flex items-center gap-4 px-6 py-3 w-full">
-                               @foreach ($data as $item)
-                                {{-- @dd($item->galery) --}}
-                                  <img alt="gallery" class="absolute inset-0 w-10 h-10 object-fill object-center" src="{{ $item->galery}}">
-                               @endforeach
-                             </span>
-                           </div>
-                     </x-slot>
-             
-                     <x-slot name="footer">
-                         <x-jet-secondary-button wire:click="$toggle('modalDetailVisible')" wire:loading.attr="disabled">
-                             {{ __('Tutup') }}
-                         </x-jet-secondary-button>
-                     </x-slot>
-                 </x-jet-dialog-modal>   
+                 </x-jet-dialog-modal> 
              </div>
         </div>
     </div>
   </div>
+  @section('scripts')
+  <script>
+    window.addEventListener('swal:modal', event=>
+    {
+      Swal.fire({
+        icon: event.detail.icon,
+        iconcolor: event.detail.iconcolor,
+        title: event.detail.title,
+        text: event.detail.text,
+        showConfirmButton: false,
+        timer: 1500,
+      });
+    });
+  </script>
+@endsection

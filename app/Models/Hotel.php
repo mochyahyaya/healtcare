@@ -31,4 +31,18 @@ class Hotel extends Model
         return $this->belongsTo(Pet::class, 'pet_id');
     }
 
+    public function scopeSearch($query, $val){
+        return $query
+        ->select('hotels.*', 'hotels.id AS id')
+        ->where('status', '<>', 'selesai')
+        ->leftJoin('pets', 'pets.id', '=', 'hotels.pet_id')
+        ->where(function ($query) use ($val){
+            $query
+            ->orwhere('name', 'like', '%' .$val. '%')
+            ->orwhere('start_date', 'like', '%' .$val. '%')
+            ->Orwhere('end_date', 'like', '%'. $val. '%')
+            ->Orwhere('status', 'like', '%' .$val. '%');
+        });
+    }
+
 }               

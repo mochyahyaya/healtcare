@@ -35,6 +35,13 @@ class MedicalRecordDetails extends Component
             'vaccinee'   => $this->vaccinee, 
             'status'     => 'Sehat'
         ]);
+
+        $this->dispatchBrowserEvent('swal:modal', [
+            'title'     => 'Sukses',
+            'icon'      => 'success',
+            'text'      => 'Data Rekam Medis Berhasil Ditambahkan',
+            'iconcolor' => 'green'
+        ]);
     }
 
     public function vaccinee()

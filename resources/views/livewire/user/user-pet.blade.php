@@ -26,7 +26,24 @@
                         <span class="toggler-icon"></span>
                         <span class="toggler-icon"></span>
                     </button>
-                    <div class="collapse navbar-collapse hidden lg:block duration-300 shadow absolute top-100 left-0 mt-full bg-white z-20 px-5 py-3 w-full lg:static lg:bg-transparent lg:shadow-none" id="navbarSupportedContent">
+                    <div class="collapse navbar-collapse hidden lg:block duration-300 shadow absolute top-100 left-10 mt-full bg-white z-20 px-10 py-3 w-full lg:static lg:bg-transparent lg:shadow-none" id="navbarSupportedContent">
+                        <ul class="navbar-nav mr-auto justify-center items-center lg:flex">
+                            <li class="nav-item">
+                              <a class="page-scroll active" href="{{route('user/dashboard')}}">Home</a>
+                            </li>
+                            <li class="nav-item">
+                              <a class="page-scroll" href="{{route('user/groomings')}}">Grooming</a>
+                            </li>
+                            <li class="nav-item">
+                              <a class="page-scroll" href="{{route('user/hotels')}}">Boarding</a>
+                            </li>
+                            <li class="nav-item">
+                              <a class="page-scroll" href="{{route('user/breedings')}}">Breeding</a>
+                            </li>
+                            <li class="nav-item">
+                              <a class="page-scroll" href="">Vaksinasi</a>
+                            </li>
+                        </ul>
                     </div>
                     @if (auth()->user()->role_id == 3)
                     <div class="">
@@ -62,13 +79,14 @@
 
     <div class="text-gray-600 body-font">
         <div class="container h-screen px-5 py-24 mx-auto">
-            <div class="flex flex-col text-center w-full mb-20">
-                <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900">GALLERY</h1>
-                <p class="lg:w-2/3 mx-auto leading-relaxed text-base">Hewan Peliharaan {{Auth::user()->name}}</p>
-            </div>
-            <button class="flex mt-16 mb-16 text-white bg-blue-300 border-0 py-2 px-8 focus:outline-none hover:bg-blue-600 rounded text-lg" wire:click="createShowModal">Tambah Pet</button>
-            <div class="flex flex-wrap -m-4">
-                @foreach ($data as $item)
+            <div class="bg-white shadow overflow-hidden border-b border-gray-200 sm:rounded-lg p-12">
+                <div class="flex flex-col text-center w-full mb-20">
+                    <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900">GALLERY</h1>
+                    <p class="lg:w-2/3 mx-auto leading-relaxed text-base">Hewan Peliharaan {{Auth::user()->name}}</p>
+                </div>
+                <button class="flex mt-16 mb-16 text-white bg-blue-300 border-0 py-2 px-8 focus:outline-none hover:bg-blue-600 rounded text-lg" wire:click="createShowModal">Tambah Pet</button>
+                <div class="flex flex-wrap -m-4">
+                    @foreach ($data as $item)
                     <div class="lg:w-1/4 sm:w-1/2 p-2">
                         <div class="flex relative">
                             <img alt="gallery" class="absolute inset-0 w-full h-full object-fill object-center" src="{{ url('storage/featured_image/'.$item->featured_image )}}">
@@ -78,11 +96,11 @@
                                 <p class="leading-relaxed">{{ \Carbon\Carbon::parse($item->birthday)->locale('id')->format('d M Y')}}</p>
                                 <a href= "#" wire:click="updateShowModal({{$item->id}})" class="text-indigo-600 hover:text-indigo-900 mr-3">Edit</a>
                                 <a href= "#" wire:click="deleteShowModal({{$item->id}})" class="text-indigo-600 hover:text-indigo-900 mr-3">Hapus</a>
-                                <a href= "#" wire:click="deleteShowModal({{$item->id}})" class="text-indigo-600 hover:text-indigo-900 mr-3">Hapus</a>
                             </div>
                         </div>
                     </div>
-                @endforeach
+                    @endforeach
+                </div>
             </div>
         </div>
     </div>

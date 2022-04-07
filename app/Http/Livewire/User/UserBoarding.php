@@ -33,8 +33,14 @@ class UserBoarding extends Component
             'total_day'       => $this->total_day
         ]); 
 
-        session()->flash('success', 'Berhasil mendaftarkan boarding.');
-        return redirect()->to('/user/dashboard');
+        $this->dispatchBrowserEvent('swal:modal', [
+            'title'     => 'Sukses',
+            'icon'      => 'success',
+            'text'      => 'Pendaftaran Boarding Berhasil dilakukan',
+            'iconcolor' => 'green'
+        ]);
+
+        // return redirect()->to('/user/dashboard');
     }
 
     public function pet()

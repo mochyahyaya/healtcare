@@ -1,19 +1,20 @@
 <div>
   <style>
-  .hover-trigger .hover-target {
-      display: none;
-  }
-  
-  .hover-trigger:hover .hover-target {
-      display: block;
-  }
-  .dropdown:hover .dropdown-menu {
-  display: block;
-  }
+    .hover-trigger .hover-target {
+        display: none;
+    }
+    
+    .hover-trigger:hover .hover-target {
+        display: block;
+    }
+    .dropdown:hover .dropdown-menu {
+    display: block;
+    }
   </style>
+
 <!-- Header Area wrapper Starts -->
 
-   <header id="header-wrap" class="relative">
+  <header id="header-wrap" class="relative">
     <!-- Navbar Start -->      
     <div class="navigation fixed top-0 left-0 w-full z-30 duration-300">
         <div class="container">
@@ -29,6 +30,23 @@
                 </button>
 
                 <div class="collapse navbar-collapse hidden lg:block duration-300 shadow absolute top-100 left-0 mt-full bg-white z-20 px-5 py-3 w-full lg:static lg:bg-transparent lg:shadow-none" id="navbarSupportedContent">
+                  <ul class="navbar-nav mr-auto justify-center items-center lg:flex">
+                    <li class="nav-item">
+                      <a class="page-scroll active" href="{{route('user/dashboard')}}">Home</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="page-scroll" href="{{route('user/groomings')}}">Grooming</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="page-scroll" href="{{route('user/hotels')}}">Boarding</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="page-scroll" href="{{route('user/breedings')}}">Breeding</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="page-scroll" href="">Vaksinasi</a>
+                    </li>
+                </ul>
                 </div>
                 @if (auth()->user()->role_id == 3)
                 <div class="">
@@ -38,7 +56,7 @@
                     </button>
                     <ul class="dropdown-menu absolute hidden w-56 pt-1">
                       <li class=""><p class="rounded-t text-black font-bold bg-white py-2 px-4 block whitespace-no-wrap">{{Auth::user()->name}}<p></li>
-                       <li class=""><p class="rounded-t text-black ont-bold text-sm bg-white px-4 block whitespace-no-wrap">{{Auth::user()->email}}</p></li>
+                      <li class=""><p class="rounded-t text-black ont-bold text-sm bg-white px-4 block whitespace-no-wrap">{{Auth::user()->email}}</p></li>
                       <div class="border-t border-gray-200"></div>
                       <li class=""><a class="rounded-t bg-white hover:bg-blue-200 py-2 px-4 block whitespace-no-wrap" href="{{route('user/profil')}}">Profile</a></li>
                       <li class=""><a class="rounded-t bg-white hover:bg-blue-200 py-2 px-4 block whitespace-no-wrap" href="{{route('user/pet')}}">Pet</a></li>
@@ -52,11 +70,10 @@
                   </div>
                 </div>
                 @else
-                  <div class="header-btn hidden sm:block sm:absolute sm:right-0 sm:mr-16 lg:static lg:mr-0">
-                    <a class="text-blue-600 border border-blue-600 px-10 py-3 rounded-full duration-300 hover:bg-blue-600 hover:text-white" href="{{route('user/logins')}}">Masuk</a>
-                  </div>
-                @endif
+                <div class="header-btn hidden sm:block sm:absolute sm:right-0 sm:mr-16 lg:static lg:mr-0">
+                  <a class="text-blue-600 border border-blue-600 px-10 py-3 rounded-full duration-300 hover:bg-blue-600 hover:text-white" href="{{route('user/logins')}}">Masuk</a>
                 </div>
+                @endif
             </nav>
         </div>
     </div>
@@ -64,52 +81,71 @@
   </header>
 
   <div class="h-screen bg-blue-100 flex justify-center items-center">
-	<div class="lg:w-2/5 md:w-1/2 w-2/3">
-    <div>
-      @if (session()->has('success'))
-          <div class="bg-green-100 border-t border-b border-green-500 text-green-700 px-4 py-3" role="alert">
-            <p class="font-bold">Berhasil</p>
-            <p class="text-sm">{{ session('success') }}</p>
-          </div>
-      @endif
-    </div>
-		<form class="bg-white p-10 rounded-lg shadow-lg min-w-full mt-4" wire:submit.prevent="store">
-			<h1 class="text-center text-2xl mb-6 text-gray-600 font-bold font-sans">Pendaftaran Grooming</h1>
-        <div wire:model="pet_id">
-          <label class="text-gray-800 font-semibold block my-3 text-md" for="username">Nama Hewan Peliharaan</label>
-          <select class="w-full bg-gray-100 px-4 py-2 rounded-lg focus:outline-none">
-            <option selected>Pilih Pet</option>
-            @foreach ($pet as $item)
-                <option value="{{$item->id}}"> {{$item->name}} </option>
-            @endforeach
-          </select>
-        </div>
-        <div wire:model="service">
-          <label class="text-gray-800 font-semibold block my-3 text-md" for="email">Jenis Grooming</label>
+    <div class="lg:w-2/5 md:w-1/2 w-2/3">
+      <div>
+        @if (session()->has('success'))
+            <div class="bg-green-100 border-t border-b border-green-500 text-green-700 px-4 py-3" role="alert">
+              <p class="font-bold">Berhasil</p>
+              <p class="text-sm">{{ session('success') }}</p>
+            </div>
+        @endif
+      </div>
+      <form class="bg-white p-10 rounded-lg shadow-lg min-w-full mt-4" wire:submit.prevent="store">
+        <h1 class="text-center text-2xl mb-6 text-gray-600 font-bold font-sans">Pendaftaran Grooming</h1>
+          <div wire:model="pet_id">
+            <label class="text-gray-800 font-semibold block my-3 text-md" for="username">Nama Hewan Peliharaan</label>
             <select class="w-full bg-gray-100 px-4 py-2 rounded-lg focus:outline-none">
-              <option selected>Jenis Grooming</option>
-              <option value="standar">Standar</option>
-              <option value="Jamur">Jamur</option>
-              <option value="Kutu">Kutu</option>
+              <option selected>Pilih Pet</option>
+              @foreach ($pet as $item)
+                  <option value="{{$item->id}}"> {{$item->name}} </option>
+              @endforeach
             </select>
+            @error('pet_id') <span class="error">{{ $message }}</span> @enderror
+          </div>
+          <div wire:model="service">
+            <label class="text-gray-800 font-semibold block my-3 text-md" for="email">Jenis Grooming</label>
+              <select class="w-full bg-gray-100 px-4 py-2 rounded-lg focus:outline-none">
+                <option selected>Jenis Grooming</option>
+                <option value="standar">Standar</option>
+                <option value="Jamur">Jamur</option>
+                <option value="Kutu">Kutu</option>
+              </select>
+              @error('service') <span class="error">{{ $message }}</span> @enderror
           </div>
           <div wire:model="size">
-            <label class="text-gray-800 font-semibold block my-3 text-md" for="password">Ukuran</label>
-            <input class="w-full bg-gray-100 px-4 py-2 rounded-lg focus:outline-none" type="text" name="password" id="password" placeholder="" />
-              <p class="mt-2 text-blue-800 text-sm">
-                Ukuran dalam bentuk S, M , L.
-              </p>
+              <label class="text-gray-800 font-semibold block my-3 text-md" for="password">Ukuran</label>
+              <input class="w-full bg-gray-100 px-4 py-2 rounded-lg focus:outline-none" type="text" name="password" id="password" placeholder="" />
+                <p class="mt-2 text-blue-800 text-sm">
+                  Ukuran dalam bentuk S, M , L.
+                </p>
+              @error('size') <span class="error">{{ $message }}</span> @enderror
           </div>
           <div wire:model="address">
-            <label class="text-gray-800 font-semibold block my-3 text-md" for="confirm">Alamat</label>
-            <input class="w-full bg-gray-100 px-4 py-2 rounded-lg focus:outline-none" type="text" name="confirm" id="confirm" placeholder="" />
+              <label class="text-gray-800 font-semibold block my-3 text-md" for="confirm">Alamat</label>
+              <input class="w-full bg-gray-100 px-4 py-2 rounded-lg focus:outline-none" type="text" name="confirm" id="confirm" placeholder="" />
+              @error('address') <span class="error">{{ $message }}</span> @enderror
           </div>
           <div class="mt-4">
-            <button type="submit" class="mt-6 bg-blue-600 rounded-lg px-4 py-2 text-lg text-white tracking-wide font-semibold font-sans">
-              Grooms
+              <button type="submit" class="mt-6 bg-blue-600 rounded-lg px-4 py-2 text-lg text-white tracking-wide font-semibold font-sans">
+                Grooms
             </button>
-        </div>
-		  </form>
-	</div>
+          </div>
+      </form>
+    </div>
+  </div>
 </div>
-</div>
+@section('scripts')
+  <script>
+    window.addEventListener('swal:modal', event=>
+    {
+      Swal.fire({
+        icon: event.detail.icon,
+        iconcolor: event.detail.iconcolor,
+        title: event.detail.title,
+        text: event.detail.text,
+        showConfirmButton: false,
+        timer: 1500,
+      });
+    });
+  </script>
+@endsection

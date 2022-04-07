@@ -27,6 +27,7 @@
     "dependencies": {
         "@fortawesome/fontawesome-free": "^5.15.3",
         "apexcharts": "^3.30.0",
+        "sweetalert2": "^11.3.10",
         "turbolinks": "^5.2.0",
         "tw-elements": "^1.0.0-alpha8"
     }

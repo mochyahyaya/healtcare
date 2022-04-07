@@ -17,7 +17,7 @@ class Hotels extends Component
     public $modalFormVisible = false;
     public $modalDeleteVisible = false;
     public $modalDetailVisible = false;
-    public $pet_id, $size, $total_day, $cage_id, $query, $user_id, $type_id, $cage_number;
+    public $pet_id, $size, $total_day, $cage_id, $query, $user_id, $type_id, $cage_number, $days;
     public $hotel_status = 'hotel';
     public $status = 'belum diproses';
     public $modelId;
@@ -26,13 +26,16 @@ class Hotels extends Component
     public $sortBy = 'pet_id';       
     public $start_date = null;
     public $end_date = null;
-    public $searchTerm;
+    public $search;
     public $type= 1; 
     public $petname;
+    public $perPage = 10;
 
     public $selectedUser = null;
     public $selectedPet = null;
     public $pet = null;
+
+    
     /**
      * function for validation
      *
@@ -51,7 +54,7 @@ class Hotels extends Component
     }
 
     public function mount($selectedPet=null)
-    {
+    {  
         $this->resetPage();
     }
 
@@ -121,7 +124,17 @@ class Hotels extends Component
     public function create()
     {   
         $this->validate();
-        Hotel::create($this->modelData());
+        $hotel = Hotel::create($this->modelData());
+        $hotel->save();
+        $cage = Cage::find($hotel->cage_id);
+        $cage->counter = $cage->counter +1 ;
+        $cage->save();
+        $this->dispatchBrowserEvent('swal:modal', [
+            'title'     => 'Sukses',
+            'icon'      => 'success',
+            'text'      => 'Data Boarding Berhasil Ditambahkan',
+            'iconcolor' => 'green'
+        ]);
         $this->modalFormVisible = false;
         $this->resetVars();
     }
@@ -130,6 +143,12 @@ class Hotels extends Component
     {
         $this->validate();
         Hotel::find($this->modelId)->update($this->modelData());
+        $this->dispatchBrowserEvent('swal:modal', [
+            'title'     => 'Sukses',
+            'icon'      => 'success',
+            'text'      => 'Data Boarding Berhasil Diubah',
+            'iconcolor' => 'green'
+        ]);
         $this->modalFormVisible = false;
     }
 
@@ -147,9 +166,11 @@ class Hotels extends Component
 
     public function proceed()
     {
-        $hotel  = Hotel::findorFail($this->modelId);;
+        $hotel = Hotel::findorFail($this->modelId);
         $hotel->status = 'dalam kandang';
         $hotel->save();
+        $hotel->cages->counter = $hotel->cages->counter + 1 ;
+        $hotel->cages->save();
         $this->modalDetailVisible = false;
     }
 
@@ -158,6 +179,8 @@ class Hotels extends Component
         $hotel  = Hotel::findorFail($this->modelId);
         $hotel->status = 'selesai';
         $hotel->save();
+        $hotel->cages->counter = $hotel->cages->counter - 1 ;
+        $hotel->cages->save();
         $this->modalDetailVisible = false;
     }
     
@@ -168,6 +191,10 @@ class Hotels extends Component
      */
     public function modelData()
     {
+        $to = \Carbon\Carbon::createFromFormat('Y-m-d H:s:i', $this->start_date);
+        $from = \Carbon\Carbon::createFromFormat('Y-m-d H:s:i', $this->end_date);
+        
+        $this->days = $to->diffInDays($from);
         return [
 
             'pet_id'        => $this->selectedPet,
@@ -177,6 +204,7 @@ class Hotels extends Component
             'total_day'     => $this->total_day,
             'cage_id'       => $this->cage_id,
             'hotel_status'  => $this->hotel_status, 
+            'status'        => $this->status 
         ];
     }
     
@@ -227,17 +255,21 @@ class Hotels extends Component
     
     public function cats()
     {
-        return Cage::where('type_cage_id', '1')->get();
+        return Cage::where('type_cage_id', '1')
+        ->where('counter', '<=', 'count' )
+        ->get();
     }
     
     public function dogs()
     {
-        return Cage::where('type_cage_id', '2')->get();
+        return Cage::where('type_cage_id', '2')
+        ->where('counter', '<=', 'count' )
+        ->get();
     }
     
     public function cages()
     {
-        return Cage::all();
+        return Cage::where('counter', '<', 2)->get();
     }
     
     public function updatedSelectedUser($user)
@@ -248,10 +280,10 @@ class Hotels extends Component
     
     public function read()
     {
-        $searchTerm = '%'.$this->searchTerm.'%';
-        return Hotel::where('pet_id', 'LIKE', $searchTerm)
-        ->orderBy($this->sortColumn, $this->sortDirection)
-        ->paginate(5);
+        return Hotel::query()
+        ->search($this->search)
+        ->orderBy($this->sortBy, $this->sortDirection)
+        ->paginate($this->perPage);
     }
 
     public function render()

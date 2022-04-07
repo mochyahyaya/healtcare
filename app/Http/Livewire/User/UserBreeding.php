@@ -30,8 +30,14 @@ class UserBreeding extends Component
             'start_date'        => $this->start_date,
         ]);
 
-        session()->flash('success', 'Berhasil mendaftarkan boarding.');
-        return redirect()->to('/user/dashboard');
+        $this->dispatchBrowserEvent('swal:modal', [
+            'title'     => 'Sukses',
+            'icon'      => 'success',
+            'text'      => 'Pendaftaran Breeding Berhasil dilakukan',
+            'iconcolor' => 'green'
+        ]);
+
+        // return redirect()->to('/user/dashboard');
     }
     public function pet()
     {

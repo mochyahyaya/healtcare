@@ -91,6 +91,12 @@ class Cages extends Component
     {   
         $this->validate();
         Cage::create($this->modelData());
+        $this->dispatchBrowserEvent('swal:modal', [
+            'title'     => 'Sukses',
+            'icon'      => 'success',
+            'text'      => 'Data Kandang Berhasil Ditambahkan',
+            'iconcolor' => 'green'
+        ]);
         $this->modalFormVisible = false;
         $this->resetVars();
     }
@@ -99,6 +105,12 @@ class Cages extends Component
     {
         $this->validate();
         Cage::find($this->modelId)->update($this->modelData());
+        $this->dispatchBrowserEvent('swal:modal', [
+            'title'     => 'Sukses',
+            'icon'      => 'success',
+            'text'      => 'Data Kandang Berhasil Diubah',
+            'iconcolor' => 'green'
+        ]);
         $this->modalFormVisible = false;
     }
 

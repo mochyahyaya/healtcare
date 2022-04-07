@@ -12,4 +12,9 @@ class Gallery extends Model
     protected $table = 'gallery_photos';
     
     protected $guarded = [];
+
+    public function pets()
+    {
+        return $this->belongsTo(Pet::class, 'pet_id');
+    }
 }

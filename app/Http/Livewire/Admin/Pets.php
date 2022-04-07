@@ -27,7 +27,7 @@ class Pets extends Component
     public $sortDirection = 'asc';
     public $sortBy = 'name';    
     public $perPage = 10;
-    public $galery = [];
+    public $galery;
     /**
      * function for validation
      *
@@ -84,9 +84,9 @@ class Pets extends Component
     public function detailShowModal($id)
     {
         $this->modelId = $id;
+        
+        $this->emit('getPetId', $this->modelId);
         $this->modalDetailVisible = true;
-
-        $data = Pet::find($this->modelId);
         
     }
 
@@ -117,14 +117,29 @@ class Pets extends Component
             $this->feature_image->store('public/featured_image');
         }
 
-        if (!empty($this->galery)){
-            foreach($this->galery as $key=>$galeries){
-                $this->galery[$key] = $galeries->store('public/galery');
+        $this->validate();
+        $pets = Pet::create($this->modelData());
+        $petId = $pets->id;
+
+        
+        if (!empty($this->galery)) {
+            foreach ($this->galery as $photo) {
+                $photo->store('public/galery');
+
+                // Save the filename in the additional_photos table
+                Gallery::create([
+                    'pet_id' => $petId,
+                    'filename' => $photo->hashName()
+                ]);
             }
         }
-        $this->galery = json_encode($this->galery); 
-        $this->validate();
-        Pet::create($this->modelData());
+        $this->dispatchBrowserEvent('swal:modal', [
+            'title'     => 'Sukses',
+            'icon'      => 'success',
+            'text'      => 'Data Pets Berhasil Ditambahkan',
+            'iconcolor' => 'green'
+        ]);
+        
         $this->modalFormVisible = false;
         $this->resetVars();
     }
@@ -133,16 +148,17 @@ class Pets extends Component
     {
         if (!empty($this->feature_image)) {
             $this->feature_image->store('public/featured_image');
-        }
-
-        if (!empty($this->galery)){
-            foreach($this->galery as $key=>$galeries){
-                $this->galery[$key] = $galeries->store('public/galery');
-            }
-        }
-        $this->galery = json_encode($this->galery); 
+        } 
         $this->validate();
         Pet::find($this->modelId)->update($this->modelData());
+
+        $this->dispatchBrowserEvent('swal:modal', [
+            'title'     => 'Sukses',
+            'icon'      => 'success',
+            'text'      => 'Data Pets Berhasil Diubah',
+            'iconcolor' => 'green'
+        ]);
+        
         $this->modalFormVisible = false;
     }
 
@@ -174,7 +190,6 @@ class Pets extends Component
             'type_id'        => $this->type_id,
             'birthday'       => $this->birthday,
             'featured_image' => $this->feature_image->hashName(),
-            'galery'         => $this->galery,
             'user_id'        => Auth::user()->id,
             'gender'         => 'Jantan'
         ];
@@ -237,6 +252,7 @@ class Pets extends Component
             'data' => $this->search(),
             'search' => $this->read(),
             'typepets' => $this->typepets(),
+            'galery' => $this->detailShowModal($this->modelId),
         ]);
     }
 

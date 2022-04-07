@@ -101,6 +101,12 @@ class Users extends Component
     {   
         $this->validate();
         User::create($this->modelData());
+        $this->dispatchBrowserEvent('swal:modal', [
+            'title'     => 'Sukses',
+            'icon'      => 'success',
+            'text'      => 'Data Users Berhasil Ditambahkan',
+            'iconcolor' => 'green'
+        ]);
         $this->modalFormVisible = false;
         $this->resetVars();
     }
@@ -109,6 +115,12 @@ class Users extends Component
     {
         $this->validate();
         User::find($this->modelId)->update($this->modelData());
+        $this->dispatchBrowserEvent('swal:modal', [
+            'title'     => 'Sukses',
+            'icon'      => 'success',
+            'text'      => 'Data Users Berhasil Diubah',
+            'iconcolor' => 'green'
+        ]);
         $this->modalFormVisible = false;
     }
 

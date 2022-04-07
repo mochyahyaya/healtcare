@@ -16,7 +16,6 @@
         <link rel="stylesheet" href="{{ mix('css/app.css') }}">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
         <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-
         @livewireStyles
 
         <!-- Scripts -->
@@ -28,8 +27,7 @@
         <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
         <script src="https://cdn.ckeditor.com/ckeditor5/30.0.0/classic/ckeditor.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
-
-
+        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     </head>
     <body class="font-sans antialiased">
@@ -56,7 +54,7 @@
         @stack('modals')
 
         {{-- <script src="https://cdn.jsdelivr.net/gh/livewire/turbolinks@v0.1.x/dist/livewire-turbolinks.js" data-turbolinks-eval="false" data-turbo-eval="false"></script> --}}
-        @livewireScripts
         @yield('scripts')
+        @livewireScripts
     </body>
 </html>

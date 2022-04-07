@@ -11,6 +11,7 @@ use App\Http\Livewire\Admin\Dashboard;
 use App\Http\Livewire\Admin\ShowMonitorings;
 use App\Http\Livewire\Admin\ShowMonitoringBreedings;
 use App\Http\Livewire\Admin\BreedingMonitorings;
+use App\Http\Livewire\Admin\Galleries;
 
 use App\Http\Livewire\User\DashboardU;
 use App\Http\Livewire\User\UserBoarding;
@@ -71,6 +72,7 @@ Route::get('redirects', 'App\Http\Livewire\Admin\Home');
         Route::get('admin/user', Users::class)->name('admin/users');
         Route::get('admin/pet', Pets::class)->name('admin/pets');
         Route::get('admin/cage', Cages::class)->name('admin/cages');
+        Route::get('admin/gallery/{id}', Galleries::class)->name('admin/gallery');
         });
 
         Route::group(['middleware' => ['role:veterinarian']], function() {

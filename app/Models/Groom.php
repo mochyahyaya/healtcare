@@ -28,10 +28,15 @@ class Groom extends Model
 
     public function scopeSearch($query, $val){
         return $query
-        ->where('type', 'like', '%' .$val. '%')
-        ->Orwhere('size', 'like', '%' .$val. '%')
-        ->Orwhere('service', 'like', '%'. $val. '%')
-        ->Orwhere('address', 'like', '%' .$val. '%')
-        ->Orwhere('status', 'like', '%' .$val. '%');
+        ->select('grooms.*', 'grooms.id AS id')
+        ->where('status', '<>', 'selesai')
+        ->leftJoin('pets', 'pets.id', '=', 'grooms.pet_id')
+        ->where(function ($query) use ($val){
+            $query
+            ->orwhere('name', 'like', '%' .$val. '%')
+            ->Orwhere('service', 'like', '%'. $val. '%')
+            ->Orwhere('address', 'like', '%' .$val. '%')
+            ->Orwhere('status', 'like', '%' .$val. '%');
+        });
     }
 }

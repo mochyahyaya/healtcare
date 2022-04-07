@@ -134,6 +134,12 @@ class Inpatients extends Component
     {   
         $this->validate();
         Hotel::create($this->modelData());
+        $this->dispatchBrowserEvent('swal:modal', [
+            'title'     => 'Sukses',
+            'icon'      => 'success',
+            'text'      => 'Data Rawat Inap Berhasil ditambahkan',
+            'iconcolor' => 'green'
+        ]);
         $this->modalFormVisible = false;
         $this->resetVars();
     }
@@ -142,6 +148,12 @@ class Inpatients extends Component
     {
         $this->validate();
         Hotel::find($this->modelId)->update($this->modelData());
+        $this->dispatchBrowserEvent('swal:modal', [
+            'title'     => 'Sukses',
+            'icon'      => 'success',
+            'text'      => 'Data Rawat Inap Berhasil diupdate',
+            'iconcolor' => 'green'
+        ]);
         $this->modalFormVisible = false;
     }
 

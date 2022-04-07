@@ -16,6 +16,7 @@
           </div>
           <div class="flex-2 float-right">
               <x-jet-input id="name" type="text" wire:model.debounce.500ms="search" placeholder="Search..." />
+              {{$search}}
           </div>
         </div>  
         
@@ -78,6 +79,9 @@
                             {{$items->pets->name}}
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap">
+                            {{$items->type}}
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap">
                             {{$items->size}}
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap">
@@ -125,7 +129,7 @@
             {{$data ->links()}}
         </div>
           
-        {{-- Create/Update Modal --}}
+        {{-- Create Modal --}}
     
         <x-jet-dialog-modal wire:model="modalFormVisible">
             @if ($modelId)
@@ -141,16 +145,17 @@
             <x-slot name="content">
                 <div class="mt-4">
                   <div x-data="{type: 0}">
-                  <div class="mt-4"  x-data="{user_id: 0}">
+                  <div class="mt-4" wire:ignore>
                     <x-jet-label for="user_id" value="{{ __('Nama Pemilik') }}" />
-                    <select x-model= "user_id" class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm mt-1 block w-full" wire:model="selectedUser">
+                    <select class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm mt-1 block w-full" wire:model="selectedUser" id="selectpicker" style="width: 100%">
                           <option value="" selected> Nama pemilik </option>
                         @foreach ($users as $item)
                           <option value="{{$item->id}}">{{$item->name}}</option>
                         @endforeach
-                      </select>
+                    </select>
                     @error('selectedUser') <span class="error">{{ $message }}</span> @enderror
-
+                  </div>
+                  <div class="mt-4">
                     @if(!is_null($pet))
                       <div class="mt-4">
                         <x-jet-label for="pet_id" value="{{ __('Nama Pet') }}" />
@@ -171,7 +176,7 @@
                       <option value="kucing">Kucing</option>
                       <option value="anjing">Anjing</option>
                     </select>
-                  @error('service') <span class="error">{{ $message }}</span> @enderror
+                  @error('type') <span class="error">{{ $message }}</span> @enderror
               </div>
                 <div class="mt-4">
                     <x-jet-label for="size" value="{{ __('Ukuran') }}" />
@@ -179,9 +184,9 @@
                     @error('size') <span class="error">{{ $message }}</span> @enderror
                 </div>
                 <div class="mt-4">
-                    <x-jet-label for="service" value="{{ __('Jenis Grooming') }}" />
-                    <select class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm mt-1 block w-full" wire:model.debounce.800ms="service" >
-                        <option selected>Jenis Grooming</option>
+                  <x-jet-label for="size" value="{{ __('Jenis Grooming') }}" />
+                  <select class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm mt-1 block w-full" wire:model="service">
+                        <option disabled="disabled" selected>Jenis Grooming</option>
                         <option value="Standar">Standar</option>
                         <option value="Kutu">Kutu</option>
                         <option value="Jamur">Jamur</option>
@@ -212,7 +217,7 @@
         </x-jet-secondary-button>
             </x-slot>
         </x-jet-dialog-modal>
-    
+        
         {{-- Delete modal --}}
         <x-jet-dialog-modal wire:model="modalDeleteVisible">
             <x-slot name="title">
@@ -329,3 +334,28 @@
     </div>
   </div>
 </div>
+
+@section('scripts')
+<script>
+  $(document).ready(function() {
+          $('#selectpicker').select2();
+          $('#selectpicker').on('change', function(e) {
+              var data = $('#selectpicker').select2("val");
+              @this.set('selectedUser', data);
+          });
+  });
+</script>
+<script>
+    window.addEventListener('swal:modal', event=>
+    {
+      Swal.fire({
+        icon: event.detail.icon,
+        iconcolor: event.detail.iconcolor,
+        title: event.detail.title,
+        text: event.detail.text,
+        showConfirmButton: false,
+        timer: 1500,
+      });
+    });
+</script>
+@endsection

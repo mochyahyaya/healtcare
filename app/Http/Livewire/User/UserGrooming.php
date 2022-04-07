@@ -8,12 +8,10 @@ use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 use Livewire\Component;
-use Livewire\WithPagination;
 
 class UserGrooming extends Component
 {
     public $pet_id, $size, $service, $address;
-    public $services = "hahaha";
 
     public function rules()
     {
@@ -25,10 +23,9 @@ class UserGrooming extends Component
             'address'           => 'required',
           ];
     }
+
     public function store()
     {
-        dd('test');
-
         Groom::create([
             'pet_id'          => $this->pet_id,
             'size'            => $this->size,
@@ -37,13 +34,27 @@ class UserGrooming extends Component
 
         ]);
 
-        session()->flash('success', 'Berhasil mendaftarkan grooming.');
-        return redirect()->to('/user/dashboard');
+        $this->dispatchBrowserEvent('swal:modal', [
+            'title'     => 'Sukses',
+            'icon'      => 'success',
+            'text'      => 'Pendaftaran Grooming Berhasil dilakukan',
+            'iconcolor' => 'green'
+        ]);
+        // sleep(2);
+        // return redirect()->to('/user/dashboad');
     }
 
     public function pet()
     {
         return Pet::where('user_id', Auth::user()->id)->get();
+    }
+
+    public function resetVars()
+    {
+        $this->pet_id = null;
+        $this->address = null;
+        $this->size = null;
+        $this->service = null;
     }
 
     public function render()

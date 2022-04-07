@@ -42,13 +42,13 @@
                            <table class="min-w-full divide-y divide-gray-200">
                              <thead class="bg-gray-50">
                                <tr>
-                                 <th wire:click="sortBy('pet_id_1')" scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider" style="cursor: pointer">
-                                   Nama Betina
-                                   @include('partials._sort-icon', ['field' => 'pet_id_1'])
-                                 </th>
                                  <th wire:click="sortBy('pet_id_2')" scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider" style="cursor: pointer">
-                                   Nama Jantan
+                                   Nama Betina
                                    @include('partials._sort-icon', ['field' => 'pet_id_2'])
+                                 </th>
+                                 <th wire:click="sortBy('pet_id_1')" scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider" style="cursor: pointer">
+                                   Nama Jantan
+                                   @include('partials._sort-icon', ['field' => 'pet_id_1'])
                                  </th>
                                  <th wire:click="sortBy('start_date')" scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider" style="cursor: pointer">
                                    Tanggal Mulai
@@ -80,7 +80,7 @@
                                      {{$items->pet_id_2}}
                                  </td>
                                  <td class="px-6 py-4 whitespace-nowrap">
-                                  {{ \Carbon\Carbon::parse($items->start_date)->locale('id')->format('d M Y')}}
+                                  {{ \Carbon\Carbon::parse($items->birthday)->translatedFormat('d F Y')}}
                                  </td>
                                  <td class="px-6 py-4 whitespace-nowrap">
                                      {{$items->cages->typecages->alias ?? ''}} - {{$items->cages->number ?? ''}} 
@@ -145,9 +145,9 @@
                               </select>
                               @error('pet_id_1') <span class="error">{{ $message }}</span> @enderror
                             </div>
-                            <div class="mt-4">
+                            <div class="mt-4" wire:ignore>
                               <x-jet-label for="user_id" value="{{ __('Nama Pemilik') }}" />
-                              <select class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm mt-1 block w-full" wire:model="selectedUser">
+                              <select class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm mt-1 block w-full" wire:model="selectedUser" id="selectpicker" style="width: 100%">
                                     <option value="" selected>  Pilih Nama Pemilik </option>
                                   @foreach ($users as $item)
                                     <option value="{{$item->id}}">{{$item->name}}</option>
@@ -306,3 +306,28 @@
                      </x-jet-dialog-modal>
                  </div>
   <div>
+
+    @section('scripts')
+    <script>
+      $(document).ready(function() {
+              $('#selectpicker').select2();
+              $('#selectpicker').on('change', function(e) {
+                  var data = $('#selectpicker').select2("val");
+                  @this.set('selectedUser', data);
+              });
+      });
+    </script>
+    <script>
+      window.addEventListener('swal:modal', event=>
+      {
+        Swal.fire({
+          icon: event.detail.icon,
+          iconcolor: event.detail.iconcolor,
+          title: event.detail.title,
+          text: event.detail.text,
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      });
+    </script>
+  @endsection
