@@ -1,6 +1,6 @@
 <x-slot name="header">
     <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-        List Data Hotel
+        List Data Rawat Inap
     </h2>
   </x-slot>
   
