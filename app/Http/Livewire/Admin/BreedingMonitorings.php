@@ -14,12 +14,12 @@ class BreedingMonitorings extends Component
     public $enumfood          = ['Normal', 'Tidak Normal'];
     public $enumtemperature   = ['Normal', 'Tidak Normal'];
     public $enummedicine      = ['Sudah', 'Tidak Perlu'];
-    public $food, $temperature, $medicine, $notes, $hotel_id;
+    public $food, $temperature, $medicine, $notes, $breeding_id;
     public $photo = [];
 
     public function mount($id)
     {
-        $this->hotel_id = $id;
+        $this->breeding_id = $id;
     }
 
     public function store()
@@ -40,7 +40,7 @@ class BreedingMonitorings extends Component
         $this->photo = json_encode($this->photo); 
         MonitoringBreeding::create([
             'food'          => $this->food,
-            'hotel_id'      => $this->hotel_id,
+            'breeds_id'     => $this->breeding_id,
             'temperature'   => $this->temperature,
             'medicine'      => $this->medicine,
             'notes'         => $this->notes,

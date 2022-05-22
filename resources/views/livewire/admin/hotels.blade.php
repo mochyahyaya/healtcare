@@ -60,7 +60,7 @@
                               Tanggal Berakhir
                               @include('partials._sort-icon', ['field' => 'end_date'])
                             </th>
-                            <th wire:click="sortBy('total_day')" scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            <th wire:click="sortBy('status')" scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                               Status
                               @include('partials._sort-icon', ['field' => 'status'])
                             </th>
@@ -176,11 +176,11 @@
                       </select>
                     @error('type') <span class="error">{{ $message }}</span> @enderror
                   </div>
-                  <div class="mt-4">
+                  {{-- <div class="mt-4">
                       <x-jet-label for="size" value="{{ __('Ukuran') }}" />
                       <x-jet-input id="size" class="block mt-1 w-full" type="text" wire:model.debounce.800ms="size" />
                       @error('size') <span class="error">{{ $message }}</span> @enderror
-                  </div>
+                  </div> --}}
                   <div class="mt-4">
                     <x-jet-label for="start_date" value="{{ __('Tanggal Mulai') }}" />
                     <x-datetime-picker wire:model="start_date" class="w-full rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" />
@@ -189,11 +189,11 @@
                     <x-jet-label for="end_date" value="{{ __('Tanggal Berakhir') }}" />
                     <x-datetime-picker wire:model="end_date" class="w-full rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" />
                     </div>
-                  <div class="mt-4">
+                  {{-- <div class="mt-4">
                     <x-jet-label for="total_day" value="{{ __('Total Hari') }}" />
                     <input type="text" value="{{$days}}" class="w-full rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
                     @error('total_day') <span class="error">{{ $message }}</span> @enderror
-                  </div>
+                  </div> --}}
                   <div class="mt-4" x-show="type == 1">
                         <x-jet-label for="cage_id" value="{{ __('Kandang') }}" />
                         <select class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm mt-1 block w-full" wire:model="cage_id" >
@@ -289,7 +289,7 @@
                             <span class="text-xs text-gray-500">{{$type_id}}</span>
                           </div>
                         </span>
-                        <span class="flex items-center gap-4 px-6 py-3 w-full">
+                        {{-- <span class="flex items-center gap-4 px-6 py-3 w-full">
                           <div class="flex items-center justify-center h-8 w-8 p-4 bg-green-500 rounded-full">
                             <i class="fas fa-stream text-white"></i>
                           </div>
@@ -297,7 +297,7 @@
                             <h5 class="leading-tight text-sm text-gray-700 font-semibold">Ukuran</h5>
                             <span class="text-sm text-gray-500">{{$size}}<span class="text-xs text-gray-500">(60-70 cm)</span></span>
                           </div>
-                        </span >
+                        </span > --}}
                         <span class="flex items-center gap-4 px-6 py-3 w-full">
                           <div class="flex items-center justify-center h-8 w-8 p-4 bg-yellow-500 rounded-full">
                             <i class="fas fa-address-book text-white"></i>
@@ -316,7 +316,7 @@
                             <span class="text-xs text-gray-500">{{$end_date}}</span>
                           </div>
                         </span >
-                        <span class="flex items-center gap-4 px-6 py-3 w-full">
+                        {{-- <span class="flex items-center gap-4 px-6 py-3 w-full">
                           <div class="flex items-center justify-center h-8 w-8 p-4 bg-yellow-500 rounded-full">
                             <i class="fas fa-address-book text-white"></i>
                           </div>
@@ -324,7 +324,7 @@
                             <h5 class="leading-tight text-sm text-gray-700 font-semibold">Total Hari</h5>
                             <span class="text-xs text-gray-500">{{$total_day}}</span>
                           </div>
-                        </span>
+                        </span> --}}
                         <span class="flex items-center gap-4 px-6 py-3 w-full">
                           <div class="flex items-center justify-center h-8 w-8 p-4 bg-yellow-500 rounded-full">
                             <i class="fas fa-address-book text-white"></i>

@@ -15,7 +15,6 @@ class CreateHotelsTable extends Migration
     {
         Schema::create('hotels', function (Blueprint $table) {
             $table->id();
-            $table->enum('size',['S', 'M' , 'L']);
             $table->date('start_date');
             $table->date('end_date');
             $table->integer('total_day');

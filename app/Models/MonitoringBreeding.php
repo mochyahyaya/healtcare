@@ -9,7 +9,7 @@ class MonitoringBreeding extends Model
 {
     use HasFactory;
 
-    protected $table = 'breeding_monitorings';
+    protected $table = 'breeding_monitoring';
 
     protected $guarded = [];
 

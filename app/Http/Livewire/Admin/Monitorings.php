@@ -43,7 +43,7 @@ class Monitorings extends Component
         }
         $this->photo = json_encode($this->photo); 
         Monitoring::create([
-            'food'          => $this->food,
+            // 'food'          => $this->food,
             'hotel_id'      => $this->hotel_id,
             'temperature'   => $this->temperature,
             'medicine'      => $this->medicine,

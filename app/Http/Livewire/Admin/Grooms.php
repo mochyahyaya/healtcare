@@ -18,7 +18,7 @@ class Grooms extends Component
     public $modalFormVisible = false;
     public $modalDeleteVisible = false;
     public $modalDetailVisible = false;
-    public $pet_id, $user_id, $type_id, $size, $service, $address;
+    public $pet_id, $user_id, $type_id, $service, $address;
     public $modelId;
     public $status = 'belum diproses';
     public $search='';
@@ -37,7 +37,6 @@ class Grooms extends Component
     {
         return [
             'selectedPet' => 'required',
-            'size'          => 'required',
             'service' => 'required',
             'address' => 'required',
             
@@ -84,7 +83,7 @@ class Grooms extends Component
         $this->selectedUser = $data->pets->users->name;
         $this->selectedPet  = $data->pets->name;
         $this->type_id      = $data->pets->typepet->name;
-        $this->size         = $data->size;
+        // $this->size         = $data->size;
         $this->address      = $data->address;
         $this->status       = $data->status;
         $this->service      = $data->service;
@@ -97,7 +96,7 @@ class Grooms extends Component
         $this->selectedUser = $data->pets->users->name;
         $this->selectedPet  = $data->pets->name;
         $this->type_id      = $data->type_id;
-        $this->size         = $data->size;
+        // $this->size         = $data->size;
         $this->service      = $data->service;
         $this->status       = $data->status;
         $this->address      = $data->address;
@@ -112,10 +111,6 @@ class Grooms extends Component
     {   
         $this->validate();
         $grooms = Groom::create($this->modelData());
-        $admins = User::whereHas('roles', function ($query) {
-            $query->where('id', 1);
-        })->get();
-        Notification::send($admins, new GroomsNotification($grooms));
         $this->dispatchBrowserEvent('swal:modal', [
             'title'     => 'Sukses',
             'icon'      => 'success',
@@ -177,7 +172,7 @@ class Grooms extends Component
     {
         return [
             'pet_id'    => $this->selectedPet,
-            'size'      => $this->size,
+            // 'size'      => $this->size,
             'service'   => $this->service,
             'status'    => $this->status,
             'address'   => $this->address,
@@ -194,7 +189,7 @@ class Grooms extends Component
              $this->modelId = null;   
              $this->selectedUser = null;
              $this->selectedPet = null;
-             $this->size = null;
+            //  $this->size = null;
              $this->service = null;
              $this->address = null;
              $this->status = 'belum diproses';

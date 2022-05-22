@@ -58,7 +58,9 @@ class ShowMonitoringBreedings extends Component
 
     public function read()
     {
-        return Breeding::all();
+        return Breeding::where('cage_id', '>', 0)
+        ->where('status', '=', 'proses')
+        ->get();
     }
 
     public function render()

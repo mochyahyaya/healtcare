@@ -7,6 +7,8 @@ use App\Models\Pet;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
+use App\Notifications\GroomsNotification;
+use Illuminate\Support\Facades\Notification;
 use Livewire\Component;
 
 class UserGrooming extends Component
@@ -18,7 +20,7 @@ class UserGrooming extends Component
         return
           [
             'pet_id'            => 'required',
-            'size'              => 'required',
+            // 'size'              => 'required',
             'service'           => 'required',
             'address'           => 'required',
           ];
@@ -26,9 +28,10 @@ class UserGrooming extends Component
 
     public function store()
     {
-        Groom::create([
+        
+        $grooms = Groom::create([
             'pet_id'          => $this->pet_id,
-            'size'            => $this->size,
+            // 'size'            => $this->size,
             'service'         => $this->service,
             'address'         => $this->address,
 
@@ -40,6 +43,11 @@ class UserGrooming extends Component
             'text'      => 'Pendaftaran Grooming Berhasil dilakukan',
             'iconcolor' => 'green'
         ]);
+
+        $admins = User::whereHas('roles', function ($query) {
+            $query->where('id', 1);
+        })->get();
+        Notification::send($admins, new GroomsNotification($grooms));
         // sleep(2);
         // return redirect()->to('/user/dashboad');
     }

@@ -15,7 +15,6 @@ class CreateGroomsTable extends Migration
     {
         Schema::create('grooms', function (Blueprint $table) {
             $table->id();
-            $table->enum('size', ['S', 'M', 'L']);
             $table->enum('service', ['Standar', 'Jamur', 'Kutu']);
             $table->string('address');
             $table->timestamps();

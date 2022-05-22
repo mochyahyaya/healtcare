@@ -48,10 +48,6 @@
                           Jenis
                           @include('partials._sort-icon', ['field' => 'type_id'])
                         </th>
-                        <th wire:click="sortBy('size')" scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider" style="cursor: pointer">
-                          Ukuran
-                          @include('partials._sort-icon', ['field' => 'size'])
-                        </th>
                         <th wire:click="sortBy('service')"scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider" style="cursor: pointer">
                           Jenis Grooming
                           @include('partials._sort-icon', ['field' => 'service'])
@@ -80,9 +76,6 @@
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap">
                             {{$items->type}}
-                        </td>
-                        <td class="px-6 py-4 whitespace-nowrap">
-                            {{$items->size}}
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap">
                             {{$items->service}}
@@ -178,15 +171,15 @@
                     </select>
                   @error('type') <span class="error">{{ $message }}</span> @enderror
               </div>
-                <div class="mt-4">
+                {{-- <div class="mt-4">
                     <x-jet-label for="size" value="{{ __('Ukuran') }}" />
                     <x-jet-input id="size" class="block mt-1 w-full" type="text" wire:model.debounce.800ms="size" />
                     @error('size') <span class="error">{{ $message }}</span> @enderror
-                </div>
+                </div> --}}
                 <div class="mt-4">
-                  <x-jet-label for="size" value="{{ __('Jenis Grooming') }}" />
+                  <x-jet-label for="service" value="{{ __('Jenis Grooming') }}" />
                   <select class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm mt-1 block w-full" wire:model="service">
-                        <option disabled="disabled" selected>Jenis Grooming</option>
+                        <option disabled selected>Jenis Grooming</option>
                         <option value="Standar">Standar</option>
                         <option value="Kutu">Kutu</option>
                         <option value="Jamur">Jamur</option>
@@ -274,7 +267,7 @@
                       <span class="text-xs text-gray-500">{{$type_id}}</span>
                     </div>
                   </span>
-                  <span class="flex items-center gap-4 px-6 py-3 w-full">
+                  {{-- <span class="flex items-center gap-4 px-6 py-3 w-full">
                     <div class="flex items-center justify-center h-8 w-8 p-4 bg-green-500 rounded-full">
                       <i class="fas fa-stream text-white"></i>
                     </div>
@@ -282,7 +275,7 @@
                       <h5 class="leading-tight text-sm text-gray-700 font-semibold">Ukuran</h5>
                       <span class="text-sm text-gray-500">{{$size}}<span class="text-xs text-gray-500">(60-70 cm)</span></span>
                     </div>
-                  </span >
+                  </span > --}}
                   <span class="flex items-center gap-4 px-6 py-3 w-full">
                     <div class="flex items-center justify-center h-8 w-8 p-4 bg-green-500 rounded-full">
                       <i class="fas fa-stream text-white"></i>

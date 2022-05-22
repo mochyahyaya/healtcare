@@ -17,7 +17,7 @@ class Hotels extends Component
     public $modalFormVisible = false;
     public $modalDeleteVisible = false;
     public $modalDetailVisible = false;
-    public $pet_id, $size, $total_day, $cage_id, $query, $user_id, $type_id, $cage_number, $days;
+    public $pet_id, $cage_id, $query, $user_id, $type_id, $cage_number, $days;
     public $hotel_status = 'hotel';
     public $status = 'belum diproses';
     public $modelId;
@@ -45,7 +45,7 @@ class Hotels extends Component
     {
         return [
             'selectedPet' => 'required',
-            'size' => 'required',
+            // 'size' => 'required',
             'start_date' => 'required',
             'end_date' => 'required',
             // 'cage_id' => 'required',
@@ -93,10 +93,10 @@ class Hotels extends Component
         $this->selectedUser = $data->pets->users->name;
         $this->selectedPet  = $data->pets->name;
         $this->type_id      = $data->pets->typepet->name;
-        $this->size         = $data->size;
+        // $this->size         = $data->size;
         $this->start_date   = $data->start_date;
         $this->end_date     = $data->end_date;
-        $this->total_day    = $data->total_day;
+        // $this->total_day    = $data->total_day;
         $this->cage_id      = $data->cages->typecages->alias ?? '';
         $this->cage_number  = $data->cages->number ?? '';
         $this->status       = $data->status;
@@ -108,10 +108,10 @@ class Hotels extends Component
         $data               = Hotel::find($this->modelId);
         $this->selectedUser = $data->pets->users->name;
         $this->selectedPet  = $data->pets->name;
-        $this->size         = $data->size;
+        // $this->size         = $data->size;
         $this->start_date   = $data->start_date;
         $this->end_date     = $data->end_date;
-        $this->total_day    = $data->total_day;
+        // $this->total_day    = $data->total_day;
         $this->cage_id      = $data->cage_id;
         $this->type_id      = $data->pets->typepet->name;
     }
@@ -191,17 +191,13 @@ class Hotels extends Component
      */
     public function modelData()
     {
-        $to = \Carbon\Carbon::createFromFormat('Y-m-d H:s:i', $this->start_date);
-        $from = \Carbon\Carbon::createFromFormat('Y-m-d H:s:i', $this->end_date);
-        
-        $this->days = $to->diffInDays($from);
         return [
 
             'pet_id'        => $this->selectedPet,
-            'size'          => $this->size,
+            // 'size'          => $this->size,
             'start_date'    => $this->start_date,
             'end_date'      => $this->end_date,
-            'total_day'     => $this->total_day,
+            // 'total_day'     => $this->total_day,
             'cage_id'       => $this->cage_id,
             'hotel_status'  => $this->hotel_status, 
             'status'        => $this->status 
@@ -221,8 +217,8 @@ class Hotels extends Component
              $this->type           = null;
              $this->start_date     = null;
              $this->end_date       = null;
-             $this->size           = null;
-             $this->total_day      = null;
+            //  $this->size           = null;
+            //  $this->total_day      = null;
              $this->cage_id        = null;
     }
 

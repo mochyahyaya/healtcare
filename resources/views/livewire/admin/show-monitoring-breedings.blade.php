@@ -65,7 +65,7 @@
                                                        {{$items->pets->name}}
                                                     </p>
                                                 </a>
-                                                <a class="no-underline text-grey-darker hover:text-red-dark" href="{{ route('monitorings', ['id'=>$items->id]) }}">
+                                                <a class="no-underline text-grey-darker hover:text-red-dark" href="{{ route('admin/breedingmonitorings', ['id'=>$items->id]) }}">
                                                     <span class="hidden">Lihat</span>
                                                     <i class="fas fa-ellipsis-v"></i>
                                                 </a>

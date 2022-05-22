@@ -112,14 +112,14 @@
               </select>
               @error('service') <span class="error">{{ $message }}</span> @enderror
           </div>
-          <div wire:model="size">
+          {{-- <div wire:model="size">
               <label class="text-gray-800 font-semibold block my-3 text-md" for="password">Ukuran</label>
               <input class="w-full bg-gray-100 px-4 py-2 rounded-lg focus:outline-none" type="text" name="password" id="password" placeholder="" />
                 <p class="mt-2 text-blue-800 text-sm">
                   Ukuran dalam bentuk S, M , L.
                 </p>
               @error('size') <span class="error">{{ $message }}</span> @enderror
-          </div>
+          </div> --}}
           <div wire:model="address">
               <label class="text-gray-800 font-semibold block my-3 text-md" for="confirm">Alamat</label>
               <input class="w-full bg-gray-100 px-4 py-2 rounded-lg focus:outline-none" type="text" name="confirm" id="confirm" placeholder="" />

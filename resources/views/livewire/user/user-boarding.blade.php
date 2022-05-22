@@ -97,11 +97,11 @@
                         @endforeach
                     </select>
                 </div>
-                <div class="mt-4">
+                {{-- <div class="mt-4">
                     <x-jet-label for="size" value="{{ __('Ukuran') }}" />
                     <x-jet-input id="size" class="block mt-1 w-full" type="text" wire:model="size" />
                     @error('size') <span class="error">{{ $message }}</span> @enderror
-                </div>
+                </div> --}}
                 <div class="mt-4">
                     <x-jet-label for="start_date" value="{{ __('Tanggal Mulai') }}" />
                     <x-datetime-picker wire:model="start_date" class="w-full rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" />
@@ -112,11 +112,11 @@
                     <x-datetime-picker wire:model="end_date" class="w-full rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" />
                     @error('end_date') <span class="error">{{ $message }}</span> @enderror
                 </div>
-                <div class="mt-4">
+                {{-- <div class="mt-4">
                     <x-jet-label for="total_day" value="{{ __('Total Day') }}" />
                     <x-jet-input id="total_day" class="block mt-1 w-full" type="text" wire:model="total_day" />
                     @error('total_day') <span class="error">{{ $message }}</span> @enderror
-                </div>
+                </div> --}}
                 <div>
                     <button type="submit" class="mt-6 bg-blue-600 rounded-lg px-4 py-2 text-lg text-white tracking-wide font-semibold font-sans">Book</button>
                 </div>
