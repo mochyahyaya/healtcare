@@ -6,6 +6,8 @@ use App\Models\Breeding;
 use App\Models\Pet;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
+use App\Notifications\BreedsNotification;
+use Illuminate\Support\Facades\Notification;
 use Livewire\Component;
 
 class UserBreeding extends Component
@@ -23,7 +25,7 @@ class UserBreeding extends Component
     }
     public function store()
     {
-        Breeding::create([ 
+        $breeds = Breeding::create([ 
             'pet_id_1'          => $this->pet1,
             'pet_id_2'          => $this->pet2,
             'status'            => 'belum diproses',
@@ -36,6 +38,11 @@ class UserBreeding extends Component
             'text'      => 'Pendaftaran Breeding Berhasil dilakukan',
             'iconcolor' => 'green'
         ]);
+
+        $admins = User::whereHas('roles', function ($query) {
+            $query->where('id', 1);
+        })->get();
+        Notification::send($admins, new BreedsNotification($breeds));
 
         // return redirect()->to('/user/dashboard');
     }

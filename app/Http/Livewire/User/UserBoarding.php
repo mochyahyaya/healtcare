@@ -6,6 +6,8 @@ use App\Models\Hotel;
 use App\Models\Pet;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
+use App\Notifications\BoardsNotification;
+use Illuminate\Support\Facades\Notification;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -25,7 +27,7 @@ class UserBoarding extends Component
             'total_day'         => 'required',
         ]);
 
-        Hotel::create([
+        $hotels = Hotel::create([
             'pet_id'          => $this->pet_id,
             'size'            => $this->size,
             'start_date'      => $this->start_date,
@@ -39,6 +41,11 @@ class UserBoarding extends Component
             'text'      => 'Pendaftaran Boarding Berhasil dilakukan',
             'iconcolor' => 'green'
         ]);
+
+        $admins = User::whereHas('roles', function ($query) {
+            $query->where('id', 1);
+        })->get();
+        Notification::send($admins, new BoardsNotification($hotels));
 
         // return redirect()->to('/user/dashboard');
     }
