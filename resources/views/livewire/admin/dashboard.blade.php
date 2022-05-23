@@ -129,32 +129,27 @@
                                 </div>
                                 @endif
 
-                                {{-- @if ($notification->type == 'App\Notifications\NewTReservation')
-                                <div class="alert alert-warning" role="alert">
-                                [{{ $notification->created_at }}] {{($notification->data->name)}} telah melakukan reservasi alat {{($notification->data->tool)}}.
-                                <a href="{{ route("admin.treservation.index") }}" class="float-right mark-as-read" data-id="{{ ($notification->id) }}">
-                                    Mark as read
-                                </a>
+                                @if ($notification->type == 'App\Notifications\BoardsNotification') 
+                                <div>
+                                    <div class="alert border border-blue-400 text-black px-2 py-2 mt-3 rounded-full relative" role="alert">
+                                        <span class="font-semibold mr-2 text-left flex-auto">{{ \Carbon\Carbon::parse($notification->created_at)->locale('id')->format('d M Y')}} {{($notification->data->name)}} telah melakukan reservasi boarding atas nama pet {{($notification->data->pet)}}.</span>
+                                        <a href="#" wire:click="markNotificationGroom('{{ ($notification->id) }}')" class="float-right mark-as-read">
+                                            Mark as read
+                                        </a>
+                                    </div>
                                 </div>
                                 @endif
 
-                                @if ($notification->type == 'App\Notifications\NewRoomReturn')
-                                <div class="alert alert-primary" role="alert">
-                                [{{ $notification->created_at }}] {{($notification->data->name)}} telah melakukan pengembalian ruangan {{($notification->data->room)}}.
-                                <a href="{{ route("admin.return.index") }}" class="float-right mark-as-read" data-id="{{ ($notification->id) }}">
-                                    Mark as read
-                                </a>
+                                @if ($notification->type == 'App\Notifications\BreedsNotification') 
+                                <div>
+                                    <div class="alert border border-yellow-400 text-black px-2 py-2 mt-3 rounded-full relative" role="alert">
+                                        <span class="font-semibold mr-2 text-left flex-auto">{{ \Carbon\Carbon::parse($notification->created_at)->locale('id')->format('d M Y')}} {{($notification->data->name)}} telah melakukan reservasi breeding atas nama pet {{($notification->data->pet)}}.</span>
+                                        <a href="#" wire:click="markNotificationGroom('{{ ($notification->id) }}')" class="float-right mark-as-read">
+                                            Mark as read
+                                        </a>
+                                    </div>
                                 </div>
                                 @endif
-
-                                @if ($notification->type == 'App\Notifications\NewToolReturn')
-                                <div class="alert alert-danger" role="alert">
-                                [{{ $notification->created_at }}] {{($notification->data->name)}} telah melakukan pengembalian alat {{($notification->data->tool)}}.
-                                <a href="{{ route("admin.toolreturn.index") }}" class="float-right mark-as-read" data-id="{{ ($notification->id) }}">
-                                    Mark as read
-                                </a>
-                                </div>
-                                @endif --}}
             
                                 @if($loop->last)
                                     <a href="#" id="mark-all">

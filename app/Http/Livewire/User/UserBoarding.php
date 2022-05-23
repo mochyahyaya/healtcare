@@ -4,6 +4,7 @@ namespace App\Http\Livewire\User;
 
 use App\Models\Hotel;
 use App\Models\Pet;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 use App\Notifications\BoardsNotification;
@@ -13,7 +14,7 @@ use Livewire\WithPagination;
 
 class UserBoarding extends Component
 {
-    public $pet_id, $size, $total_day;
+    public $pet_id;
     public $start_date = null;
     public $end_date = null;
 
@@ -21,18 +22,18 @@ class UserBoarding extends Component
     {
         $this->validate([
             'pet_id'            => 'required',
-            'size'              => 'required',
+            // 'size'              => 'required',
             'start_date'        => 'required',
             'end_date'          => 'required',
-            'total_day'         => 'required',
+            // 'total_day'         => 'required',
         ]);
 
         $hotels = Hotel::create([
             'pet_id'          => $this->pet_id,
-            'size'            => $this->size,
+            // 'size'            => $this->size,
             'start_date'      => $this->start_date,
             'end_date'        => $this->end_date,
-            'total_day'       => $this->total_day
+            // 'total_day'       => $this->total_day
         ]); 
 
         $this->dispatchBrowserEvent('swal:modal', [
@@ -62,6 +63,6 @@ class UserBoarding extends Component
         }
         return view('livewire.user.user-boarding', [
             'pet'  => $this->pet(),
-        ])->extends('layouts.user')->section('content');;
+        ])->extends('layouts.user')->section('content');
     }
 }

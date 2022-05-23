@@ -116,7 +116,7 @@ class Dashboard extends Component
             })
             ->markAsRead();
 
-        return response()->noContent();
+            return redirect()->to('/admin/hotels'); 
     }
 
     public function markNotificationBreeding(Request $request)
@@ -128,7 +128,7 @@ class Dashboard extends Component
             })
             ->markAsRead();
 
-        return response()->noContent();
+        return redirect()->to('/admin/breeding'); 
     }
 
     public function markAll()

@@ -4,6 +4,7 @@ namespace App\Http\Livewire\User;
 
 use App\Models\Breeding;
 use App\Models\Pet;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 use App\Notifications\BreedsNotification;
@@ -62,6 +63,6 @@ class UserBreeding extends Component
         return view('livewire.user.user-breeding', [
             'pet'   => $this->pet(),
             'pets2'  => $this->pets2()
-        ])->extends('layouts.user')->section('content');;
+        ])->extends('layouts.user')->section('content');
     }
 }

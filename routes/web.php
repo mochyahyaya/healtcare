@@ -19,6 +19,11 @@ use App\Http\Livewire\User\UserBreeding;
 use App\Http\Livewire\User\UserGrooming;
 use App\Http\Livewire\User\UserPet;
 use App\Http\Livewire\USer\UserProfile;
+use App\Http\Livewire\USer\Monitoringpets;
+use App\Http\Livewire\USer\HistoryActivity;
+use App\Http\Livewire\USer\HistoryActivityBoarding;
+use App\Http\Livewire\USer\HistoryActivityBreeding;
+
 
 use App\Http\Livewire\Veterinarian\DashboardD;
 use App\Http\Livewire\Veterinarian\Inpatients;
@@ -90,6 +95,10 @@ Route::get('redirects', 'App\Http\Livewire\Admin\Home');
         Route::get('user/breed', UserBreeding::class)->name('user/breedings');
         Route::get('user/profil', UserProfile::class)->name('user/profil');     
         Route::get('user/pet', UserPet::class)->name('user/pet');   
+        Route::get('user/historyactivity', HistoryActivity::class)->name('user/historyactivity');   
+        Route::get('user/historyactivityboardings', HistoryActivityBoarding::class)->name('user/historyactivityhotels');   
+        Route::get('user/historyactivitybreedings', HistoryActivityBreeding::class)->name('user/historyactivitybreeds');   
+        Route::get('user/monitoringpets', Monitoringpets::class)->name('user/monitoringpets');   
         });
 
 });

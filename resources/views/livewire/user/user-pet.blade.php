@@ -28,7 +28,7 @@
                     </button>
                     <div class="collapse navbar-collapse hidden lg:block duration-300 shadow absolute top-100 left-10 mt-full bg-white z-20 px-10 py-3 w-full lg:static lg:bg-transparent lg:shadow-none" id="navbarSupportedContent">
                         <ul class="navbar-nav mr-auto justify-center items-center lg:flex">
-                            <li class="nav-item">
+                            {{-- <li class="nav-item">
                               <a class="page-scroll active" href="{{route('user/dashboard')}}">Home</a>
                             </li>
                             <li class="nav-item">
@@ -42,7 +42,7 @@
                             </li>
                             <li class="nav-item">
                               <a class="page-scroll" href="">Vaksinasi</a>
-                            </li>
+                            </li> --}}
                         </ul>
                     </div>
                     @if (auth()->user()->role_id == 3)
