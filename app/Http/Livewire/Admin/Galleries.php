@@ -12,11 +12,14 @@ class Galleries extends Component
     use WithPagination;
     public $pet_id, $name, $modelId;
     public $modalDeleteVisible = false;
+
     public function mount($id)
     {
         $this->pet_id = $id;
         $data = Pet::find($this->pet_id);
         $this->name = $data->name;
+
+        $this->modalDeleteVisible = false;
     }
 
     public function pets()

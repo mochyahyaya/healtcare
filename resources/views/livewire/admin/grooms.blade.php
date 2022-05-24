@@ -180,7 +180,7 @@
                   <x-jet-label for="service" value="{{ __('Jenis Grooming') }}" />
                   <select class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm mt-1 block w-full" wire:model="service">
                         <option disabled selected>Jenis Grooming</option>
-                        <option value="Standar">Standar</option>
+                        <option value="Lengkap">Lengkap</option>
                         <option value="Kutu">Kutu</option>
                         <option value="Jamur">Jamur</option>
                       </select>

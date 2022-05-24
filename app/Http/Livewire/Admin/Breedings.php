@@ -269,6 +269,8 @@ class Breedings extends Component
     {
         $this->pet = Pet::where('user_id', $user)
         ->where('gender', 'Betina')
+        ->join('breedings', 'breedings.pet_id_1', '=', 'pets.id')
+            ->whereNotIn('status', ['belum diproses', 'proses'])
         ->get();
         $this->selectedPet = NULL;
     }

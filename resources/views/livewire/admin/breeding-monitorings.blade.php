@@ -122,4 +122,17 @@
          console.error(error);
       });
 </script>
+<script>
+    window.addEventListener('swal:modal', event=>
+    {
+      Swal.fire({
+        icon: event.detail.icon,
+        iconcolor: event.detail.iconcolor,
+        title: event.detail.title,
+        text: event.detail.text,
+        showConfirmButton: false,
+        timer: 1500,
+      });
+    });
+</script>
   @endsection

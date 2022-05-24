@@ -22,7 +22,6 @@ class ShowMonitorings extends Component
             'food' => 'required',
             'medicine' => 'required',
             'temperature' => 'required',
-            
         ];
     }
 

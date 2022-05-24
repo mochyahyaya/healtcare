@@ -29,7 +29,6 @@ class Groom extends Model
     public function scopeSearch($query, $val){
         return $query
         ->select('grooms.*', 'grooms.id AS id')
-        ->where('status', '<>', 'selesai')
         ->leftJoin('pets', 'pets.id', '=', 'grooms.pet_id')
         ->where(function ($query) use ($val){
             $query

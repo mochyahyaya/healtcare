@@ -68,23 +68,24 @@
       </div>
     </div>
   </div>
+
+    <x-jet-dialog-modal wire:model="modalDeleteVisible">
+      <x-slot name="title">
+          {{ __('Hapus Data') }}
+      </x-slot>
+
+      <x-slot name="content">
+          {{ __('Apakah Anda yakin untuk menghapus data ini? ') }}
+      </x-slot>
+
+      <x-slot name="footer">
+          <x-jet-secondary-button wire:click="$toggle('modalDeleteVisible')" wire:loading.attr="disabled">
+              {{ __('Batalkan') }}
+          </x-jet-secondary-button>
+
+          <x-jet-danger-button class="ml-2" wire:click="delete" wire:loading.attr="disabled">
+              {{ __('Hapus Data') }}
+          </x-jet-danger-button>
+      </x-slot>
+    </x-jet-dialog-modal>
 </div>
-<x-jet-dialog-modal wire:model="modalDeleteVisible">
-    <x-slot name="title">
-        {{ __('Hapus Data') }}
-    </x-slot>
-
-    <x-slot name="content">
-        {{ __('Apakah Anda yakin untuk menghapus data ini? ') }}
-    </x-slot>
-
-    <x-slot name="footer">
-        <x-jet-secondary-button wire:click="$toggle('modalDeleteVisible')" wire:loading.attr="disabled">
-            {{ __('Batalkan') }}
-        </x-jet-secondary-button>
-
-        <x-jet-danger-button class="ml-2" wire:click="delete" wire:loading.attr="disabled">
-            {{ __('Hapus Data') }}
-        </x-jet-danger-button>
-    </x-slot>
-</x-jet-dialog-modal>

@@ -217,7 +217,10 @@ class Grooms extends Component
 
     public function updatedSelectedUser($user)
     {
-        $this->pet = Pet::where('user_id', $user)->get();
+        $this->pet = Pet::where('user_id', $user)
+        ->join('hotels', 'hotels.pet_id',  '=', 'pets.id' )
+        ->whereNotIn('status', ['belum diproses', 'dalam kandang'])
+        ->get();
         $this->selectedPet = NULL;
     }
     

@@ -34,7 +34,6 @@ class Hotel extends Model
     public function scopeSearch($query, $val){
         return $query
         ->select('hotels.*', 'hotels.id AS id')
-        ->where('status', '<>', 'selesai')
         ->leftJoin('pets', 'pets.id', '=', 'hotels.pet_id')
         ->where(function ($query) use ($val){
             $query
