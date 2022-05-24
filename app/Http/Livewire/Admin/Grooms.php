@@ -174,7 +174,7 @@ class Grooms extends Component
             'pet_id'    => $this->selectedPet,
             // 'size'      => $this->size,
             'service'   => $this->service,
-            'status'    => $this->status,
+            'status'    => 'diproses',
             'address'   => $this->address,
         ];
     }

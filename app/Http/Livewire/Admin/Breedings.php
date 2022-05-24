@@ -20,7 +20,7 @@ class Breedings extends Component
     public $modalDetailVisible = false;
     public $pet_id_1, $cage_id, $query, $user_id, $type_id, $cage_number;
     public $hotel_status = 'hotel';
-    public $status = 'belum diproses';
+    public $status = 'proses';
     public $modelId;
     public $sortColumn = 'created_at';
     public $sortDirection = 'asc';
@@ -228,7 +228,9 @@ class Breedings extends Component
 
     public function pets()
     {
-        return Pet::with('users')->get();
+        return Pet::where('user_id', 1)
+        ->where('gender', 'Betina')
+        ->get();
     }
     public function users()
     {
@@ -254,7 +256,7 @@ class Breedings extends Component
     public function cages()
     {
         return Cage::where('type_cage_id', '3')
-        ->where('counter', '<=', 'count')
+        ->where('count', '>', 'counter')
         ->get();
     }
 
@@ -265,7 +267,9 @@ class Breedings extends Component
 
     public function updatedSelectedUser($user)
     {
-        $this->pet = Pet::where('user_id', $user)->get();
+        $this->pet = Pet::where('user_id', $user)
+        ->where('gender', 'Betina')
+        ->get();
         $this->selectedPet = NULL;
     }
     public function render()

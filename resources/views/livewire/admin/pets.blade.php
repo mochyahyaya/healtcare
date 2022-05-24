@@ -16,7 +16,7 @@
                      </x-jet-button>
                  </div>
                  <div class="flex-2 float-right">
-                     <x-jet-input id="name" type="text" wire:model.debounce.500ms="searchTerm" placeholder="Search..." />
+                     <x-jet-input id="name" type="text" wire:model.debounce.500ms="search" placeholder="Search..." />
                  </div>
                 </div>  
              

@@ -24,11 +24,15 @@ class Pet extends Model
 
     public function scopeSearch($query, $val){
         return $query
-        ->where('name', 'like', '%' .$val. '%')
-        ->Orwhere('type_id', 'like', '%' .$val. '%')
-        ->Orwhere('size', 'like', '%' .$val. '%')
-        ->Orwhere('race', 'like', '%' .$val. '%')
-        ->Orwhere('weight', 'like', '%' .$val. '%')
-        ->Orwhere('colour', 'like', '%' .$val. '%');
-    }
+        ->where('user_id', 1)
+        ->where(function ($query) use ($val){
+            $query
+            ->orwhere('name', 'like', '%' .$val. '%')
+            ->Orwhere('type_id', 'like', '%' .$val. '%')
+            ->Orwhere('size', 'like', '%' .$val. '%')
+            ->Orwhere('race', 'like', '%' .$val. '%')
+            ->Orwhere('weight', 'like', '%' .$val. '%')
+            ->Orwhere('colour', 'like', '%' .$val. '%');
+        });
+}
 }

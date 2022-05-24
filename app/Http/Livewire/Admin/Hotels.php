@@ -19,7 +19,7 @@ class Hotels extends Component
     public $modalDetailVisible = false;
     public $pet_id, $cage_id, $query, $user_id, $type_id, $cage_number, $days;
     public $hotel_status = 'hotel';
-    public $status = 'belum diproses';
+    public $status = 'dalam kandang';
     public $modelId;
     public $sortColumn = 'created_at';
     public $sortDirection = 'asc';
@@ -251,21 +251,20 @@ class Hotels extends Component
     
     public function cats()
     {
-        return Cage::where('type_cage_id', '1')
-        ->where('counter', '<=', 'count' )
+        $cats = Cage::where('type_cage_id', '1')
+        ->where('count', '>', 'counter' )
         ->get();
+
+        return $cats;
     }
     
     public function dogs()
     {
-        return Cage::where('type_cage_id', '2')
-        ->where('counter', '<=', 'count' )
+        $dogs = Cage::where('type_cage_id', '2')
+        ->where('count', '>', 'counter' )
         ->get();
-    }
-    
-    public function cages()
-    {
-        return Cage::where('counter', '<', 2)->get();
+
+        return $dogs;
     }
     
     public function updatedSelectedUser($user)
@@ -291,7 +290,6 @@ class Hotels extends Component
             'data'  => $this->read(),
             'cats'  => $this->cats(),
             'dogs'  => $this->dogs(),
-            'cages' => $this->cages(),
             'pets'  => $this->pets(),
             'users' => $this->users(),
         ]);

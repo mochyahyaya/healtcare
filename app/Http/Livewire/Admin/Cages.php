@@ -27,7 +27,6 @@ class Cages extends Component
             'number'        => 'required',
             'type_cage_id'  => 'required',
             'count'         => 'required',
-            
         ];
     }
 
@@ -137,6 +136,7 @@ class Cages extends Component
             'number'        => $this->number,
             'type_cage_id'  => $this->type_cage_id,
             'count'         => $this->count,
+            'counter'       => 0
         ];
     }
     
