@@ -148,11 +148,11 @@
                              </select>
                            @error('type') <span class="error">{{ $message }}</span> @enderror
                        </div>
-                         <div class="mt-4">
+                         {{-- <div class="mt-4">
                              <x-jet-label for="size" value="{{ __('Ukuran') }}" />
                              <x-jet-input id="size" class="block mt-1 w-full" type="text" wire:model.debounce.800ms="size" />
                              @error('size') <span class="error">{{ $message }}</span> @enderror
-                         </div>
+                         </div> --}}
                          <div class="mt-4">
                             <x-jet-label for="start_date" value="{{ __('Tanggal Mulai') }}" />
                             <x-datetime-picker wire:model="start_date" class="w-full rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" />
@@ -161,11 +161,11 @@
                             <x-jet-label for="end_date" value="{{ __('Tanggal Berakhir') }}" />
                             <x-datetime-picker wire:model="end_date" class="w-full rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" />
                         </div>
-                        <div class="mt-4">
+                        {{-- <div class="mt-4">
                           <x-jet-label for="total_day" value="{{ __('Total Hari') }}" />
                           <x-jet-input id="total_day" class="block mt-1 w-full" type="text" wire:model.debounce.800ms="total_day" />
                           @error('total_day') <span class="error">{{ $message }}</span> @enderror
-                        </div>
+                        </div> --}}
                             <div class="mt-4" x-show="type == 1">
                               <x-jet-label for="cage_id" value="{{ __('Kandang') }}" />
                               <select class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm mt-1 block w-full" wire:model="cage_id" >

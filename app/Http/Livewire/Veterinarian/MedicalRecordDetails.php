@@ -32,7 +32,7 @@ class MedicalRecordDetails extends Component
             'pet_id'     => $this->pet_id,
             'indication' => $this->indication,
             'medication' => $this->medication,
-            'vaccinee'   => $this->vaccinee, 
+            // 'vaccinee'   => $this->vaccinee, 
             'status'     => 'Sehat'
         ]);
 

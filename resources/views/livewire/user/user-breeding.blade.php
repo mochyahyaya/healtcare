@@ -63,7 +63,8 @@
                         <div class="border-t border-gray-200"></div>
                         <li class=""><a class="rounded-t bg-white hover:bg-blue-200 py-2 px-4 block whitespace-no-wrap" href="{{route('user/profil')}}">Profile</a></li>
                         <li class=""><a class="rounded-t bg-white hover:bg-blue-200 py-2 px-4 block whitespace-no-wrap" href="{{route('user/pet')}}">Pet</a></li>
-                        <li class=""><a class="rounded-t bg-white hover:bg-blue-200 py-2 px-4 block whitespace-no-wrap" href="#">Riwayat Aktivitas</a></li>
+                        <li class=""><a class="rounded-t bg-white hover:bg-blue-200 py-2 px-4 block whitespace-no-wrap" href="{{route('user/monitoringpets')}}">Monitoring Pet</a></li>
+                        <li class=""><a class="rounded-t bg-white hover:bg-blue-200 py-2 px-4 block whitespace-no-wrap" href="{{route('user/historyactivity')}}">Riwayat Aktivitas</a></li>
                         <form method="POST" action="{{ route('logout') }}">
                           @csrf
                           <a class= "rounded-t bg-white hover:bg-blue-200 py-2 px-4 block whitespace-no-wrap" href="{{ route('logout') }}" onclick="event.preventDefault();
@@ -108,7 +109,7 @@
                   <select class="w-full bg-gray-100 px-4 py-2 rounded-lg focus:outline-none">
                       <option selected>Pilih Pet Jantan</option>
                       @foreach ($pets2 as $items)
-                          <option value="{{$items->id}}"> {{$items->name}} </option>
+                          <option value="{{$items->name}}"> {{$items->name}} </option>
                       @endforeach
                   </select>
                 </div>

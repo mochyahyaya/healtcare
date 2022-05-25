@@ -192,7 +192,7 @@
                             <x-jet-input id="medication" class="block mt-1 w-full" type="text" wire:model.debounce.800ms="medication" />
                             @error('medication') <span class="error">{{ $message }}</span> @enderror
                         </div>
-                        <div class="mt-4">
+                        {{-- <div class="mt-4">
                             <select wire:model="vaccinee" id="vaccinee" class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm block mt-1 w-full">
                                 <option selected>Kosongkan jika tidak dibutuhkan</option>
                                     @foreach ($vaccinees as $item)
@@ -200,7 +200,7 @@
                                     @endforeach
                                     @error('vaccinee') <span class="error">{{ $message }}</span> @enderror
                             </select>
-                        </div>
+                        </div> --}}
                         <button type="submit" class="mt-2 inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring focus:ring-gray-300 disabled:opacity-25 transition">
                             Tambah
                         </button>

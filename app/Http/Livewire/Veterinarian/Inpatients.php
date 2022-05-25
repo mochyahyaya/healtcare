@@ -103,10 +103,10 @@ class Inpatients extends Component
         $this->user_id = $data->pets->users->name;
         $this->pet_id = $data->pets->name;
         $this->type_id = $data->pets->typepet->name;
-        $this->size = $data->size;
+        // $this->size = $data->size;
         $this->start_date = $data->start_date;
         $this->end_date = $data->end_date;
-        $this->total_day = $data->total_day;
+        // $this->total_day = $data->total_day;
         $this->cage_id = $data->cages->typecages->alias;
         $this->cage_number = $data->cages->number;
 
@@ -212,10 +212,10 @@ class Inpatients extends Component
     {        
              $this->modelId = null;   
              $this->pet_id = null;
-             $this->size = null;
+            //  $this->size = null;
              $this->start_date = null;
              $this->end_date = null;
-             $this->total_day = null;
+            //  $this->total_day = null;
              $this->cage_id = null;
     }
 

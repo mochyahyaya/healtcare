@@ -36,9 +36,9 @@
                     <x-jet-nav-link href="{{ route('veterinarian/medicalRecords') }}" :active="request()->routeIs('veterinarian/medicalRecords')">
                         {{ __('Rekam Medis') }}
                     </x-jet-nav-link>
-                    <x-jet-nav-link href="{{ route('veterinarian/inpatients') }}" :active="request()->routeIs('veterinarian/inpatients')">
+                    {{-- <x-jet-nav-link href="{{ route('veterinarian/inpatients') }}" :active="request()->routeIs('veterinarian/inpatients')">
                         {{ __('Rawat Inap') }}
-                    </x-jet-nav-link>
+                    </x-jet-nav-link> --}}
                 </div>
                 @endcan
                 <!-- Navigation Links -->
