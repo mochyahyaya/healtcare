@@ -56,6 +56,7 @@ class Hotels extends Component
     public function mount($selectedPet=null)
     {  
         $this->resetPage();
+        $this->resetVars();
     }
 
     /**
@@ -270,8 +271,8 @@ class Hotels extends Component
     public function updatedSelectedUser($user)
     {
         $this->pet = Pet::where('user_id', $user)
-        ->join('hotels', 'hotels.pet_id', '=', 'pets.id')
-            ->whereNotIn('status', ['belum diproses', 'dalam kandang'])
+        // ->leftjoin('hotels', 'hotels.pet_id', '=', 'pets.id')
+        // ->whereNull('hotels.pet_id')
         ->get();
         $this->selectedPet = NULL;
     }

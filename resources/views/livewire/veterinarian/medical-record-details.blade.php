@@ -25,11 +25,11 @@
                         <li class="flex items-center py-3">
                             <span>Status</span>
                             <span class="ml-auto"><span
-                                    class="bg-yellow-500 py-1 px-2 rounded text-white text-sm">Dalam Perawatan</span></span>
+                                    class="bg-green-500 py-1 px-2 rounded text-white text-sm">Sehat</span></span>
                         </li>
                         <li class="flex items-center py-3">
                             <span>Member since</span>
-                            <span class="ml-auto">{{$items->created_at}}</span>
+                            <span class="ml-auto">{{ \Carbon\Carbon::parse($items->created_at)->translatedFormat('d F Y')}}</span>
                         </li>
                     </ul>
                    @endforeach

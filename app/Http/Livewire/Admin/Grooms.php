@@ -18,6 +18,7 @@ class Grooms extends Component
     public $modalFormVisible = false;
     public $modalDeleteVisible = false;
     public $modalDetailVisible = false;
+    public $modalUpdateVisible = false;
     public $pet_id, $user_id, $type_id, $service, $address;
     public $modelId;
     public $status = 'belum diproses';
@@ -27,7 +28,7 @@ class Grooms extends Component
     public $perPage = 10;
     public $selectedUser = null;
     public $selectedPet = null;
-    public $pet = null;
+    public $pet;
     /**
      * function for validation
      *
@@ -46,6 +47,7 @@ class Grooms extends Component
     public function mount($selectedPet=null)
     {
         $this->resetPage();
+        $this->resetVars();
     }
 
     /**
@@ -64,7 +66,7 @@ class Grooms extends Component
     {
         $this->resetValidation();
         $this->modelId = $id;
-        $this->modalFormVisible = true;
+        $this->modalUpdateVisible = true;
         $this->loadModel();
     }
 
@@ -131,7 +133,7 @@ class Grooms extends Component
             'text'      => 'Data Grooming Berhasil Diubah',
             'iconcolor' => 'green'
         ]);
-        $this->modalFormVisible = false;
+        $this->modalUpdateVisible = false;
         $this->resetVars();
     }
 
@@ -218,8 +220,8 @@ class Grooms extends Component
     public function updatedSelectedUser($user)
     {
         $this->pet = Pet::where('user_id', $user)
-        ->join('hotels', 'hotels.pet_id',  '=', 'pets.id' )
-        ->whereNotIn('status', ['belum diproses', 'dalam kandang'])
+        // ->leftjoin('grooms', 'grooms.pet_id', '=', 'pets.id')
+        // ->whereNull('grooms.pet_id')
         ->get();
         $this->selectedPet = NULL;
     }

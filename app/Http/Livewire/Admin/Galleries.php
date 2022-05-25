@@ -25,6 +25,7 @@ class Galleries extends Component
     public function pets()
     {
         return Gallery::where('pet_id', $this->pet_id)->get();
+        
     }
 
     public function deleteShowModal($id)

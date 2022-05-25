@@ -86,10 +86,10 @@
                                 {{$items->pets->typepet->name}}
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap">
-                              {{ \Carbon\Carbon::parse($items->birthday)->translatedFormat('d F Y')}}
+                              {{ \Carbon\Carbon::parse($items->start_date)->translatedFormat('d F Y')}}
                             </td>  
                             <td class="px-6 py-4 whitespace-nowrap">
-                              {{ \Carbon\Carbon::parse($items->birthday)->translatedFormat('d F Y')}}
+                              {{ \Carbon\Carbon::parse($items->end_date)->translatedFormat('d F Y')}}
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap">
                               @if($items->status == 'belum diproses')
@@ -339,7 +339,7 @@
                             <i class="fas fa-address-book text-white"></i>
                           </div>
                           <div class="flex-grow">
-                            <h5 class="leading-tight text-sm text-gray-700 font-semibold">Kandang</h5>
+                            <h5 class="leading-tight text-sm text-gray-700 font-semibold">Status</h5>
                             <span class="text-xs text-gray-500">{{$status}}</span>
                           </div>
                         </span>

@@ -44,9 +44,9 @@
                           Nama Hewan
                           @include('partials._sort-icon', ['field' => 'name'])
                         </th>
-                        <th wire:click="sortBy('type_id')" scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider" style="cursor: pointer">
-                          Jenis
-                          @include('partials._sort-icon', ['field' => 'type_id'])
+                        <th wire:click="sortBy('created_at')" scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider" style="cursor: pointer">
+                          Tanggal Masuk
+                          @include('partials._sort-icon', ['field' => 'created_at'])
                         </th>
                         <th wire:click="sortBy('service')"scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider" style="cursor: pointer">
                           Jenis Grooming
@@ -75,7 +75,7 @@
                             {{$items->pets->name}}
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap">
-                            {{$items->type}}
+                          {{ \Carbon\Carbon::parse($items->created_at)->translatedFormat('d F Y')}}
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap">
                             {{$items->service}}
@@ -141,7 +141,7 @@
                   <div class="mt-4" wire:ignore>
                     <x-jet-label for="user_id" value="{{ __('Nama Pemilik') }}" />
                     <select class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm mt-1 block w-full" wire:model="selectedUser" id="selectpicker" style="width: 100%">
-                          <option value="" selected> Nama pemilik </option>
+                          <option value="" selected>--Nama pemilik--</option>
                         @foreach ($users as $item)
                           <option value="{{$item->id}}">{{$item->name}}</option>
                         @endforeach
@@ -153,11 +153,12 @@
                       <div class="mt-4">
                         <x-jet-label for="pet_id" value="{{ __('Nama Pet') }}" />
                         <select class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm mt-1 block w-full" wire:model="selectedPet"> 
-                              <option selected>  Nama hewan </option>
+                              <option selected>--Nama hewan--</option>
                             @foreach ($pet as $item)
                               <option value= "{{$item->id}}">{{$item->name}}</option>
                             @endforeach
                           </select>
+                          {{$pet}}
                         @error('selectedPet') <span class="error">{{ $message }}</span> @enderror
                       </div>  
                       @endif
@@ -165,7 +166,7 @@
                 <div class="mt-4">
                   <x-jet-label for="service" value="{{ __('Jenis Hewan') }}" />
                   <select class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm mt-1 block w-full" wire:model.debounce.800ms="type_id" >
-                      <option selected>  Jenis Hewan  </option>   
+                      <option selected>--Jenis Hewan--</option>   
                       <option value="kucing">Kucing</option>
                       <option value="anjing">Anjing</option>
                     </select>
@@ -179,7 +180,7 @@
                 <div class="mt-4">
                   <x-jet-label for="service" value="{{ __('Jenis Grooming') }}" />
                   <select class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm mt-1 block w-full" wire:model="service">
-                        <option disabled selected>Jenis Grooming</option>
+                        <option selected>--Jenis Grooming--</option>
                         <option value="Lengkap">Lengkap</option>
                         <option value="Kutu">Kutu</option>
                         <option value="Jamur">Jamur</option>
@@ -210,6 +211,95 @@
         </x-jet-secondary-button>
             </x-slot>
         </x-jet-dialog-modal>
+
+        {{-- Update Modal --}}
+        <x-jet-dialog-modal wire:model="modalUpdateVisible">
+          @if ($modelId)
+          <x-slot name="title">
+              {{ __('Ubah Data Grooming') }}
+          </x-slot>
+          @else
+          <x-slot name="title">
+              {{ __('Tambah Data Grooming') }}
+          </x-slot>
+          @endif
+      
+          <x-slot name="content">
+              <div class="mt-4">
+                <div x-data="{type: 0}">
+                <div class="mt-4" wire:ignore>
+                  <x-jet-label for="user_id" value="{{ __('Nama Pemilik') }}" />
+                  <select class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm mt-1 block w-full" wire:model="selectedUser" id="selectpicker" style="width: 100%">
+                        {{-- <option value="" selected>--Nama pemilik--</option> --}}
+                      @foreach ($users as $item)
+                        <option value="{{$item->id}}">{{$item->name}}</option>
+                      @endforeach
+                  </select>
+                  @error('selectedUser') <span class="error">{{ $message }}</span> @enderror
+                </div>
+                <div class="mt-4">
+                  @if(!is_null($pet))
+                    <div class="mt-4">
+                      <x-jet-label for="pet_id" value="{{ __('Nama Pet') }}" />
+                      <select class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm mt-1 block w-full" wire:model="pet"> 
+                            {{-- <option selected>--Nama hewan--</option> --}}
+                          @foreach ($pet as $item)
+                            <option value= "{{$item->id}}">{{$item->name}}</option>
+                          @endforeach
+                        </select>
+                        {{$pet}}
+                      @error('selectedPet') <span class="error">{{ $message }}</span> @enderror
+                    </div>  
+                    @endif
+                </div>  
+              <div class="mt-4">
+                <x-jet-label for="service" value="{{ __('Jenis Hewan') }}" />
+                <select class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm mt-1 block w-full" wire:model.debounce.800ms="type_id" >
+                    {{-- <option selected>--Jenis Hewan--</option>    --}}
+                    <option value="kucing">Kucing</option>
+                    <option value="anjing">Anjing</option>
+                  </select>
+                @error('type') <span class="error">{{ $message }}</span> @enderror
+            </div>
+              {{-- <div class="mt-4">
+                  <x-jet-label for="size" value="{{ __('Ukuran') }}" />
+                  <x-jet-input id="size" class="block mt-1 w-full" type="text" wire:model.debounce.800ms="size" />
+                  @error('size') <span class="error">{{ $message }}</span> @enderror
+              </div> --}}
+              <div class="mt-4">
+                <x-jet-label for="service" value="{{ __('Jenis Grooming') }}" />
+                <select class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm mt-1 block w-full" wire:model="service">
+                      {{-- <option selected>--Jenis Grooming--</option> --}}
+                      <option value="Lengkap">Lengkap</option>
+                      <option value="Kutu">Kutu</option>
+                      <option value="Jamur">Jamur</option>
+                    </select>
+                  @error('service') <span class="error">{{ $message }}</span> @enderror
+              </div>
+              <div class="mt-4">
+                  <x-jet-label for="address" value="{{ __('Alamat') }}" />
+                  <x-jet-input id="address" class="block mt-1 w-full" type="text" wire:model.debounce.800ms="address" />
+                  @error('address') <span class="error">{{ $message }}</span> @enderror
+              </div>
+            </div>
+              </div>
+          </x-slot>
+      
+          <x-slot name="footer">
+            <x-jet-secondary-button wire:click="$toggle('modalUpdateVisible')" wire:loading.attr="disabled">
+              {{ __('Batalkan') }}
+            @if ($modelId)
+            <x-jet-button class="ml-2" wire:click="update" wire:loading.attr="disabled">
+                {{ __('Ubah') }}
+            </x-jet-danger-button>
+            @else
+            <x-jet-button class="ml-2" wire:click="create" wire:loading.attr="disabled">
+            {{ __('Simpan') }}
+        </x-jet-danger-button>
+        @endif
+      </x-jet-secondary-button>
+          </x-slot>
+      </x-jet-dialog-modal>
         
         {{-- Delete modal --}}
         <x-jet-dialog-modal wire:model="modalDeleteVisible">

@@ -12,6 +12,7 @@ use App\Http\Livewire\Admin\ShowMonitorings;
 use App\Http\Livewire\Admin\ShowMonitoringBreedings;
 use App\Http\Livewire\Admin\BreedingMonitorings;
 use App\Http\Livewire\Admin\Galleries;
+use App\Http\Livewire\Admin\PetMonitoring;
 
 use App\Http\Livewire\User\DashboardU;
 use App\Http\Livewire\User\UserBoarding;
@@ -71,6 +72,7 @@ Route::get('redirects', 'App\Http\Livewire\Admin\Home');
         Route::get('admin/hotel', Hotels::class)->name('admin/hotels');
         Route::get('admin/monitoring/{id}', Monitorings::class)->name('monitorings');
         Route::get('admin/showmonitoring', ShowMonitorings::class)->name('admin/showmonitorings');
+        Route::get('admin/petmonitoring/{id}', PetMonitoring::class)->name('admin/petmonitoring');
         Route::get('admin/breed', Breedings::class)->name('admin/breeds');
         Route::get('admin/breedingmonitoring/{id}', BreedingMonitorings::class)->name('admin/breedingmonitorings');
         Route::get('admin/showmonitoringbreeding', ShowMonitoringBreedings::class)->name('admin/showmonitoringbreedings');

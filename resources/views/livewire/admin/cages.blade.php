@@ -8,14 +8,14 @@
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
                 <div class="p-6">
                     <div class="flex px-4 py-3 sm:px-6">
-                     <div class="flex-1 float-left">   
-                         <x-jet-button wire:click="createShowModal">
-                             {{ __('Tambah') }}
-                         </x-jet-button>
-                     </div>
-                     <div class="flex-2 float-right">
-                         <x-jet-input id="name" type="text" wire:model.debounce.500ms="search" placeholder="Search..." />
-                     </div>
+                      <div class="flex-1 float-left">   
+                          <x-jet-button wire:click="createShowModal">
+                              {{ __('Tambah') }}
+                          </x-jet-button>
+                      </div>
+                      <div class="flex-2 float-right">
+                          <x-jet-input id="name" type="text" wire:model.debounce.500ms="search" placeholder="Search..." />
+                      </div>
                     </div>  
                  
                      {{-- Data Tables --}}

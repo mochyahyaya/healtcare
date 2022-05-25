@@ -16,6 +16,7 @@ class Breedings extends Component
     use WithPagination;
     
     public $modalFormVisible = false;
+    public $modalUpdateVisible = false;
     public $modalDeleteVisible = false;
     public $modalDetailVisible = false;
     public $pet_id_1, $cage_id, $query, $user_id, $type_id, $cage_number;
@@ -52,6 +53,7 @@ class Breedings extends Component
     public function mount($selectedPet=null)
     {
         $this->resetPage();
+        $this->resetVars();
 
         $this->users = User::all();
         $this->pets = collect();
@@ -81,7 +83,6 @@ class Breedings extends Component
     public function updateShowModal($id)
     {
         $this->resetValidation();
-        $this->resetVars();
         $this->modelId = $id;
         $this->modalFormVisible = true;
         $this->loadModel();
@@ -269,8 +270,8 @@ class Breedings extends Component
     {
         $this->pet = Pet::where('user_id', $user)
         ->where('gender', 'Betina')
-        ->join('breedings', 'breedings.pet_id_1', '=', 'pets.id')
-            ->whereNotIn('status', ['belum diproses', 'proses'])
+        // ->leftjoin('breedings', 'breedings.pet_id_1', '=', 'pets.id')
+        // ->whereNull('breedings.pet_id_1')
         ->get();
         $this->selectedPet = NULL;
     }

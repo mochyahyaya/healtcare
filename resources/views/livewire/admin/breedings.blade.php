@@ -80,7 +80,7 @@
                                      {{$items->pet_id_2}}
                                  </td>
                                  <td class="px-6 py-4 whitespace-nowrap">
-                                  {{ \Carbon\Carbon::parse($items->birthday)->translatedFormat('d F Y')}}
+                                  {{ \Carbon\Carbon::parse($items->start_date)->translatedFormat('d F Y')}}
                                  </td>
                                  <td class="px-6 py-4 whitespace-nowrap">
                                      {{$items->cages->typecages->alias ?? ''}} - {{$items->cages->number ?? ''}} 
@@ -138,7 +138,7 @@
                             <div class="mt-4">
                               <x-jet-label for="pet1" value="{{ __('Nama Jantan') }}" />
                               <select wire:model.debounce.800ms="pet_id_1" class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm mt-1 block w-full">
-                                   <option selected> -- Nama Jantan -- </option>
+                                   <option selected>--Nama Jantan-- </option>
                                @foreach ($pet1 as $item)
                                     <option value="{{$item->name}}"> {{$item->name}}</option>
                                 @endforeach
@@ -148,7 +148,7 @@
                             <div class="mt-4" wire:ignore>
                               <x-jet-label for="user_id" value="{{ __('Nama Pemilik') }}" />
                               <select class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm mt-1 block w-full" wire:model="selectedUser" id="selectpicker" style="width: 100%">
-                                    <option value="" selected>  Pilih Nama Pemilik </option>
+                                    <option value="">--Pilih Nama Pemilik--</option>
                                   @foreach ($users as $item)
                                     <option value="{{$item->id}}">{{$item->name}}</option>
                                   @endforeach
@@ -159,7 +159,7 @@
                             <div class="mt-4">
                               <x-jet-label for="selectedPet" value="{{ __('Nama Pet') }}" />
                               <select class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm mt-1 block w-full" wire:model="selectedPet"> 
-                                    <option selected>  Nama hewan </option>
+                                    <option>--Nama hewan--</option>
                                   @foreach ($pet as $item)
                                     <option value= "{{$item->id}}">{{$item->name}}</option>
                                   @endforeach
@@ -170,7 +170,7 @@
                             <div class="mt-4">
                                <x-jet-label for="service" value="{{ __('Jenis Hewan') }}" />
                                <select class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm mt-1 block w-full" wire:model.debounce.800ms="type" >
-                                    <option selected> -- Jenis Hewan -- </option>   
+                                    <option selected>--Jenis Hewan--</option>   
                                     <option value="kucing">Kucing</option>
                                     <option value="anjing">Anjing</option>
                                  </select>
@@ -183,7 +183,7 @@
                             <div class="mt-4">
                               <x-jet-label for="cages" value="{{ __('Kandang') }}" />
                               <select class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm mt-1 block w-full" wire:model="cage_id" >
-                                <option selected> -- Pilih Kandang --</option>
+                                <option selected>--Pilih Kandang--</option>
                                 @foreach($cages as $cages)
                                 <option value="{{ $cages->id }}">{{ $cages->typecages->alias}} - {{$cages->number}}</option>
                                 @endforeach
@@ -208,6 +208,83 @@
                          </x-jet-secondary-button>
                          </x-slot>
                      </x-jet-dialog-modal>
+
+                     {{-- Modal Update --}}
+
+                     {{-- <x-jet-dialog-modal wire:model="modalUpdateVisible">
+                      
+                      @if ($modelId)
+                      <x-slot name="title">
+                          {{ __('Ubah Data Breeding') }}
+                      </x-slot>
+                      @else
+                      <x-slot name="title">
+                          {{ __('Tambah Data Breeding') }}
+                      </x-slot>
+                      @endif
+                      
+                      <x-slot name="content">
+                         <div class="mt-4">
+                           <x-jet-label for="pet1" value="{{ __('Nama Jantan') }}" />
+                           <select wire:model.debounce.800ms="pet_id_1" class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm mt-1 block w-full">
+                            @foreach ($pet1 as $item)
+                                 <option value="{{$item->name}}"> {{$item->name}}</option>
+                             @endforeach
+                           </select>
+                           @error('pet_id_1') <span class="error">{{ $message }}</span> @enderror
+                         </div>
+                         <div class="mt-4" wire:ignore>
+                           <x-jet-label for="user_id" value="{{ __('Nama Pemilik') }}" />
+                           <select class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm mt-1 block w-full" wire:model="selectedUser" id="selectpicker" style="width: 100%">
+                               @foreach ($users as $item)
+                                 <option value="{{$item->id}}">{{$item->name}}</option>
+                               @endforeach
+                             </select>
+                           @error('selectedUser') <span class="error">{{ $message }}</span> @enderror
+                         </div>
+                         @if(!is_null($pet))
+                         <div class="mt-4">
+                           <x-jet-label for="selectedPet" value="{{ __('Nama Pet') }}" />
+                           <select class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm mt-1 block w-full" wire:model="selectedPet"> 
+                               @foreach ($pet as $item)
+                                 <option value= "{{$item->id}}">{{$item->name}}</option>
+                               @endforeach
+                             </select>
+                           @error('selectedPet') <span class="error">{{ $message }}</span> @enderror
+                         </div>  
+                         @endif
+                         <div class="mt-4">
+                            <x-jet-label for="service" value="{{ __('Jenis Hewan') }}" />
+                            <select class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm mt-1 block w-full" wire:model.debounce.800ms="type" >
+                                 <option value="kucing">Kucing</option>
+                                 <option value="anjing">Anjing</option>
+                              </select>
+                            @error('type') <span class="error">{{ $message }}</span> @enderror
+                         </div>
+                         <div class="mt-4">
+                           <x-jet-label for="start_date" value="{{ __('Tanggal Mulai') }}" />
+                           <x-datetime-picker wire:model="start_date" class="w-full rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" />
+                         </div>
+                         <div class="mt-4">
+                           <x-jet-label for="cages" value="{{ __('Kandang') }}" />
+                           <select class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm mt-1 block w-full" wire:model="cage_id" >
+                             @foreach($cages as $cages)
+                             <option value="{{ $cages->id}}">{{ $cages->typecages->alias ?? '' }} - {{$cages->number ?? ''}}</option>
+                             @endforeach
+                             </select>
+                           @error('cage_id') <span class="error">{{ $message }}</span> @enderror
+                         </div>
+                      </x-slot>
+                  
+                      <x-slot name="footer">
+                          <x-jet-secondary-button wire:click="$toggle('modalUpdateVisible')" wire:loading.attr="disabled">
+                              {{ __('Batalkan') }}
+                          <x-jet-button class="ml-2" wire:click="update" wire:loading.attr="disabled">
+                              {{ __('Ubah') }}
+                          </x-jet-danger-button>
+                      </x-jet-secondary-button>
+                      </x-slot>
+                  </x-jet-dialog-modal> --}}
                  
                      {{-- Delete modal --}}
                      <x-jet-dialog-modal wire:model="modalDeleteVisible">
