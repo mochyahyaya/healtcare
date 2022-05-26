@@ -96,7 +96,7 @@ class Pets extends Component
         $data = Pet::find($this->modelId);
         $this->name = $data->name;
         $this->race = $data->race;
-        $this->size = $data->size;
+        // $this->size = $data->size;
         $this->weight = $data->weight;
         $this->colour = $data->colour;
         $this->feature_image = $data->featured_image;

@@ -27,7 +27,7 @@ class Dashboard extends Component
 
     public function pets()
     {
-        $pets = Pet::all()->count();
+        $pets = Pet::where('user_id', 1)->count();
         return $pets;
     }
 

@@ -174,7 +174,6 @@ class Grooms extends Component
     {
         return [
             'pet_id'    => $this->selectedPet,
-            // 'size'      => $this->size,
             'service'   => $this->service,
             'status'    => 'diproses',
             'address'   => $this->address,
@@ -194,7 +193,6 @@ class Grooms extends Component
             //  $this->size = null;
              $this->service = null;
              $this->address = null;
-             $this->status = 'belum diproses';
     }
     public function sortBy($field)
     {
@@ -203,13 +201,16 @@ class Grooms extends Component
             } else {
                 $this->sortDirection = 'asc';
             }
-
             return $this->sortBy = $field;
     }
 
     public function pets()
     {
-        return Pet::with('users')->get();
+        $pet= Pet::where('user_id', $this->selectedUser)
+        ->leftjoin('grooms', 'grooms.pet_id', '=', 'pets.id')
+        ->whereNull('grooms.pet_id')
+        ->get();
+        return $pet;
     }
 
     public function users()
@@ -220,10 +221,10 @@ class Grooms extends Component
     public function updatedSelectedUser($user)
     {
         $this->pet = Pet::where('user_id', $user)
-        // ->leftjoin('grooms', 'grooms.pet_id', '=', 'pets.id')
-        // ->whereNull('grooms.pet_id')
+        ->leftjoin('grooms', 'grooms.pet_id', '=', 'pets.id')
+        ->whereNull('grooms.pet_id')
         ->get();
-        $this->selectedPet = NULL;
+        // $this->selectedPet = NULL;
     }
     
     public function read()

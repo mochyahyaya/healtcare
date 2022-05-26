@@ -80,6 +80,7 @@ Route::get('redirects', 'App\Http\Livewire\Admin\Home');
         Route::get('admin/pet', Pets::class)->name('admin/pets');
         Route::get('admin/cage', Cages::class)->name('admin/cages');
         Route::get('admin/gallery/{id}', Galleries::class)->name('admin/gallery');
+        Route::get('user/profil', UserProfile::class)->name('user/profil'); 
         });
 
         Route::group(['middleware' => ['role:veterinarian']], function() {
@@ -88,6 +89,7 @@ Route::get('redirects', 'App\Http\Livewire\Admin\Home');
         Route::get('veterinarian/medical-records', MedicalRecords::class)->name('veterinarian/medicalRecords');
         Route::get('veterinarian/medicalrecordUser/{id}', MedicalrecordUsers::class)->name('veterinarian/medicalusers');
         Route::get('veterinarian/medicalrecordDetail/{id}', MedicalRecordDetails::class)->name('veterinarian/medicaldetails');
+        Route::get('user/profil', UserProfile::class)->name('user/profil'); 
         });
 
         Route::group(['middleware' => ['role:user']], function() {
