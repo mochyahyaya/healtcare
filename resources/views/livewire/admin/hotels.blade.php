@@ -86,7 +86,7 @@
                                 {{$items->pets->typepet->name}}
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap">
-                              {{ \Carbon\Carbon::parse($items->start_date)->translatedFormat('d F Y')}}
+                              {{ \Carbon\Carbon::parse($items->start_date)->translatedFormat('d F Y :')}}
                             </td>  
                             <td class="px-6 py-4 whitespace-nowrap">
                               {{ \Carbon\Carbon::parse($items->end_date)->translatedFormat('d F Y')}}
@@ -142,7 +142,6 @@
                   {{ __('Tambah Data Hotel') }}
               </x-slot>
               @endif
-
               <x-slot name="content" >
                 <div x-data="{type: 0}">
                   <div class="mt-4" wire:ignore >
@@ -169,7 +168,7 @@
                   @endif                   
                   <div class="mt-4">
                     <x-jet-label for="type" value="{{ __('Jenis Hewan') }}" />
-                    <select name="type" x-model="type" class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm mt-1 block w-full">
+                    <select name="type" x-model="type" wire:model="type" class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm mt-1 block w-full">
                         <option selected>Jenis Hewan</option>
                         <option value =1>Kucing</option>
                         <option value =2>Anjing</option>
@@ -189,12 +188,30 @@
                     <x-jet-label for="end_date" value="{{ __('Tanggal Berakhir') }}" />
                     <x-datetime-picker wire:model="end_date" class="w-full rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" />
                     </div>
-                  {{-- <div class="mt-4">
-                    <x-jet-label for="total_day" value="{{ __('Total Hari') }}" />
-                    <input type="text" value="{{$days}}" class="w-full rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
-                    @error('total_day') <span class="error">{{ $message }}</span> @enderror
-                  </div> --}}
-                  <div class="mt-4" x-show="type == 1">
+                    @if ($type == 1)
+                      <div class="mt-4">
+                        <x-jet-label for="cage_id" value="{{ __('Kandang') }}" />
+                        <select class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm mt-1 block w-full" wire:model="cage_id" >
+                          <option selected> -- Pilih Kandang -- </option>
+                          @foreach($cats as $cat)
+                          <option value="{{ $cat->id }}">{{ $cat->typecages->alias }} - {{$cat->number}}</option>
+                          @endforeach
+                          </select>
+                        @error('cage_id') <span class="error">{{ $message }}</span> @enderror
+                      </div> 
+                    @else
+                    <div class="mt-4">
+                      <x-jet-label for="cage_id" value="{{ __('Kandang') }}" />
+                      <select class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm mt-1 block w-full" wire:model="cage_id" >
+                        <option selected> -- Pilih Kandang -- </option>
+                        @foreach($dogs as $cat)
+                        <option value="{{ $cat->id }}">{{ $cat->typecages->alias }} - {{$cat->number}}</option>
+                        @endforeach
+                        </select>
+                      @error('cage_id') <span class="error">{{ $message }}</span> @enderror
+                    </div> 
+                    @endif
+                  {{-- <div class="mt-4" x-show="type == 1">
                         <x-jet-label for="cage_id" value="{{ __('Kandang') }}" />
                         <select class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm mt-1 block w-full" wire:model="cage_id" >
                           <option selected> -- Pilih Kandang -- </option>
@@ -213,7 +230,7 @@
                       @endforeach
                       </select>
                     @error('cage_id') <span class="error">{{ $message }}</span> @enderror
-                  </div>
+                  </div> --}}
                 </div>
               </x-slot>
             

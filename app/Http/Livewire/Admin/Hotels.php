@@ -27,8 +27,8 @@ class Hotels extends Component
     public $start_date = null;
     public $end_date = null;
     public $search;
-    public $type= 1; 
-    public $petname;
+    public $type; 
+    public $petUpdate;
     public $perPage = 10;
 
     public $selectedUser = null;
@@ -73,7 +73,7 @@ class Hotels extends Component
 
     public function updateShowModal($id)
     {
-        $this->resetValidation();
+        // $this->resetValidation();
         $this->modelId = $id;
         $this->modalFormVisible = true;
         $this->loadModel();
@@ -106,15 +106,12 @@ class Hotels extends Component
 
     public function loadModel()
     {
-        $data               = Hotel::find($this->modelId);
-        $this->selectedUser = $data->pets->users->name;
-        $this->selectedPet  = $data->pets->name;
-        // $this->size         = $data->size;
-        $this->start_date   = $data->start_date;
-        $this->end_date     = $data->end_date;
-        // $this->total_day    = $data->total_day;
-        $this->cage_id      = $data->cage_id;
-        $this->type_id      = $data->pets->typepet->name;
+        $data                       = Hotel::find($this->modelId);
+        $this->selectedPet          = $data->pet_id;
+        $this->start_date           = $data->start_date;
+        $this->end_date             = $data->end_date;
+        $this->status               = $data->status;
+        $this->cage_id              = $data->cage_id;
     }
         
     /**
@@ -238,7 +235,7 @@ class Hotels extends Component
     
     public function pets()
     {
-        return Pet::with('users')->get(); 
+        return Pet::where('user_id', )->get(); 
     }
     public function users()
     {

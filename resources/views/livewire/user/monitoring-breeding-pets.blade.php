@@ -67,7 +67,7 @@
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
                 <ul class="navbar-nav mr-auto justify-center items-center lg:flex">
                     <li class="nav-item">
-                    <a class="page-scroll active" href="{{route('user/monitoringuser')}}">Monitoring Boarding</a>
+                    <a class="page-scroll active" href="{{route('user/monitoringuser')}}">Monitoring Breeding</a>
                     </li>
                     <li class="nav-item">
                     <a class="page-scroll" href="{{route('user/monitoringbreedinguser')}}">Monitoring Breeding</a>

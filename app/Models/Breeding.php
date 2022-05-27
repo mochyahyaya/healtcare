@@ -26,7 +26,6 @@ class Breeding extends Model
     public function scopeSearch($query, $val){
         return $query
         ->select('breedings.*', 'breedings.id AS id')
-        ->where('status', '<>', 'selesai')
         ->leftJoin('pets', 'pets.id', '=', 'breedings.pet_id_1')
         ->where(function ($query) use ($val){
             $query
