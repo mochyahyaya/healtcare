@@ -15,8 +15,8 @@
                     @foreach ($pet as $items)
                     <div class="image overflow-hidden">
                         <img class="h-auto w-full mx-auto"
-                            src="{{ url('storage/featured_image/'.$items->featured_image )}}"
-                            alt="No Image">
+                            src="{{ url('storage/featured_image/'.$items->featured_image)}}"
+                            alt="{{$items->image}}">
                     </div>
                     <h1 class="text-gray-900 font-bold text-xl leading-8 my-1">Pemilik</h1>
                     <h3 class="text-gray-900 font-lg text-semibold leading-6">{{$items->users->name}}</h3>
@@ -24,8 +24,20 @@
                         class="bg-gray-100 text-gray-600 hover:text-gray-700 hover:shadow py-2 px-3 mt-3 divide-y rounded shadow-sm">
                         <li class="flex items-center py-3">
                             <span>Status</span>
-                            <span class="ml-auto"><span
-                                    class="bg-green-500 py-1 px-2 rounded text-white text-sm">Sehat</span></span>
+                                <span class="ml-auto">
+                                    @if ($status == 'sehat')
+                                        <span class="bg-green-500 py-1 px-2 rounded text-white text-sm"  
+                                        wire:click="$toggle('status')"
+                                        style="cursor: pointer">{{$status ? 'Sehat' : 'Sakit'}}
+                                        </span>
+                                    @else
+                                        <span class="bg-yellow-500 py-1 px-2 rounded text-white text-sm"  
+                                        wire:click="$toggle('status')"
+                                        style="cursor: pointer">{{$status ? 'Sehat' : 'Sakit'}}
+                                        </span>
+                                    @endif
+                                   
+                            </span>
                         </li>
                         <li class="flex items-center py-3">
                             <span>Member since</span>
@@ -49,30 +61,16 @@
                         <span>Pet lain yang dimiliki</span>
                     </div>
                     <div class="grid grid-cols-3">
-                        <div class="text-center my-2">
-                            <img class="h-16 w-16 rounded-full object-cover"
-                                src="/shine/assets/img/pet/Cat-3.jpg"
+                        @foreach ($otherpets as $items)
+                        <a href="{{ route('veterinarian/medicaldetails', ['id'=>$items->id]) }}">
+                            <div class="text-center my-2">
+                                <img class="h-16 w-16 rounded-full object-cover"
+                                src="{{ url('storage/featured_image/'.$items->featured_image)}}"
                                 alt="">
-                            <a href="#" class="text-main-color">Gray</a>
-                        </div>
-                        <div class="text-center my-2">
-                            <img class="h-16 w-16 rounded-full object-cover"
-                                src="/shine/assets/img/pet/Cat-4.jpg"
-                                alt="">
-                            <a href="#" class="text-main-color">Mili</a>
-                        </div>
-                        <div class="text-center my-2">
-                            <img class="h-16 w-16 rounded-full object-cover"
-                                src="/shine/assets/img/pet/Cat-5.jpg"
-                                alt="">
-                            <a href="#" class="text-main-color">Miki</a>
-                        </div>
-                        <div class="text-center my-2">
-                            <img class="h-16 w-16 rounded-full object-cover"
-                                src="/shine/assets/img/pet/Cat-6.jpg"
-                                alt="">
-                            <a href="#" class="text-main-color">Caty</a>
-                        </div>
+                            </div>
+                            <span class="text-main-color">{{$items->name}}</span>
+                        </a>
+                        @endforeach
                     </div>
                 </div>
                 <!-- End of friends card -->
@@ -117,7 +115,7 @@
                             </div>
                             <div class="grid grid-cols-2">
                                 <div class="px-4 py-2 font-semibold">BirthDay</div>
-                                <div class="px-4 py-2">{{$items->birthday}}</div>
+                                <div class="px-4 py-2">{{ \Carbon\Carbon::parse($items->start_date)->translatedFormat('d F Y')}}</div>
                             </div>
                             @endforeach
                         </div>

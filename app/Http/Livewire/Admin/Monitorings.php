@@ -18,8 +18,7 @@ class Monitorings extends Component
     public $enumfood          = ['Normal', 'Tidak Normal'];
     public $enumtemperature   = ['Normal', 'Tidak Normal'];
     public $enummedicine      = ['Sudah', 'Tidak Perlu'];
-    public $food, $temperature, $medicine, $notes, $hotel_id;
-    public $photo = [];
+    public $food, $temperature, $medicine, $notes, $hotel_id,$photo;
 
     public function mount($id)
     {
@@ -33,22 +32,19 @@ class Monitorings extends Component
             'temperature'       => 'required',
             'medicine'          => 'required',
             'notes'             => 'required',
-            'photo.*'           => 'required',
+            'photo'             => 'required',
         ]);
 
-        if (!empty($this->photo)){
-            foreach($this->photo as $key=>$galeries){
-                $this->photo[$key] = $galeries->store('public/boardmonitoring');
-            }
-        }
-        $this->photo = json_encode($this->photo); 
+        if (!empty($this->photo)) {
+            $this->photo->store('public/boardmonitoring');
+        } 
         Monitoring::create([
-            // 'food'          => $this->food,
+            'food'          => $this->food,
             'hotel_id'      => $this->hotel_id,
             'temperature'   => $this->temperature,
             'medicine'      => $this->medicine,
             'notes'         => $this->notes,
-            'photo'         => $this->photo,
+            'photo'         => $this->photo->hashName()
         ]);
         
         $this->dispatchBrowserEvent('swal:modal', [

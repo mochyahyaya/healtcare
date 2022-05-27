@@ -15,7 +15,7 @@ class BreedingMonitorings extends Component
     public $enumtemperature   = ['Normal', 'Tidak Normal'];
     public $enummedicine      = ['Sudah', 'Tidak Perlu'];
     public $food, $temperature, $medicine, $notes, $breeding_id;
-    public $photo = [];
+    public $photo;
 
     public function mount($id)
     {
@@ -29,23 +29,27 @@ class BreedingMonitorings extends Component
             'temperature'       => 'required',
             'medicine'          => 'required',
             'notes'             => 'required',
-            'photo.*'           => 'required',
+            'photo'             => 'required',
         ]);
 
-        if (!empty($this->photo)){
-            foreach($this->photo as $key=>$galeries){
-                $this->photo[$key] = $galeries->store('public/boardmonitoring');
-            }
-        }
-        $this->photo = json_encode($this->photo); 
+        if (!empty($this->photo)) {
+            $this->photo->store('public/boardmonitoring');
+        } 
         MonitoringBreeding::create([
             'food'          => $this->food,
             'breeds_id'     => $this->breeding_id,
             'temperature'   => $this->temperature,
             'medicine'      => $this->medicine,
             'notes'         => $this->notes,
-            'photo'         => $this->photo,
-        ]); 
+            'photo'         => $this->photo->hashName()
+        ]);
+        
+        $this->dispatchBrowserEvent('swal:modal', [
+            'title'     => 'Sukses',
+            'icon'      => 'success',
+            'text'      => 'Data Monitoring Boarding Berhasil Ditambahkan',
+            'iconcolor' => 'green'
+        ]);
     }
 
     public function read()

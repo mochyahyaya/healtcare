@@ -89,7 +89,7 @@
                                 </div>
                                 <div class="mt-4">
                                     <x-jet-label for="gallery" value="{{ __('Foto') }}" />
-                                    <x-jet-input id="photo" class="block mt-1 w-full" type="file" multiple wire:model.debounce.800ms="photo" enctype="multipart/form-data" />
+                                    <x-jet-input id="photo" class="block mt-1 w-full" type="file" wire:model.debounce.800ms="photo" enctype="multipart/form-data" />
                                     @error('photo.*') <span class="error">{{ $message }}</span> @enderror
                                   </div>
                                 <div class="mt-4">

@@ -22,6 +22,21 @@ class Pet extends Model
         return $this->belongsTo(User::class, 'user_id');
     }
 
+    public function grooms()
+    {
+        return $this->belongsTo(Groom::class, 'id', 'pet_id');
+    }
+
+    public function hotels()
+    {
+        return $this->belongsTo(Hotel::class, 'id', 'pet_id');
+    }
+
+    public function breeds()
+    {
+        return $this->belongsTo(Breeding::class, 'id', 'pet_id_1');
+    }
+
     public function scopeSearch($query, $val){
         return $query
         ->where('user_id', 1)

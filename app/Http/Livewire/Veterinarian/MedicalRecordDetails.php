@@ -5,16 +5,22 @@ namespace App\Http\Livewire\Veterinarian;
 use App\Models\MedicalRecord;
 use App\Models\Pet;
 use App\Models\TypeVaccinee;
+use App\Models\User;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
 class MedicalRecordDetails extends Component
 {
-    public $pet_id, $indication, $medication, $status, $vaccinee;
+    public $pet_id, $user_id, $indication, $medication, $vaccinee;
+    public $status = 'sehat';
 
     public function mount($id)
     {
         $this->pet_id = $id;
+        $data = Pet::find($this->pet_id);
+        $this->user_id = $data->users->id; 
+        // $this->user_id = $;
     }
     public function records()
     {
@@ -33,7 +39,7 @@ class MedicalRecordDetails extends Component
             'indication' => $this->indication,
             'medication' => $this->medication,
             // 'vaccinee'   => $this->vaccinee, 
-            'status'     => 'Sehat'
+            'status'     => $this->status
         ]);
 
         $this->dispatchBrowserEvent('swal:modal', [
@@ -54,6 +60,15 @@ class MedicalRecordDetails extends Component
         return MedicalRecord::where('pet_id', $this->pet_id)->get();
     }
 
+    public function otherPets()
+    {
+        $pets = Pet::where('user_id', '=', $this->user_id)
+        ->where('id', '!=' , $this->pet_id)
+        ->get();
+        // dd($pets);
+        return $pets;
+    }
+
     public function resetVars()
     {
         $this->indication = null;
@@ -68,7 +83,8 @@ class MedicalRecordDetails extends Component
         return view('livewire.veterinarian.medical-record-details', [
             'pet' => $this->records(),
             'vaccinees' => $this->vaccinee(),
-            'medicals' => $this->medicals()            
+            'medicals' => $this->medicals(),
+            'otherpets' => $this->otherPets()            
         ]);
     }
 }

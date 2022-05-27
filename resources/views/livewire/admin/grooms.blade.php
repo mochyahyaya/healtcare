@@ -158,7 +158,7 @@
                               <option value= "{{$item->id}}">{{$item->name}}</option>
                             @endforeach
                           </select>
-                          {{$pet}}
+                          {{-- {{$pet}} --}}
                         @error('selectedPet') <span class="error">{{ $message }}</span> @enderror
                       </div>  
                       @endif

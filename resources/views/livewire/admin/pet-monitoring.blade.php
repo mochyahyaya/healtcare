@@ -10,9 +10,6 @@
                 <div class="p-6">
                     <div class="flex px-4 py-3 sm:px-6">
                       <div class="flex-1 float-left">   
-                          <x-jet-button wire:click="createShowModal">
-                              {{ __('Tambah') }}
-                          </x-jet-button>
                       </div>
                       <div class="flex-2 float-right">
                           <x-jet-input id="name" type="text" wire:model.debounce.500ms="search" placeholder="Search..." />
@@ -39,6 +36,9 @@
                            <table class="min-w-full divide-y divide-gray-200">
                              <thead class="bg-gray-50">
                                <tr>
+                                 <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                   Tanggal Masuk
+                                 </th>
                                 <th wire:click="sortBy('food')" scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider" style="cursor: pointer">
                                     Kondisi Makan
                                     @include('partials._sort-icon', ['field' => 'food'])
@@ -69,21 +69,24 @@
                              <tbody class="bg-white divide-y divide-gray-200">
                                 @if ($data->count())
                                 @foreach ($data as $items)
-                                @php
-                                    dump($items);
-                                @endphp
                                <tr>
-                                <td class="px-6 py-4 whitespace-nowrap">
+                                 <td class="px-6 py-4 whitespace-nowrap">
+                                  {{ \Carbon\Carbon::parse($items->created_at)->translatedFormat('d F Y H:i')}}
+                                 </td>
+                                <td class="px-4 py-4 whitespace-nowrap">
                                     {{$items->food}}
                                  </td>
-                                 <td class="px-6 py-4 whitespace-nowrap">
+                                 <td class="px-4 py-4 whitespace-nowrap">
                                     {{$items->temperature}}
                                  </td>
-                                 <td class="px-6 py-4 whitespace-nowrap">
+                                 <td class="px-4 py-4 whitespace-nowrap">
                                     {{$items->medicine}}
                                  </td>
-                                 <td class="px-6 py-4 whitespace-nowrap">
-                                     {{$items->notes}}
+                                 <td class="px-4 py-4 whitespace-nowrap">
+                                     {!! $items->notes !!}
+                                 </td>
+                                 <td class="">
+                                  <img src="{{ url('/storage/boardmonitoring/'.$items->photo )}}" alt="" class="h-12 w-12" alt="Image">
                                  </td>
                                </tr>
                                @endforeach
@@ -95,10 +98,10 @@
                      </div>
                    </div>
                      <div>
-                       Showing {{$data -> firstItem()}} to {{$data -> lastItem()}} out of {{$data->total()}} items
+                       {{-- Showing {{$data -> firstItem()}} to {{$data -> lastItem()}} out of {{$data->total()}} items --}}
                      </div>
                      <div class="mt-5">
-                         {{$data ->links()}}
+                         {{-- {{$data ->links()}} --}}
                      </div>
             </div>
       </div>

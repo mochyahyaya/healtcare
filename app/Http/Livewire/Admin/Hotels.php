@@ -273,6 +273,7 @@ class Hotels extends Component
         $this->pet = Pet::where('user_id', $user)
         // ->leftjoin('hotels', 'hotels.pet_id', '=', 'pets.id')
         // ->whereNull('hotels.pet_id')
+        ->doesntHave('hotels')
         ->get();
         $this->selectedPet = NULL;
     }

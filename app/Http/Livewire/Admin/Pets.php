@@ -39,7 +39,7 @@ class Pets extends Component
         return [
             'name' => 'required',
             'type_id' => 'required',
-            'size' => 'required',
+            // 'size' => 'required',
             'weight' => 'required',
             'colour' => 'required',
             'birthday' => 'required',
@@ -184,7 +184,7 @@ class Pets extends Component
         return [
             'name'           => $this->name,
             'race'           => $this->race,
-            'size'           => $this->size,
+            // 'size'           => $this->size,
             'weight'         => $this->weight,
             'colour'         => $this->colour,
             'type_id'        => $this->type_id,
@@ -205,7 +205,7 @@ class Pets extends Component
              $this->modelId = null;   
              $this->name = null;
              $this->race = null;
-             $this->size = null;
+            //  $this->size = null;
              $this->weight = null;
              $this->colour = null;
              $this->type_id = null;

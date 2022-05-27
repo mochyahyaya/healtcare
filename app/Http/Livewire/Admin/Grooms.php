@@ -221,8 +221,8 @@ class Grooms extends Component
     public function updatedSelectedUser($user)
     {
         $this->pet = Pet::where('user_id', $user)
-        ->leftjoin('grooms', 'grooms.pet_id', '=', 'pets.id')
-        ->whereNull('grooms.pet_id')
+        // ->leftjoin('grooms', 'grooms.pet_id', '=', 'pets.id')
+        ->doesntHave('grooms')
         ->get();
         // $this->selectedPet = NULL;
     }

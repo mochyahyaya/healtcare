@@ -272,6 +272,7 @@ class Breedings extends Component
         ->where('gender', 'Betina')
         // ->leftjoin('breedings', 'breedings.pet_id_1', '=', 'pets.id')
         // ->whereNull('breedings.pet_id_1')
+        ->doesntHave('breeds')
         ->get();
         $this->selectedPet = NULL;
     }
