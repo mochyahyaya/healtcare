@@ -21,10 +21,15 @@ use App\Http\Livewire\User\UserBreeding;
 use App\Http\Livewire\User\UserGrooming;
 use App\Http\Livewire\User\UserPet;
 use App\Http\Livewire\USer\UserProfile;
-use App\Http\Livewire\USer\Monitoringpets;
+use App\Http\Livewire\User\MonitoringPets;
+use App\Http\Livewire\USer\MonitoringUser;
+use App\Http\Livewire\USer\MonitoringBreedingUser;
+use App\Http\Livewire\USer\MonitoringBreedingPets;
 use App\Http\Livewire\USer\HistoryActivity;
 use App\Http\Livewire\USer\HistoryActivityBoarding;
 use App\Http\Livewire\USer\HistoryActivityBreeding;
+use App\Http\Livewire\USer\UserBreedingShow;
+use App\Http\Livewire\USer\UserBreedingGalery;
 
 
 use App\Http\Livewire\Veterinarian\DashboardD;
@@ -103,8 +108,13 @@ Route::get('redirects', 'App\Http\Livewire\Admin\Home');
         Route::get('user/pet', UserPet::class)->name('user/pet');   
         Route::get('user/historyactivity', HistoryActivity::class)->name('user/historyactivity');   
         Route::get('user/historyactivityboardings', HistoryActivityBoarding::class)->name('user/historyactivityhotels');   
-        Route::get('user/historyactivitybreedings', HistoryActivityBreeding::class)->name('user/historyactivitybreeds');   
-        Route::get('user/monitoringpets', Monitoringpets::class)->name('user/monitoringpets');   
+        Route::get('user/historyactivitybreedings', HistoryActivityBreeding::class)->name('user/historyactivitybreeds');      
+        Route::get('user/userbreedingshow', UserBreedingShow::class)->name('user/userbreedingshow');   
+        Route::get('user/userbreedinggalery/{id}', UserBreedingGalery::class)->name('user/userbreedinggalery');   
+        Route::get('user/monitoringuser', MonitoringUser::class)->name('user/monitoringuser');   
+        Route::get('user/monitoringpets/{id}', MonitoringPets::class)->name('user/monitoringpets');   
+        Route::get('user/monitoringbreedinguser', MonitoringBreedingUser::class)->name('user/monitoringbreedinguser');   
+        Route::get('user/monitoringbreedingpets/{id}', Monitoringbreedingpets::class)->name('user/monitoringbreedingpets');   
         });
 
 });

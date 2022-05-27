@@ -70,7 +70,7 @@
                     <a class="page-scroll active" href="{{route('user/monitoringuser')}}">Monitoring Boarding</a>
                     </li>
                     <li class="nav-item">
-                    <a class="page-scroll" href="{{route('user/monitoribreedinguser')}}">Monitoring Breeding</a>
+                    <a class="page-scroll" href="{{route('user/monitoringbreedinguser')}}">Monitoring Breeding</a>
                     </li>
                 </ul>
                 <div class="border-t border-gray-200"></div>

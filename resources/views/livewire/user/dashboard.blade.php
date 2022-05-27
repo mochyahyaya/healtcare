@@ -110,7 +110,7 @@
                     <div class="border-t border-gray-200"></div>
                       <li class=""><a class="rounded-t bg-white hover:bg-blue-200 py-2 px-4 block whitespace-no-wrap" href="{{route('user/profil')}}">Profile</a></li>
                       <li class=""><a class="rounded-t bg-white hover:bg-blue-200 py-2 px-4 block whitespace-no-wrap" href="{{route('user/pet')}}">Pet</a></li>
-                      <li class=""><a class="rounded-t bg-white hover:bg-blue-200 py-2 px-4 block whitespace-no-wrap" href="{{route('user/monitoringpets')}}">Monitoring Pet</a></li>
+                      <li class=""><a class="rounded-t bg-white hover:bg-blue-200 py-2 px-4 block whitespace-no-wrap" href="{{route('user/monitoringuser')}}">Monitoring Pet</a></li>
                       <li class=""><a class="rounded-t bg-white hover:bg-blue-200 py-2 px-4 block whitespace-no-wrap" href="{{route('user/historyactivity')}}">Riwayat Aktivitas</a></li>
                     <form method="POST" action="{{ route('logout') }}">
                       @csrf
@@ -360,7 +360,7 @@
       </div>
     </div>
 
-    <a href="{{ route('user/breedings')}}">
+    <a href="{{ route('user/userbreedingshow')}}">
       <button class="flex mx-auto mt-16 text-white bg-blue-300 border-0 py-2 px-8 focus:outline-none hover:bg-blue-600 rounded text-lg">Breeding Menu</button>
     </a>
   </section>
@@ -542,7 +542,7 @@
   <!-- Team Section End -->
 
   <!-- Map Section Start -->
-  <section id="google-map-area">
+  {{-- <section id="google-map-area">
       <div class="mx-6 mb-6">
           <div class="flex">
               <div class="w-full">
@@ -550,7 +550,7 @@
               </div>
           </div>
       </div>
-  </section>
+  </section> --}}
   <!-- Map Section End -->
  
   <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>

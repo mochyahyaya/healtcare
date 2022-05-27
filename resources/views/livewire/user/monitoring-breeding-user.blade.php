@@ -67,10 +67,10 @@
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
                 <ul class="navbar-nav mr-auto justify-center items-center lg:flex">
                     <li class="nav-item">
-                    <a class="page-scroll active" href="{{route('user/monitoringuser')}}">Monitoring Boarding</a>
+                    <a class="page-scroll" href="{{route('user/monitoringuser')}}">Monitoring Boarding</a>
                     </li>
                     <li class="nav-item">
-                    <a class="page-scroll" href="{{route('user/monitoribreedinguser')}}">Monitoring Breeding</a>
+                    <a class="page-scroll active" href="{{route('user/monitoringbreedinguser')}}">Monitoring Breeding</a>
                     </li>
                 </ul>
                 <div class="border-t border-gray-200"></div>
@@ -78,76 +78,22 @@
                     <div class="container h-screen px-5 py-12 mx-auto">
                         <div class="bg-white shadow overflow-hidden border-b border-gray-200 sm:rounded-lg p-12">
                             <div class="flex flex-col text-center w-full mb-20">
-                                <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900">Monitoring Grooming</h1>
+                                <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900">Monitoring Breeding</h1>
                                 <p class="lg:w-2/3 mx-auto leading-relaxed text-base">Hewan Peliharaan {{Auth::user()->name}}</p>
                             </div>
                             <div class="flex flex-wrap -m-4">
-                                <div class="flex flex-col">
-                                    <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
-                                      <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
-                                        <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
-                                          <div class="row mb-4">
-                                            <div class="col form-inline">
-                                              Per Page: &nbsp;
-                                              <select wire:model="perPage" class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm">
-                                                <option>5</option>
-                                                <option>10</option>
-                                                <option>25</option>
-                                                <option>50</option>
-                                              </select>
-                                            </div>
-                                          </div>
-                                          <table class="min-w-full divide-y divide-gray-200">
-                                            <thead class="bg-gray-50">
-                                              <tr>
-                                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                  Tanggal Masuk
-                                                </th>
-                                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                  Tanggal Keluar
-                                                </th>
-                                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                  Kondsi Makan
-                                                </th>
-                                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                  Kondisi Suhu Badan
-                                                </th>
-                                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                  Photo
-                                                </th>
-                                              </tr>
-                                            </thead>
-                                            <tbody class="bg-white divide-y divide-gray-200">
-                                               @if ($data->count())
-                                               @foreach ($data as $items)
-                                              <tr>
-                                                <td class="px-6 py-4 whitespace-nowrap">
-                                                 {{ \Carbon\Carbon::parse($items->created_at)->translatedFormat('d F Y H:i')}}
-                                                </td>
-                                               <td class="px-4 py-4 whitespace-nowrap">
-                                                   {{$items->food}}
-                                                </td>
-                                                <td class="px-4 py-4 whitespace-nowrap">
-                                                   {{$items->temperature}}
-                                                </td>
-                                                <td class="px-4 py-4 whitespace-nowrap">
-                                                   {{$items->medicine}}
-                                                </td>
-                                                <td class="px-4 py-4 whitespace-nowrap">
-                                                    {!! $items->notes !!}
-                                                </td>
-                                                <td class="">
-                                                 <img src="{{ url('/storage/boardmonitoring/'.$items->photo )}}" alt="" class="h-12 w-12" alt="Image">
-                                                </td>
-                                              </tr>
-                                              @endforeach
-                                              @endif
-                                            </tbody>
-                                          </table>
+                                @foreach ($pets as $item)
+                                <div class="lg:w-1/4 sm:w-1/2 p-2 border-4 border-gray-200">
+                                    <div class="flex relative">
+                                        <img alt="gallery" class="absolute inset-0 w-full h-full object-fill object-center" src="{{ url('storage/featured_image/'.$item->featured_image )}}">
+                                        <div class="px-8 py-10 relative z-10 w-full border-4 border-gray-200 bg-white opacity-0 hover:opacity-100">
+                                            <h2 class="tracking-widest text-sm title-font font-medium text-indigo-500 mb-1">{{$item->name}}</h2>
+                                            <h1 class="title-font text-lg font-medium text-gray-900 mb-3">{{$item->race}}</h1>
+                                            <a href= "{{route('user/monitoringbreedingpets', ['id'=>$item->id])}}" class="text-indigo-600 hover:text-indigo-900 mr-3">Lihat Monitoring</a>
                                         </div>
-                                      </div>
                                     </div>
-                                  </div>
+                                </div>
+                                @endforeach
                             </div>
                         </div>
                     </div>
